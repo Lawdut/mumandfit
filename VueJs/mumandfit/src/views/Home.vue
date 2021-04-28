@@ -20,17 +20,10 @@ export default {
 
 <style scoped>
 .home{
-  width: 100%;
-  height: 100%;
   
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  row-gap: 50px;
 }
 
 #pres{
-  width: 75vw;
+
 }
 </style>

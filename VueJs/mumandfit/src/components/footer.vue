@@ -1,5 +1,8 @@
 <template>
     <div id = 'footer'>
+        <div class = "mention">
+            <h1>blavl</h1>
+        </div>
         <div id ="resSociaux">
             <a href = '#'>
                 <img src = '../assets/logoResSociaux/facebook.svg' height="40px">
@@ -29,34 +32,28 @@
 
 <style scoped>
 #footer {
-    background-color: #fdaf93;
-    height: 100px;
-    bottom: 0;
-}
-#resSociaux{
-    display: flex;
-    flex-direction: row;  
-    justify-content: center; 
-    align-items: center;
-    box-shadow: 0 -2px 5px black;
-    height:100% ;
-    width: 100%;
-    column-gap: 50px;
-    margin :0;
-    padding : 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 a {
-    display : flex;
-    align-items: center;
-    justify-content: center;
     transition: 0.4s;
-    margin:0;
-    padding: 0;
+    
 }
 a:hover {
     transform: scale(1.1);
 }
-
+.mention {
+    display: flex;
+    justify-content: center;
+}
+#resSociaux{
+    grid-column: 3/4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    column-gap: 20px;
+    margin-right: 20px;
+}
 #resSociaux>a:hover{
     cursor: pointer; 
 }
