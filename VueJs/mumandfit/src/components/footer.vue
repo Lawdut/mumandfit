@@ -2,25 +2,26 @@
     <div id = 'footer'>
         <div id ="resSociaux">
             <a href = '#'>
-                <img src = '../assets/logoResSociaux/facebook.png'>
+                <img src = '../assets/logoResSociaux/facebook.svg' height="40px">
             </a>
             <a href = '#'>
-                <img src = '../assets/logoResSociaux/instagram.png'>
+                <img src = '../assets/logoResSociaux/instagram.svg' height="40px">
             </a>
             <a href = '#'>
-                <img src = '../assets/logoResSociaux/youtube.png'>
+                <img src = '../assets/logoResSociaux/youtube.svg' height="40px">
             </a>
             <a href = '#'>
-                <img src = '../assets/logoResSociaux/mail.png'>
+                <img src = '../assets/logoResSociaux/mail.svg' height="40px">
             </a>
             <a href = '#'>
-                <img src = '../assets/logoResSociaux/location.png'>
+                <img src = '../assets/logoResSociaux/location.svg' height="40px">
             </a>
         </div>
     </div>
 </template>
 
 <script>
+
     export default {
         
     }
@@ -37,7 +38,7 @@
     justify-content: space-around; 
     align-items: center;
     margin: auto;
-    box-shadow: 0 0 5px black;
+    box-shadow: 0 -2px 5px black;
     height:100% ;
     width: 100%;
 }

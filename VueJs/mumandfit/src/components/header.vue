@@ -25,13 +25,13 @@
     background-color: #fdaf93;
     padding:  0;
     margin : 0;
-    font-size: 30px;
+    font-size: 15px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    box-shadow: 0 0 5px 0 black;
+    box-shadow: 0 2px 5px black;
 }
 
 h1 {

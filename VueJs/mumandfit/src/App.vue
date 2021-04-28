@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Header />
-    <Navbar />
     <div class = "main"><router-view /></div>
     <Footer />
   </div>
@@ -9,7 +8,6 @@
 
 <script>
 import Header  from '@/components/header.vue';
-import Navbar from '@/components/navbar.vue';
 import Footer from '@/components/footer.vue';
 
 export default {
@@ -29,6 +27,7 @@ export default {
     Footer,
   },
 };
+
 </script>
 
 
@@ -39,11 +38,11 @@ body {
   padding: 0;
 }
 #app {
-  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-family: monserrat,Tahoma, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: black;
   background-size: cover;
   background-position: center;
   height: 100vh;
