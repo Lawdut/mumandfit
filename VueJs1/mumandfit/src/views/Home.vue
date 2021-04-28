@@ -22,8 +22,7 @@ export default {
 .home{
   width: 100%;
   height: 100%;
-  margin-top:50px;
-  margin-bottom:50px;
+  
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,7 +1,5 @@
 <template>
     <div id = 'header'>
-        <div id = 'logo'>
-        </div>
         <div id = 'titre'>
             <h1>Mum&Fit</h1>
         </div>
@@ -27,40 +25,31 @@
     margin : 0;
     font-size: 15px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     box-shadow: 0 2px 5px black;
+    height: 100px;
 }
 
 h1 {
     margin : 20px;
 }
 
-#logo {
-    grid-area: 1 / 1 / 2 / 2;
-    transition: 0.4s; 
-}
-
-#logo:hover {
-    cursor: pointer;
-    transform: scale(1.2);
-}
 
 #titre {
-    grid-area: 1 / 3 / 2 / 4;
-    transition: 0.4s;
+    grid-area: 1 / 1 / 2 / 2;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
 #titre:hover {
     cursor: pointer;
-    transform: scale(1.1);
 }
 nav {
-    grid-area: 2 / 1 / 3 / 6;
-    
+    grid-area: 1 / 2 / 2 / 3;
 }
+
+
 </style>

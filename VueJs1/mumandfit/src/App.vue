@@ -38,7 +38,7 @@ body {
   padding: 0;
 }
 #app {
-  font-family: monserrat,Tahoma, Helvetica, Arial, sans-serif;
+  font-family: Tahoma, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -56,14 +56,29 @@ body {
 
 #header {
   grid-area: 1 / 1 / 2 / 2;
+  background-color: #fdaf93;
+    padding:  0;
+    margin : 0;
+    font-size: 15px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    box-shadow: 0 2px 5px black;
 }
 
 #main {
   grid-area: 2 / 1 / 5 / 2;
+  height: 100%;
+  position: relative;
 }
 
 #footer {
   grid-area: 7 / 1 / 7 / 2;
+  bottom : 0;
+  height :100px;
+  position: absolute;
 }
 
 </style>

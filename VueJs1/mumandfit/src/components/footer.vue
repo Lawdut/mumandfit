@@ -31,22 +31,27 @@
 #footer {
     background-color: #fdaf93;
     height: 100px;
+    bottom: 0;
 }
 #resSociaux{
     display: flex;
     flex-direction: row;  
-    justify-content: space-around; 
+    justify-content: center; 
     align-items: center;
-    margin: auto;
     box-shadow: 0 -2px 5px black;
     height:100% ;
     width: 100%;
+    column-gap: 50px;
+    margin :0;
+    padding : 0;
 }
 a {
     display : flex;
     align-items: center;
     justify-content: center;
     transition: 0.4s;
+    margin:0;
+    padding: 0;
 }
 a:hover {
     transform: scale(1.1);
