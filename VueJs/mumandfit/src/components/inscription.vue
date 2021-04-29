@@ -6,22 +6,22 @@
 
         
             <div id = "titre-prenom"><label for="first_name"><h2>Prénom</h2></label></div>
-            <input type="text" name="prenom" class = "input prenom-inscri">
+            <input type="text" name="prenom" class = "input prenom-inscri" v-model = "prenom">
         
         
             <div id = "titre-nom"><label for="last_name"><h2>Nom</h2></label></div>
-            <input type="text" name="last_name" class = "input nom-inscri">
+            <input type="text" name="last_name" class = "input nom-inscri" v-model = "nom">
         
         
             <div id = "titre-telephone"><label for="phone_number"><h2>Numéro de téléphone</h2></label></div>
-            <input type="tel" name="telephone" class = "input phone-inscri" placeholder="0102030405" v-on:Focus="this.value='';" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" >
+            <input type="tel" name="telephone" class = "input phone-inscri" placeholder="0102030405" v-model = "telephone" v-on:Focus="this.value='';" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" >
                 
         
             <div id = "titre-email-inscri"><label for="mail"><h2>Email</h2></label></div>
-            <input type="email" name="mail" placeholder="courriel@exemple.com" v-on:Focus="this.value='';" class="input email-inscri">
+            <input type="email" name="mail" placeholder="courriel@exemple.com" v-on:Focus="this.value='';" class="input email-inscri" v-model = "email">
 
             <div class = "titre-password-inscri"><label for="password"><h2>Mot de passe</h2></label></div>
-            <input type="password" name="password" id="password1"  class="input passwd-inscri">
+            <input type="password" name="password" id="password1"  class="input passwd-inscri" v-model = "password">
         
         
             <div class = "titre-passwd2-inscri"><label for = "password2"> <h2>Confirmation du mot de passe</h2></label></div>
