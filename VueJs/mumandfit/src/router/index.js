@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Connexion from '../components/connexion.vue'
+import Inscription from '../components/inscription.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: "/connexion",
     name : "Connexion",
     component: Connexion
+  },
+  {
+    path: "/inscription",
+    name : "Inscription",
+    component: Inscription
   },
 
   {
