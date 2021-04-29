@@ -1,9 +1,18 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from "vue";
+import Axios from "axios";
+import App from "./App.vue";
+import router from "./router";
+import session from "vue-session";
 import store from './store'
 
-Vue.config.productionTip = false
+
+var options = {
+  persist: true
+}
+
+Vue.use(session,options);
+Vue.config.productionTip = false;
+Vue.prototype.http=Axios;
 
 new Vue({
   router,

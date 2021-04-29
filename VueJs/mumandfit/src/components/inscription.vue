@@ -21,15 +21,15 @@
             <input type="email" name="mail" placeholder="courriel@exemple.com" v-on:Focus="this.value='';" class="input email-inscri">
 
             <div class = "titre-password-inscri"><label for="password"><h2>Mot de passe</h2></label></div>
-            <input type="password" name="password" id="password1" v-on:keyup="checkpass()" class="input passwd-inscri">
+            <input type="password" name="password" id="password1"  class="input passwd-inscri">
         
         
             <div class = "titre-passwd2-inscri"><label for = "password2"> <h2>Confirmation du mot de passe</h2></label></div>
-            <input type="password" name="password2" id="password2" v-on:keyup="checkpass()" class="input password2-inscri">
+            <input type="password" name="password2" id="password2"  class="input password2-inscri">
 
             <div class = "pass-verif-inscri"></div>
         
-            <input type = "submit" id= "submit-inscri" @click="inscription(); sessions()" name = 'submit' value = "Connexion" disabled>
+            <input type = "submit" id= "submit-inscri" @click="inscription()" name = 'submit' value = "Connexion">
 
     </div>
 </template>
@@ -38,39 +38,39 @@
     export default {
         data: function () {
             return {
-                prenom : null,
-                nom : null,
-                telephone : null,
-                email : null,
-                password : null,
-                password2 : null,
+                prenom : "",
+                nom : "",
+                telephone : "",
+                email : "",
+                password : "",
             }
         },
         methods : {
 
             inscription(){
-                this.http.post('http://localhost:8080/inscription', {
+                this.http.post('http://localhost:8010/inscription', {
                     prenom : this.prenom,
                     nom : this.nom,
                     telephone : this.telephone,
                     email : this.email,
-                    password : this.password
+                    mdp : this.password
                 })
+                .then(response => console.log(response.data))
             },
 
-            sessions(){
+            /*sessions(){
                 var self = this; //obliger de faire self car variable this : 'undefined'
                 self.$session.start();
                 self.$session.set('nom', this.nom);
                 console.log(self.$session.getAll());
-        },   
-            checkpass(){
+        },  */ 
+            /*checkpass(){
                 let pass1 = this.password
                 let pass2 = this.password2
                 if (pass1 == pass2) {
                     submit.disabled = false;
                 }
-            }
+            }*/
             }
     }
     
