@@ -29,7 +29,7 @@
 
             <div class = "pass-verif-inscri"></div>
         
-            <input type = "submit" id= "submit-inscri" @click="inscription()" name = 'submit' value = "Connexion">
+            <input type = "submit" id= "submit-inscri" @click="inscription(); sessions()" name = 'submit' value = "Inscription">
 
     </div>
 </template>
@@ -58,12 +58,12 @@
                 .then(response => console.log(response.data))
             },
 
-            /*sessions(){
+            sessions(){
                 var self = this; //obliger de faire self car variable this : 'undefined'
                 self.$session.start();
                 self.$session.set('nom', this.nom);
                 console.log(self.$session.getAll());
-        },  */ 
+        },  
             /*checkpass(){
                 let pass1 = this.password
                 let pass2 = this.password2

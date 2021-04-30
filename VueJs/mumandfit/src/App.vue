@@ -1,14 +1,16 @@
 <template>
   <div id="app">
-    <Header />
-    <div class = "main"><router-view /></div>
-    <Footer />
+    <Aside />
+    <div class = "main">
+      <div class = "box">
+        <router-view />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Header  from '@/components/header.vue';
-import Footer from '@/components/footer.vue';
+import Aside  from '@/components/aside.vue';
 
 export default {
   data: function () {
@@ -23,8 +25,7 @@ export default {
     }
   },
   components: {
-    Header,
-    Footer,
+    Aside,
   },
 };
 
@@ -32,61 +33,84 @@ export default {
 
 
 <style>
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Zen+Dots&display=swap');
+
 body {
   background-color: #ffe7d5;
   margin: 0;
   padding: 0;
   
 }
-
+a, router-link{
+  text-decoration: none;
+}
 #app {
-  font-family: Tahoma, Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: black;
   cursor : default;
 
-  background-size: cover;
-  background-position: center;
+  
 
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
+  grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(12, 1fr);
   height: 100vh;
 }
 
-#header {
+
+
+#aside {
   /*position : relative;*/
-  grid-column: 1 / 13;
-  grid-row: 1 / 2;
-  background-color: #fdaf93;
-  font-size: 15px;
-  box-shadow: 0 2px 5px black;
-  
+  grid-column: 18 / 21;
+  grid-row: 1 / 13;
+   
 }
 
 .main {
-   grid-column : 1 / 13;
-   grid-row : 2/12;
-   padding: 40px 20px;
+  grid-column : 1 / 18;
+  grid-row : 1/13;
+  background: url("./assets/background.svg") no-repeat center;
+  background-size: cover;
+  background-position: center;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#footer {
-  box-shadow: 0 -2px 5px black;
-  grid-column: 1/13;
-  grid-row : 12/13;
-  background-color: #fdaf93;
+.box {
+  height : 800px;
+  width: 900px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/*:-moz-full-screen.input{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}*/
 
+          /*-----Bouton-----*/
+.Button29 {
+  color: red;
+  border: 2px solid rgb(216, 2, 134);
+  border-radius: 0px;
+  padding: 9px 37px;
+  display: inline-block;
+  font-family: "Montserrat";
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 0 #D80286;
+  -webkit-transition: ease-out 0.4s;
+  -moz-transition: ease-out 0.4s;
+  transition: ease-out 0.4s;
+}
+
+.slide_inside:hover {
+  box-shadow: inset 0 0 0 50px #D80286;
+}
 </style>

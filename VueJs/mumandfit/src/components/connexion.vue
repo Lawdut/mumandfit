@@ -8,7 +8,7 @@
         </div>
         <div id = "inscription">
             <h1> Nouveau Client ?</h1>
-            <button id= "submit2"><router-link to = "/inscription">Inscription</router-link></button>
+            <button id= "submit2" ><router-link to = "/inscription">Inscription</router-link></button>
         </div>
     </div>
 </template>
@@ -21,8 +21,8 @@
 
         data : function() {
             return {
-                email : null,
-                password : null,
+                email : "",
+                password : "",
             }
         },
 
