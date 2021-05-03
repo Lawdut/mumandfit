@@ -4,7 +4,7 @@
             <h1>Mum&Fit</h1>
         </div>
         <div id='liens'>
-                <div class = "texteLiens">Actualité</div>
+                <div class = "texteLiens"><router-link to = "/blog">Actualité</router-link></div>
                 <div class = "texteLiens">Réservation</div>
                 <div class = "texteLiens">E-Boutiques</div>
                 <div class = "texteLiens">Réseau sociaux</div>

@@ -64,7 +64,6 @@ a, router-link{
 
 
 #aside {
-  /*position : relative;*/
   grid-column: 18 / 21;
   grid-row: 1 / 13;
    
@@ -84,13 +83,18 @@ a, router-link{
 }
 
 .box {
-  height : 800px;
+  height : 90vh;
   width: 900px;
+
+  overflow-y: auto;
+
+  background-color: #D80286;
 
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 
 
           /*-----Bouton-----*/
