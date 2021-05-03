@@ -1,7 +1,7 @@
 <template>
     <div id = 'aside'>
         <div id = 'titre'>
-            <h1>Mum&Fit</h1>
+            <h1><router-link to = "/">Mum&Fit</router-link></h1>
         </div>
         <div id='liens'>
                 <div class = "texteLiens"><router-link to = "/blog">Actualité</router-link></div>

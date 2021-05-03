@@ -54,4 +54,11 @@ app.post('/inscription', function (req, res) {
     })
 })
 
+app.get('/getAllArticles', function (req, res) {
+  bdd.getAllArticles('articles', function (articles) {
+    res.json({articles : articles});
+    console.log(articles);
+  })
+})
+
 app.listen(8010)

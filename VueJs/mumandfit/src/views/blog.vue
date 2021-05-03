@@ -2,7 +2,9 @@
     <div>
         <div class = "articles">
             <div class = "card-article" v-for="unArticle in articles" v-bind:key ="unArticle.id">
-                {{unArticle}}
+                {{unArticle.genre}} <br>
+                <span v-html="unArticle.contenu">{{unArticle.contenu}}</span>
+                <button @click ="selectArticle(unArticle)">Lire cet article</button>
             </div>
 
         </div>
@@ -25,10 +27,19 @@
         },
 
         mounted : function() {
-                this.http.get('//localhost:8010/getMyArticles')
+                this.http.get('//localhost:8010/getAllArticles')
                 .then(response=>{this.articles = response.data.articles})
-        }
+        },
         
+        methods : {
+            selectArticle(unArticle) {
+
+                this.$store.dispatch('selectArticle', unArticle)
+                .then (console.log("tot"))
+                .then( ()=> this.$router.push('/article'))
+                .catch(err => console.log(err))
+            }
+        }
 
         }
 
