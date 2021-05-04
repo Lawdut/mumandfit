@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import $ from 'jquery'
 import Home from '../views/Home.vue'
 import Connexion from '../components/Connexion.vue'
 import Inscription from '../components/Inscription.vue'
@@ -8,6 +9,7 @@ import ListeArticles from '../components/ListeArticles.vue'
 import Article from '../components/Article.vue'
 
 Vue.use(VueRouter)
+Vue.use($)
 
 const routes = [
   {

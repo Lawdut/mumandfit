@@ -12,6 +12,7 @@
 <script>
 import Aside  from '@/components/aside.vue';
 
+
 export default {
   data: function () {
     return {

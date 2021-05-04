@@ -35,7 +35,6 @@
             selectArticle(unArticle) {
 
                 this.$store.dispatch('selectArticle', unArticle)
-                .then (console.log("tot"))
                 .then( ()=> this.$router.push('/article'))
                 .catch(err => console.log(err))
             }

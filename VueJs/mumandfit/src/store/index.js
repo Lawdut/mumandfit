@@ -18,5 +18,11 @@ export default new Vuex.Store({
     }
   },
   modules: {
+  },
+
+  getters : {
+    unArticle : state => {
+      return `${state.unArticle}`
+    }
   }
 })

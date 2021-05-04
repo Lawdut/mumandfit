@@ -3,7 +3,9 @@ import Axios from "axios";
 import App from "./App.vue";
 import router from "./router";
 import session from "vue-session";
-import store from './store'
+import store from './store';
+import $ from "jquery";
+import jQuery from "jquery";
 
 
 var options = {
@@ -13,6 +15,9 @@ var options = {
 Vue.use(session,options);
 Vue.config.productionTip = false;
 Vue.prototype.http=Axios;
+
+window.$ = $;
+window.jQuery = jQuery;
 
 new Vue({
   router,
