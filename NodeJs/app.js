@@ -44,7 +44,7 @@ function authenticateToken(req, res, next) {
 
 
 app.post('/inscription', function (req, res) {
-    console.log('hello');
+    
     console.log(req.body);
     bdd.inscription('user', req.body, function(err) {
         if (err) {
@@ -59,6 +59,17 @@ app.get('/getAllArticles', function (req, res) {
     res.json({articles : articles});
     console.log(articles);
   })
+})
+
+app.post('/modifArticle/', function(req, res){
+    //console.log(req.body);
+    
+    bdd.updateArticle('articles', req.body, function(err){
+      if (err) {
+        res.status(500).send({ message: err });
+      }
+    res.json({res : "Enregistré"})
+    })
 })
 
 app.listen(8010)

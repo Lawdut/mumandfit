@@ -23,3 +23,14 @@ exports.getAllArticles = function (table, callback){
             }
             callback(rows);
 })}
+
+exports.updateArticle = function (table, article, callback){
+    console.log(article);
+    var sql = "UPDATE " + table + " SET `contenu` = " + "'" +article.articleModif.contenu +"'" + " WHERE id = " + article.articleModif.id;
+    conn.query(sql, function(error) {
+        if (error) {
+            console.log(error)
+            
+        }   
+        callback();
+})}
