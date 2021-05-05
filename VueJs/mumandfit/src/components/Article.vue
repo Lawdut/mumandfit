@@ -3,7 +3,7 @@
         <div class = "vueArticle">
             
             
-            <iframe id="frame" name ="richTextField" frameborder="0" v-bind:srcdoc="$store.state.unArticle.contenu"></iframe>
+            <iframe id="frame" name ="richTextField" frameborder="0" height="100%" allowfullscreen="" loading="lazy" v-bind:srcdoc="$store.state.unArticle.contenu"></iframe>
 
             <div>
                 <button v-on:click="enableEditMode()">Editer</button>
@@ -34,11 +34,12 @@
                     <option value = "H5">H5</option>
                     <option value = "H6">H6</option>
                 </select>
-                <button v-on:click="execCmd('bold');">HR</button>
-                <button v-on:click="execCmd('bold');"><i class = "fa fa-link"></i></button>
-                <button v-on:click="execCmd('bold');"><i class = "fa fa-unlink"></i></button>
-                <button v-on:click="execCmd('bold');"><i class = "fa fa-code"></i></button>
-                <select>
+                <button v-on:click="execCmd('insertHorizontaleRule');">HR</button>
+                <button v-on:click="execCmdArgs('createLink', alert('Entrez une URL', 'http://'));"><i class = "fa fa-link"></i></button>
+                <button v-on:click="execCmd('unlink');"><i class = "fa fa-unlink"></i></button>
+                <button v-on:click="toggleSource();"><i class = "fa fa-code"></i></button>
+                <button v-on:click="toggleEdit();">Toggle Edit</button>
+                <select v-on:click="execCmdArgs('fontName',selectedFont)" v-model="selectedFont">
                     <option value = "Arial">Arial</option>
                     <option value = "Comic Sans MS">Comic Sans MS</option>
                     <option value = "Courier">Courier</option>
@@ -47,7 +48,7 @@
                     <option value = "Times New Roman">Times New Roman</option>
                     <option value = "Verdana">Verdana</option>
                 </select>
-                <select>
+                <select v-on:click="execCmdArgs('formatBlock',selectedSize)" v-model="selectedSize">
                     <option value = "1">1</option>
                     <option value = "2">2</option>
                     <option value = "3">3</option>
@@ -57,11 +58,11 @@
                     <option value = "7">7</option>
                 </select>
 
-                Fore Color : <input type = "color">
-                Background Color : <input type = "color">
+                Font Color : <input type = "color" v-on:click="execCmdArgs('foreColor',selectedColor)" v-model="selectedColor">
+                Background Color : <input type = "color" v-on:click="execCmdArgs('hiliteColor',selectedBackgroundColor)" v-model="selectedBackgroundColor">
 
-                <button v-on:click="execCmd('bold');"><i class = "fa fa-file-image-o"></i></button>
-                <button v-on:click="execCmd('bold');">Select All</button>
+                <button v-on:click="execCmdArgs('insertImage', alert('Insérez une image', ''));"><i class = "fa fa-file-image-o"></i></button>
+                <button v-on:click="execCmd('selectAll');">Select All</button>
 
                 <button v-on:click="confirmChange()">Confirmer changements</button>
             </div>
@@ -86,6 +87,11 @@ import jQuery from "jquery";
                    genre : this.$store.state.unArticle.genre
                },
                selectedTitle : "H1",
+               selectedFont : "Tahoma",
+               selectedSize : "1",
+               selectedColor : "",
+               selectedBackgroundColor : "",
+               showingSourceCode : false,
             }
         },
 
@@ -114,6 +120,15 @@ import jQuery from "jquery";
             execCmdArgs(command, args){
                 let richTextField =  document.getElementById('frame').contentWindow;
                 richTextField.document.execCommand(command, false, args);
+            },
+
+            toggleSource() {
+                let richTextField = document.getElementById('frame').contentWindow;
+                if (this.showingSourceCode) {
+                    richTextField.document.getElementsByTagName('body')[0].innerHTML = richTextField.document.getElementsByTagName('body')[0].textContent;
+                }else {
+                    richTextField.document.getElementsByTagName('body')[0].textContent = richTextField.document.getElementsByTagName('body')[0].innerHTML;
+                }
             },
             confirmChange() {
                 let unArticleModifie = $("#frame").contents().find("body").html();
