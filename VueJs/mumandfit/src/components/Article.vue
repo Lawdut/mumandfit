@@ -34,8 +34,7 @@
                     <option value = "H5">H5</option>
                     <option value = "H6">H6</option>
                 </select>
-                <button v-on:click="execCmd('insertHorizontaleRule');">HR</button>
-                <button v-on:click="execCmdArgs('createLink', alert('Entrez une URL', 'http://'));"><i class = "fa fa-link"></i></button>
+                <button v-on:click="execCmdArgs('createLink', execCmdLien('Entrez le lien', ''));"><i class = "fa fa-link"></i></button>
                 <button v-on:click="execCmd('unlink');"><i class = "fa fa-unlink"></i></button>
                 <button v-on:click="toggleSource();"><i class = "fa fa-code"></i></button>
                 <button v-on:click="toggleEdit();">Toggle Edit</button>
@@ -61,7 +60,7 @@
                 Font Color : <input type = "color" v-on:click="execCmdArgs('foreColor',selectedColor)" v-model="selectedColor">
                 Background Color : <input type = "color" v-on:click="execCmdArgs('hiliteColor',selectedBackgroundColor)" v-model="selectedBackgroundColor">
 
-                <button v-on:click="execCmdArgs('insertImage', alert('Insérez une image', ''));"><i class = "fa fa-file-image-o"></i></button>
+                <button v-on:click="execCmdArgs('insertImage', execCmdLien('Entrez le lien', ''));"><i class = "fa fa-file-image-o"></i></button>
                 <button v-on:click="execCmd('selectAll');">Select All</button>
 
                 <button v-on:click="confirmChange()">Confirmer changements</button>
@@ -121,6 +120,7 @@ import jQuery from "jquery";
                 let richTextField =  document.getElementById('frame').contentWindow;
                 richTextField.document.execCommand(command, false, args);
             },
+           
 
             toggleSource() {
                 let richTextField = document.getElementById('frame').contentWindow;
@@ -144,7 +144,9 @@ import jQuery from "jquery";
 
         },
         computed: {
-            
+            execCmdLien: function(message, legende) {
+                return prompt(message, legende);
+            },
 
         
         }
