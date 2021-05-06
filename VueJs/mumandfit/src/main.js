@@ -8,9 +8,12 @@ import $ from "jquery";
 import jQuery from "jquery";
 
 
+
+
 var options = {
   persist: true
 }
+
 
 Vue.use(session,options);
 Vue.config.productionTip = false;

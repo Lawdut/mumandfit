@@ -26,7 +26,7 @@ exports.getAllArticles = function (table, callback){
 
 exports.updateArticle = function (table, article, callback){
     console.log(article);
-    var sql = "UPDATE " + table + " SET `contenu` = " + "'" +article.articleModif.contenu +"'" + " WHERE id = " + article.articleModif.id;
+    var sql = "UPDATE " + table + " SET `contenu` = " + "'" + article.unArticle.contenu +"'" + " WHERE id = " + article.unArticle.id ;
     conn.query(sql, function(error) {
         if (error) {
             console.log(error)

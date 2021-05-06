@@ -10,7 +10,7 @@ export default new Vuex.Store({
   mutations: {
     selectedArticle(state, unArticle) {state.unArticle = unArticle},
     
-    modifArticleStore(state, unArticleModifie) {state.unArticle.contenu = unArticleModifie}
+    modifArticleStore(state, unArticleModifie) {state.unArticle = unArticleModifie}
 
   },
   actions: {
