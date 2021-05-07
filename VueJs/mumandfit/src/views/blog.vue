@@ -2,7 +2,7 @@
     <div>
         <div class = "articles">
             <div class = "card-article" v-for="unArticle in articles" v-bind:key ="unArticle.id">
-                {{unArticle.genre}} <br>
+                <span v-html="unArticle.genre">{{unArticle.genre}}</span> <br>
                 <span v-html="unArticle.contenu">{{unArticle.contenu}}</span>
                 <button @click ="selectArticle(unArticle)">Lire cet article</button>
             </div>

@@ -4,7 +4,7 @@
             <editor @onSaveContent="saveArticle()" v-model = unArticle.genre output-format="html"
             api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                 :init="{
-                    selector : '#myeditable-h1',
+                    selector : '#myeditable',
                     height: 500,
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
@@ -52,7 +52,7 @@
                 }"
                 />
             
-            <h1 id="myeditable-h1"></h1>
+            <div id="myeditable"></div>
             <div class ="editable"></div>
         </div>
     </div>

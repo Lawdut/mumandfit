@@ -49,7 +49,7 @@ function authenticateToken(req, res, next) {
 
     for(let i in unArticleToClean['unArticle']){
       if (typeof unArticleToClean['unArticle'][i] === 'string'){
-          unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace("\'","&apos;");
+          unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace("\'","&apos;").replace("-", "&#45;").replace("=", "&#61;");
       } 
     }
     return unArticleToClean;
