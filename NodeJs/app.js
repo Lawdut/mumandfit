@@ -43,9 +43,22 @@ function authenticateToken(req, res, next) {
   }
 
 
+                    // ----- Nettoyage des données ----- //
+  function clean(unArticle){
+    const unArticleToClean = unArticle; 
+
+    for(let i in unArticleToClean['unArticle']){
+      if (typeof unArticleToClean['unArticle'][i] === 'string'){
+          unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace("\'","&apos;");
+      } 
+    }
+    return unArticleToClean;
+  }
+
+
 app.post('/inscription', function (req, res) {
     
-    console.log(req.body);
+    //console.log(req.body);
     bdd.inscription('user', req.body, function(err) {
         if (err) {
             res.status(500).send({ message: err });
@@ -57,17 +70,18 @@ app.post('/inscription', function (req, res) {
 app.get('/getAllArticles', function (req, res) {
   bdd.getAllArticles('articles', function (articles) {
     res.json({articles : articles});
-    console.log(articles);
+    //console.log(articles);
   })
 })
 
 app.post('/modifArticle/', function(req, res){
     //console.log(req.body);
-    
-    bdd.updateArticle('articles', req.body, function(err){
+    let unArticleCleaned = clean(req.body);
+    bdd.updateArticle('articles', unArticleCleaned, function(err){
       if (err) {
         res.status(500).send({ message: err });
       }
+    
     res.json({res : "Enregistré"})
     })
 })

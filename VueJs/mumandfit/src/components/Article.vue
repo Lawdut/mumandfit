@@ -22,7 +22,7 @@
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
-                    entities : '39, apos'
+                    
                 }"
 
         />
@@ -48,11 +48,11 @@
                     language_url : 'http://localhost:8080/src/assets/js/fr_FR.js',
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
-                    entities : '39,apos'
+                    
                 }"
                 />
             
-            <h1 id="myeditable-h1">Hello</h1>
+            <h1 id="myeditable-h1"></h1>
             <div class ="editable"></div>
         </div>
     </div>
