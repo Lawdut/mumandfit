@@ -5,6 +5,7 @@ const bdd = require("./models/controllerpool.js");
 const mysql = require("mysql2");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+dotenv.config();
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const salt = bcrypt.genSaltSync(10);
@@ -20,7 +21,7 @@ app.use(express.urlencoded({extended : true}, {limit: '50mb'}));
 
                     // ----- JWT ----- //
 function generateAccessToken(user) {
-    return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: "20m" });
+    return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: "24h" });
 }
 
 function authenticateToken(req, res, next) {

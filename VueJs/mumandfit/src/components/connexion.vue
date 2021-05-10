@@ -32,7 +32,10 @@
                     email : this.email,
                     password : this.password,
                 })
-                .then(response=>console.log(response.data))
+                .then(response=>{
+                    console.log(response.data),
+                    window.localStorage.setItem('token', response.data);
+                })
             },
 
             sessions(){
