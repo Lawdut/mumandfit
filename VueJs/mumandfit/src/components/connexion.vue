@@ -2,9 +2,9 @@
     <div>
         <div id ="connexion">
             <h1>Déjà client ?</h1>
-            <input type = "email" class ="input" id = "email" placeholder="exemple@exemple.com" v-model = "email">
-            <input type = "password" class ="input" id = "password" placeholder="Mot de passe" v-model = "password">
-            <input type = "submit" class ="input" id= "submit1" @click="connexion(); sessions()" value = "Connexion">
+            <input type = "email" class ="input" id = "email" placeholder="exemple@exemple.com" v-model ="email">
+            <input type = "password" class ="input" id = "password" placeholder="Mot de passe" v-model ="password">
+            <input type = "submit" class ="input" id= "submit1" @click="connexion(); sessions()" value = "Connexion" name = 'submit'>
         </div>
         <div id = "inscription">
             <h1> Nouveau Client ?</h1>
@@ -16,7 +16,6 @@
 <script>
 
     export default {
-        name : "login",
     
 
         data : function() {
@@ -26,10 +25,12 @@
             }
         },
 
-        method : {
-            connexion(){
-                this.http.get('http://localhost:8081/connexion/'+this.email+ '/'+ this.password, {
+        methods : {
 
+            connexion : function(){
+                this.http.post('http://localhost:8010/connexion', {
+                    email : this.email,
+                    password : this.password,
                 })
                 .then(response=>console.log(response.data))
             },
@@ -39,7 +40,7 @@
                 self.$session.start();
                 self.$session.set('nom', this.nom);
                 console.log(self.$session.getAll())
-    },
+            },
     }
         }
     

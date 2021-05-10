@@ -22,6 +22,9 @@
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
+                    image_advtab: true,
+                    image_uploadtab: true,
+
                     
                 }"
 
@@ -45,9 +48,13 @@
                     bullist numlist outdent indent | removeformat | save | imagetools',
                     toolbar_sticky: true,
                     inline: true,
-                    language_url : 'http://localhost:8080/src/assets/js/fr_FR.js',
+                    language_url : './assets/js/fr_FR.js',
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
+                    image_advtab: true,
+                    image_uploadtab: true,
+                    //relative_urls : false,
+                    image_prepend_url : '/images/',
                     
                 }"
                 />
@@ -76,6 +83,7 @@ import jQuery from "jquery";
                    contenu : this.$store.state.unArticle.contenu,
                    genre : this.$store.state.unArticle.genre
                },
+               
             }
         },
         mounted : function (){

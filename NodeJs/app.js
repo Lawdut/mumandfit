@@ -15,8 +15,8 @@ const sharp = require("sharp");
 const path = require("path");*/
 
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({extended : true}));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({extended : true}, {limit: '50mb'}));
 
                     // ----- JWT ----- //
 function generateAccessToken(user) {
@@ -49,7 +49,7 @@ function authenticateToken(req, res, next) {
 
     for(let i in unArticleToClean['unArticle']){
       if (typeof unArticleToClean['unArticle'][i] === 'string'){
-          unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace("\'","&apos;").replace("-", "&#45;").replace("=", "&#61;");
+          unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace("\'","&apos;").replace("-", "&#45;");
       } 
     }
     return unArticleToClean;
@@ -65,6 +65,26 @@ app.post('/inscription', function (req, res) {
           }
         res.json({res : "Enregistré"})
     })
+});
+
+app.post('/connexion', function (req, res) {
+  bdd.connexion('user', req.body, function(user){
+    console.log("data :", user[0].mdp)
+    const isValidPass = bcrypt.compareSync(req.body.password, user[0].mdp);
+    console.log(isValidPass);
+    if(isValidPass) {
+      console.log(user[0]);
+      const token = generateAccessToken({
+        email : user[0].email,
+        role : user[0].role,
+      });
+      console.log(token);
+      res.status(200).send(token);
+    }
+    else{
+      res.send("Le mot de passe est invalide");
+    }
+  })
 })
 
 app.get('/getAllArticles', function (req, res) {

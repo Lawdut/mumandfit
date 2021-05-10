@@ -15,6 +15,17 @@ exports.inscription = function (table, user, callback) {
     
 })};
 
+exports.connexion = function(table, user, callback) {
+    var sql = "SELECT * FROM " + table + " WHERE email = " + "'" +user.email +"'";
+    console.log(sql);
+    conn.query(sql, function(error, rows) {
+        if (error){
+            console.log(error);
+        }
+        callback(rows);
+    })
+}
+
 exports.getAllArticles = function (table, callback){
     var sql = "SELECT * FROM " + table;
         conn.query(sql, function(error, rows) {
