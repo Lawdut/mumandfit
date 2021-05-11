@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import $ from 'jquery'
+//import $ from 'jquery'
 import Home from '../views/Home.vue'
 import Connexion from '../components/Connexion.vue'
-import Inscription from '../components/Inscription.vue'
+//import Inscription from '../components/Inscription.vue'
 import Blog from '../views/Blog.vue'
 import ListeArticles from '../components/ListeArticles.vue'
 import Article from '../components/Article.vue'
 
 Vue.use(VueRouter)
-Vue.use($)
+//Vue.use($)
 
 const routes = [
   {
@@ -22,11 +22,11 @@ const routes = [
     name : "Connexion",
     component: Connexion
   },
-  {
+  /*{
     path: "/inscription",
     name : "Inscription",
     component: Inscription
-  },
+  },*/
 
   {
     path : "/blog",

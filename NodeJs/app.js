@@ -35,11 +35,15 @@ function authenticateToken(req, res, next) {
     }
   
     jwt.verify(token, process.env.TOKEN_SECRET, (err, user) => {
-      if (err) return res.sendStatus(403);
-  
-      req.user = user;
+      if (err) {
+        return res.sendStatus(403)
+      }else {
+        req.user = user;
   
       next();
+      };
+  
+      
     });
   }
 
@@ -70,8 +74,9 @@ app.post('/inscription', function (req, res) {
 
 app.post('/connexion', function (req, res) {
   bdd.connexion('user', req.body, function(user){
-    console.log("data :", user[0].mdp)
-    const isValidPass = bcrypt.compareSync(req.body.password, user[0].mdp);
+    console.log(req.body);
+    console.log("data :", user)
+    const isValidPass = bcrypt.compareSync(req.body.passwd, user[0].mdp);
     console.log(isValidPass);
     if(isValidPass) {
       console.log(user[0]);
@@ -79,7 +84,7 @@ app.post('/connexion', function (req, res) {
         email : user[0].email,
         role : user[0].role,
       });
-      console.log(token);
+      //console.log(token);
       res.status(200).send(token);
     }
     else{
@@ -95,8 +100,8 @@ app.get('/getAllArticles', function (req, res) {
   })
 })
 
-app.post('/modifArticle/', function(req, res){
-    //console.log(req.body);
+app.post('/modifArticle/',authenticateToken, function(req, res){
+    console.log(req.headers);
     let unArticleCleaned = clean(req.body);
     bdd.updateArticle('articles', unArticleCleaned, function(err){
       if (err) {

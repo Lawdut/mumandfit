@@ -16,8 +16,9 @@ exports.inscription = function (table, user, callback) {
 })};
 
 exports.connexion = function(table, user, callback) {
-    var sql = "SELECT * FROM " + table + " WHERE email = " + "'" +user.email +"'";
-    console.log(sql);
+    console.log(user);
+    var sql = "SELECT * FROM " + table + " WHERE email = " + "'" +user.mail +"'";
+    //console.log(sql);
     conn.query(sql, function(error, rows) {
         if (error){
             console.log(error);
@@ -36,7 +37,7 @@ exports.getAllArticles = function (table, callback){
 })}
 
 exports.updateArticle = function (table, article, callback){
-    console.log(article);
+    //console.log(article);
     var sql = "UPDATE " + table + " SET `contenu` = " + "'" + article.unArticle.contenu +"'" + "," + `genre = ` + "'" + article.unArticle.genre + "'" + " WHERE id = " + article.unArticle.id ;
     conn.query(sql, function(error) {
         if (error) {

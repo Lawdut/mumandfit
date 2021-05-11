@@ -67,9 +67,9 @@
 
 <script>
 import Editor from '@tinymce/tinymce-vue';
-import jQuery from "jquery";
+/*import jQuery from "jquery";
     const $ = jQuery;
-    window.$ = $;
+    window.$ = $;*/
 
     export default {
         name : 'Article',
@@ -83,6 +83,7 @@ import jQuery from "jquery";
                    contenu : this.$store.state.unArticle.contenu,
                    genre : this.$store.state.unArticle.genre
                },
+               token : this.$store.state.token,
                
             }
         },
