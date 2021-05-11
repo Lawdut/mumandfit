@@ -75,20 +75,25 @@ app.post('/inscription', function (req, res) {
 app.post('/connexion', function (req, res) {
   bdd.connexion('user', req.body, function(user){
     console.log(req.body);
-    console.log("data :", user)
-    const isValidPass = bcrypt.compareSync(req.body.passwd, user[0].mdp);
-    console.log(isValidPass);
-    if(isValidPass) {
-      console.log(user[0]);
-      const token = generateAccessToken({
-        email : user[0].email,
-        role : user[0].role,
-      });
-      //console.log(token);
-      res.status(200).send(token);
-    }
-    else{
-      res.send("Le mot de passe est invalide");
+    if(user.length !== 0 ){
+      console.log(user);
+    
+      const isValidPass = bcrypt.compareSync(req.body.passwd, user[0].mdp);
+    
+      if(isValidPass) {
+        
+        const token = generateAccessToken({
+          email : user[0].email,
+          role : user[0].role,
+        });
+        //console.log(token);
+        res.status(200).send(token);
+      }
+      else{
+        res.status(500).send("Le mot de passe est invalide");
+      }
+    }else{
+      res.status(500).send('L\'utilisateur n\'existe pas');
     }
   })
 })
@@ -101,7 +106,6 @@ app.get('/getAllArticles', function (req, res) {
 })
 
 app.post('/modifArticle/',authenticateToken, function(req, res){
-    console.log(req.headers);
     let unArticleCleaned = clean(req.body);
     bdd.updateArticle('articles', unArticleCleaned, function(err){
       if (err) {

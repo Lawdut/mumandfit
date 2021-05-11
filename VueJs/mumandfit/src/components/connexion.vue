@@ -1,7 +1,7 @@
 <template>
     <div>
         <div id ="connexion">
-            <h1>Déjà client ?</h1>
+            <h1>Connexion</h1>
             <input type = "email" class ="input" id = "email" placeholder="exemple@exemple.com" v-model="email">
             <input type = "password" class ="input" id = "password" placeholder="Mot de passe" v-model="password">
             <input type = "submit" class ="input" id= "submit1" @click="connexion();" value = "Connexion" name = 'submit'>
@@ -22,6 +22,7 @@
             return {
                 email : "",
                 password : "",
+                token : this.$store.state.token
              }
         },
 
@@ -32,7 +33,7 @@
                     const mail = this.email;
                     const passwd = this.password;
                     this.$store.dispatch('connexionStore', {mail, passwd})
-                    .then(()=> this.$router.push("/"))
+                    .then(()=> this.$router.push("/admin"))
                 }
                 
             },

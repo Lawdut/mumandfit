@@ -8,12 +8,16 @@ export default new Vuex.Store({
   state: {
     unArticle : "",
     token : localStorage.getItem('token') || "",
+    user : "",
   },
   mutations: {
     selectedArticle(state, unArticle) {state.unArticle = unArticle},
     
     modifArticleStore(state, unArticleModifie) {state.unArticle = unArticleModifie},
 
+    token(state, token) {state.token = token},
+
+    user (state, data) {state.user = data},
 
   },
   actions: {
@@ -29,6 +33,8 @@ export default new Vuex.Store({
       .then((res)=> {
         localStorage.setItem("jwt", res.data);
         //document.location.reload();
+        context.commit('user', infos.mail);
+        context.commit('token', res.data);
         axios.defaults.headers.common['authorization'] = res.data;
       })
     }

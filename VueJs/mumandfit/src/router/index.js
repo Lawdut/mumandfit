@@ -7,6 +7,7 @@ import Connexion from '../components/Connexion.vue'
 import Blog from '../views/Blog.vue'
 import ListeArticles from '../components/ListeArticles.vue'
 import Article from '../components/Article.vue'
+import AdminHome from '../components/Admin/AdminHome.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -47,17 +48,42 @@ const routes = [
   },
 
   {
+    path : '/admin',
+    name : "AdminHome",
+    component : AdminHome,
+    beforeEnter : (to, from, next) =>{
+      const loggedIn = localStorage.getItem('jwt');
+        if (to.path === '/admin' && loggedIn) {
+          return next();
+        }else if (to.path === '/admin' && !loggedIn){
+          next({ path: '/' });
+        }
+      
+    }
+  },
+
+  {
+    path: '*', redirect: '/'
+  },
+  
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+  },
+
+  
 ]
 
 const router = new VueRouter({
-  routes
-})
+  base: process.env.BASE_URL,
+  mode : 'history',
+  routes,
+});
+
+
 
 export default router

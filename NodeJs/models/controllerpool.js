@@ -18,8 +18,9 @@ exports.inscription = function (table, user, callback) {
 exports.connexion = function(table, user, callback) {
     console.log(user);
     var sql = "SELECT * FROM " + table + " WHERE email = " + "'" +user.mail +"'";
-    //console.log(sql);
+    console.log(sql);
     conn.query(sql, function(error, rows) {
+        console.log(error);
         if (error){
             console.log(error);
         }

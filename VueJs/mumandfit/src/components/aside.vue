@@ -9,15 +9,24 @@
                 <div class = "texteLiens">E-Boutiques</div>
                 <div class = "texteLiens">Réseau sociaux</div>
                 <div class = "texteLiens">Contact</div>
-                <div id = "logoUser"><router-link to = "/connexion"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link></div>
+                <div class = "logoUser" v-if="this.$store.state.token">
+                    <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
+                </div>
+                <div class = "logoUser" v-else>
+                    <router-link to="/connexion"><img src = '../assets/logoResSociaux/mail.svg' height="40px"></router-link>
+                </div>
         </div> 
     </div>
 </template>
 
 <script>
     export default {
-    
-    }    
+    data : function() {
+            return {
+                token : this.$store.state.token
+             }
+        },
+    }  
     
 
 
@@ -67,7 +76,7 @@
     margin: 0;
     padding: 0;
 }
-#logoUser{
+.logoUser{
     transition: 0.4s;
 }
 
