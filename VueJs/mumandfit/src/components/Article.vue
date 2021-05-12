@@ -38,7 +38,7 @@
             
             <div id="myeditable"></div>
             <div class ="editable"></div>
-            <img src = "https://ibb.co/KXVYZZ5">
+            
         </div>
     </div>
 </template>
@@ -64,6 +64,7 @@ import jQuery from "jquery";
                token : this.$store.state.token,
                status : null,
                image : null,
+               tinyToken : null,
                myInit : {
                     selector : '.editable',
                     height: 500,
@@ -73,8 +74,9 @@ import jQuery from "jquery";
                     'save directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons save tinydrive'
                     ],
+                    tinydrive_token_provider : this.tinyToken,
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
@@ -100,6 +102,11 @@ import jQuery from "jquery";
                 }else{
                    this.status = false
                 }
+                this.http.post("//localhost:8010/jwt")
+                .then(response=>{console.log(response.data)});
+        },
+        created : function() {
+                
         },
 
         methods : {

@@ -13,7 +13,7 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const salt = bcrypt.genSaltSync(10);
 const path = require("path");
-
+const config = require("./models/config.js")
 
 /*const mysqlStore = require('express-mysql-session')(session);
 const sessionStore = new mysqlStore(options);*/
@@ -121,6 +121,38 @@ app.post('/modifArticle/',authenticateToken, function(req, res){
     res.json({res : "Enregistré"})
     })
 })
+          /* ----- UPLOAD IMAGE ----- */
+app.post('/jwt', (req, res) => {
+  //const user = req.session.user;
+  /*if (user) {
+    const payload = {
+      sub: user.username,        // Unique user id string
+      name: user.fullname,       // Full name of user
+      exp: Math.floor(Date.now() / 1000) + (60 * 10) // 10 minutes expiration
+    };
 
+    // When this is set the user will only be able to manage and see files in the specified root
+    // directory. This makes it possible to have a dedicated home directory for each user.
+    if (config.scopeUser) {
+      payload['https://claims.tiny.cloud/drive/root'] = `/${user.username}`;
+    }*/
+
+    try {
+      const privateKey = fs.readFileSync(config.privateKeyFile).toString();
+      console.log(privateKey);
+      const token = jwt.sign('mumandfit',privateKey, { algorithm: 'RS256'});
+      console.log(token);
+      res.send(JSON.stringify({token: token}))
+        
+    } catch (e) {
+      res.status(500);
+      res.send('Failed generate jwt token.');
+      console.error(e.message);
+    }
+  /*} else {
+    res.status(401);
+    res.send('Could not produce a jwt token since the user is not logged in.');
+  }*/
+});
 
 app.listen(8010)
