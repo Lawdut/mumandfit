@@ -10,10 +10,10 @@
                 <div class = "texteLiens">Réseau sociaux</div>
                 <div class = "texteLiens">Contact</div>
                 <div class = "logoUser" v-if="this.$store.state.token">
-                    <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
+                    <router-link to= "/admin"><img src = '../assets/logoResSociaux/user-checked.svg' height="70px"></router-link>
                 </div>
                 <div class = "logoUser" v-else>
-                    <router-link to="/connexion"><img src = '../assets/logoResSociaux/mail.svg' height="40px"></router-link>
+                    <router-link to="/connexion"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
                 </div>
         </div> 
     </div>

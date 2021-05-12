@@ -3,6 +3,7 @@
         <div>
             <editor @onSaveContent="saveArticle()" v-model = unArticle.genre output-format="html"
             api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+            :disabled="status"
                 :init="{
                     selector : '#myeditable',
                     height: 500,
@@ -31,6 +32,7 @@
         />
             <editor @onSaveContent="saveArticle()" v-model = unArticle.contenu output-format="html"
                 api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                :disabled="status"
                 :init="{
                     selector : '.editable',
                     height: 500,
@@ -61,6 +63,7 @@
             
             <div id="myeditable"></div>
             <div class ="editable"></div>
+
         </div>
     </div>
 </template>
@@ -84,12 +87,17 @@ import Editor from '@tinymce/tinymce-vue';
                    genre : this.$store.state.unArticle.genre
                },
                token : this.$store.state.token,
-               
+               status : null
             }
         },
         mounted : function (){
-            
+                if(this.token === "") {
+                    this.status = true
+                }else{
+                   this.status = false
+                }
         },
+
         methods : {
             saveArticle : function () {
                 this.$store.commit('modifArticleStore', this.unArticle);

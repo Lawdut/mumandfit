@@ -90,7 +90,7 @@ a, router-link{
 
   overflow-y: auto;
 
-  background-color: #D80286;
+  
 
   display: flex;
   justify-content: center;
