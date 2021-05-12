@@ -64,7 +64,7 @@ import jQuery from "jquery";
                token : this.$store.state.token,
                status : null,
                image : null,
-               tinyToken : null,
+               tinyToken : '',
                myInit : {
                     selector : '.editable',
                     height: 500,
@@ -76,7 +76,6 @@ import jQuery from "jquery";
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
                     'textpattern noneditable help charmap quickbars emoticons save tinydrive'
                     ],
-                    tinydrive_token_provider : this.tinyToken,
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
@@ -93,6 +92,7 @@ import jQuery from "jquery";
                    //automatic_uploads: true,
                     file_picker_types: 'image',
                     //images_upload_base_path:'/images/',
+                    tinydrive_token_provider : "//localhost:8010/jwt",
                 }
             }
         },
@@ -103,7 +103,7 @@ import jQuery from "jquery";
                    this.status = false
                 }
                 this.http.post("//localhost:8010/jwt")
-                .then(response=>{console.log(response.data)});
+                .then(response=>{this.tinyToken = response.data});
         },
         created : function() {
                 

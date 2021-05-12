@@ -136,11 +136,16 @@ app.post('/jwt', (req, res) => {
     if (config.scopeUser) {
       payload['https://claims.tiny.cloud/drive/root'] = `/${user.username}`;
     }*/
+    const payload = {
+      sub: "123",        // Unique user id string
+      name: 'Korinne',       // Full name of user
+      exp: Math.floor(Date.now() / 1000) + (60 * 10)
+    }
 
     try {
       const privateKey = fs.readFileSync(config.privateKeyFile).toString();
       console.log(privateKey);
-      const token = jwt.sign('mumandfit',privateKey, { algorithm: 'RS256'});
+      const token = jwt.sign(payload,privateKey, { algorithm: 'RS256'});
       console.log(token);
       res.send(JSON.stringify({token: token}))
         
