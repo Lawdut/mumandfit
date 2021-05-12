@@ -5,7 +5,7 @@ const salt = bcrypt.genSaltSync(10);
 exports.inscription = function (table, user, callback) {
     const hash = bcrypt.hashSync(user.mdp, salt);
     var sql = "INSERT INTO " + table + " (id, `prenom`, `nom`, `telephone`, `email`, `mdp`) VALUES (NULL, '"+user.prenom+"','"+user.nom+"','"+user.telephone+"','"+user.email+"','"+hash+"');";
-    console.log(sql);
+    //console.log(sql);
     conn.query(sql, function(error) {
         if (error) {
             console.log(error)
@@ -16,9 +16,9 @@ exports.inscription = function (table, user, callback) {
 })};
 
 exports.connexion = function(table, user, callback) {
-    console.log(user);
+    //console.log(user);
     var sql = "SELECT * FROM " + table + " WHERE email = " + "'" +user.mail +"'";
-    console.log(sql);
+    //console.log(sql);
     conn.query(sql, function(error, rows) {
         console.log(error);
         if (error){

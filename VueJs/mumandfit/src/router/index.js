@@ -8,6 +8,7 @@ import Blog from '../views/Blog.vue'
 import ListeArticles from '../components/ListeArticles.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
+import newArticle from '../components/Admin/NewArticle.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -60,6 +61,12 @@ const routes = [
         }
       
     }
+  },
+
+  {
+    path : '/NewArticle',
+    name : "NewArticle",
+    component : newArticle,
   },
 
   {

@@ -53,4 +53,8 @@
     justify-content: flex-start;
     align-items: flex-start;
 }
+
+.card-article{
+    
+}
 </style>

@@ -1,6 +1,14 @@
 <template>
-    <div>
-        <h1>HELLO</h1>
+    <div id = 'adminHome'>
+        <div id = "titreAdmin">
+            <h1>Administration du site</h1>
+        </div>
+
+        <div id = "navAdmin">
+            <div class = "liensAdmin"><router-link to="/NewArticle"><button class = "Button1">Création d'article</button></router-link></div>
+
+        </div>
+
     </div>
 </template>
 

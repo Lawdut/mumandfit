@@ -36,7 +36,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Zen+Dots&display=swap');
 
 #aside {
-    background-color: white;
+    background-color: #ec7463;
     font-size: 15px;
 
     position: relative;
@@ -59,6 +59,10 @@
     cursor: pointer;
 }
 
+#titre h1 a {
+    text-decoration: none;
+}
+
 #liens{
     grid-row: 3 / 7;
     display: flex;
@@ -75,7 +79,14 @@
     cursor: pointer;
     margin: 0;
     padding: 0;
+    color : black;
 }
+
+.texteLiens a{
+  text-decoration : none ;
+  color : black
+}
+
 .logoUser{
     transition: 0.4s;
 }
@@ -92,7 +103,9 @@ h1 {
     padding: 0;
     margin: 0;
 }
-
+.router-link-active {
+    color : black;
+}
 
 
 </style>

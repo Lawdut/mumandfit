@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Aside  from '@/components/aside.vue';
+import Aside  from '@/components/Aside.vue';
 
 
 
@@ -66,13 +66,13 @@ a, router-link{
 
 
 #aside {
-  grid-column: 18 / 21;
+  grid-column: 1 / 3;
   grid-row: 1 / 13;
    
 }
 
 .main {
-  grid-column : 1 / 18;
+  grid-column : 3 / 21;
   grid-row : 1/13;
   background: url("./assets/background.svg") no-repeat center;
   background-size: cover;
@@ -100,23 +100,27 @@ a, router-link{
 
 
           /*-----Bouton-----*/
-.Button29 {
-  color: red;
-  border: 2px solid rgb(216, 2, 134);
-  border-radius: 0px;
-  padding: 9px 37px;
-  display: inline-block;
-  font-family: "Montserrat";
-  font-size: 14px;
-  letter-spacing: 1px;
+.Button1 {
+  color: #fff !important;
+	text-transform: uppercase;
+	text-decoration: none;
+	background: #ec7463;
+	padding: 20px;
+	border-radius: 5px;
+	display: inline-block;
+	border: none;
+	transition: all 0.4s ease 0s;
   cursor: pointer;
-  box-shadow: inset 0 0 0 0 #D80286;
-  -webkit-transition: ease-out 0.4s;
-  -moz-transition: ease-out 0.4s;
-  transition: ease-out 0.4s;
 }
 
-.slide_inside:hover {
-  box-shadow: inset 0 0 0 50px #D80286;
+.Button1:hover {
+  background: #434343;
+	letter-spacing: 1px;
+	-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+	transition: all 0.4s ease 0s;
 }
+
+
 </style>
