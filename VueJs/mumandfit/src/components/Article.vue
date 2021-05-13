@@ -74,7 +74,7 @@ import jQuery from "jquery";
                     'save directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save tinydrive'
+                    'textpattern noneditable help charmap quickbars emoticons save'
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
@@ -89,10 +89,27 @@ import jQuery from "jquery";
                     image_uploadtab: true,
                     //image_prepend_url : '/images/',
                     //relative_urls : false,
-                   //automatic_uploads: true,
-                    file_picker_types: 'image',
+                    automatic_uploads: true,
+                    //file_picker_types: 'image',
                     //images_upload_base_path:'/images/',
-                    tinydrive_token_provider : "//localhost:8010/jwt",
+                    //tinydrive_token_provider : "//localhost:8010/jwt",
+
+                    images_upload_url : '//localhost:8010/upload',
+                    file_picker_callback : function (callback, value, meta) {
+                        if (meta.filetype == 'image') {
+                        $('#upload').trigger('click');
+                        $('#upload').on('change', function () {
+                            var file = this.files[ 0 ];
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                            callback(e.target.result, {
+                                alt: ''
+                            });
+                            };
+                            reader.readAsDataURL(file);
+                        });
+                    }
+                    }
                 }
             }
         },
@@ -102,8 +119,8 @@ import jQuery from "jquery";
                 }else{
                    this.status = false
                 }
-                this.http.post("//localhost:8010/jwt")
-                .then(response=>{this.tinyToken = response.data});
+                /*this.http.post("//localhost:8010/jwt")
+                .then(response=>{this.tinyToken = response.data});*/
         },
         created : function() {
                 

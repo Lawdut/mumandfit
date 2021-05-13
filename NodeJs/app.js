@@ -144,9 +144,9 @@ app.post('/jwt', (req, res) => {
 
     try {
       const privateKey = fs.readFileSync(config.privateKeyFile).toString();
-      console.log(privateKey);
+      //console.log(privateKey);
       const token = jwt.sign(payload,privateKey, { algorithm: 'RS256'});
-      console.log(token);
+      //console.log(token);
       res.send(JSON.stringify({token: token}))
         
     } catch (e) {
@@ -158,6 +158,39 @@ app.post('/jwt', (req, res) => {
     res.status(401);
     res.send('Could not produce a jwt token since the user is not logged in.');
   }*/
+});
+
+app.post('/upload', (req, res)=>{
+  
+
+  var folderName = path.join(__dirname, '../VueJs/mumandfit/public/images');
+
+  if (!fs.existsSync(folderName)) {
+    fs.mkdir(folderName, function (err) {
+      if (err) {
+        console.log(err);
+      }
+      else {
+
+      }
+    });
+  }
+  else {
+    if (!req.files) {
+      return res.status(400).send('No files were uploaded.');
+    }
+    console.log(req.files.file.mimetype);
+    console.log(req.files.file.data.byteLength);
+    var sampleFile = req.files.file;
+    sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', 'test.jpg'), function (err) {
+      var temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', 'test.jpg');
+      mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', 'test.jpg'));         // => 'text/plain'
+      if (err) {
+        return res.status(500).send(err);
+      }
+      res.send({ 'location': '../images/test.jpg' });
+    });
+  }
 });
 
 app.listen(8010)
