@@ -5,7 +5,7 @@
         </div>
 
         <div id = "navAdmin">
-            <div class = "liensAdmin"><router-link to="/NewArticle"><button class = "Button1">Création d'article</button></router-link></div>
+            <div class = "liensAdmin"><router-link to="/newArticle"><button class = "Button1">Création d'article</button></router-link></div>
 
         </div>
 

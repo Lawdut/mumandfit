@@ -37,9 +37,20 @@ exports.getAllArticles = function (table, callback){
             callback(rows);
 })}
 
-exports.updateArticle = function (table, article, callback){
+exports.createArticle = function (table, article, callback){
+    var sql = "INSERT INTO " + table + "(id, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');";
+    conn.query(sql, function(error) {
+        if (error) {
+            console.log(error)
+            
+        }   
+        callback();
+})}
+
+
+exports.updateArticles = function (table, article, callback){
     //console.log(article);
-    var sql = "UPDATE " + table + " SET `contenu` = " + "'" + article.unArticle.contenu +"'" + "," + `genre = ` + "'" + article.unArticle.genre + "'" + " WHERE id = " + article.unArticle.id ;
+    var sql = "UPDATE " + table + " SET `banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'"  + " WHERE id = " + article.unArticle.id ;
     conn.query(sql, function(error) {
         if (error) {
             console.log(error)

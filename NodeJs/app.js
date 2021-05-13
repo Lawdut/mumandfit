@@ -110,6 +110,19 @@ app.get('/getAllArticles', function (req, res) {
     //console.log(articles);
   })
 })
+
+app.post('/createArticle', function(req, res) {
+    //console.log(req.body);
+    let unArticleCreateClean = clean(req.body);
+    console.log(unArticleCreateClean);
+    bdd.createArticle('articles', unArticleCreateClean, function(err){
+      if (err) {
+        res.status(500).send({ message: err });
+      }
+    
+    res.json({res : "Créé"})
+    })
+})
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle/',authenticateToken, function(req, res){
     let unArticleCleaned = clean(req.body);
@@ -118,24 +131,12 @@ app.post('/modifArticle/',authenticateToken, function(req, res){
         res.status(500).send({ message: err });
       }
     
-    res.json({res : "Enregistré"})
+    res.json({res : "Modifié"})
     })
 })
-          /* ----- UPLOAD IMAGE ----- */
+          /* ----- UPLOAD IMAGE PAR TINY DRIVE ----- */
 app.post('/jwt', (req, res) => {
-  //const user = req.session.user;
-  /*if (user) {
-    const payload = {
-      sub: user.username,        // Unique user id string
-      name: user.fullname,       // Full name of user
-      exp: Math.floor(Date.now() / 1000) + (60 * 10) // 10 minutes expiration
-    };
-
-    // When this is set the user will only be able to manage and see files in the specified root
-    // directory. This makes it possible to have a dedicated home directory for each user.
-    if (config.scopeUser) {
-      payload['https://claims.tiny.cloud/drive/root'] = `/${user.username}`;
-    }*/
+  
     const payload = {
       sub: "123",        // Unique user id string
       name: 'Korinne',       // Full name of user
@@ -154,16 +155,13 @@ app.post('/jwt', (req, res) => {
       res.send('Failed generate jwt token.');
       console.error(e.message);
     }
-  /*} else {
-    res.status(401);
-    res.send('Could not produce a jwt token since the user is not logged in.');
-  }*/
+  
 });
-
+        /* ----- UPLOAD IMAGE DANS REPERTOIRE IMAGES ----- */
 app.post('/upload', (req, res)=>{
   
 
-  var folderName = path.join(__dirname, '../VueJs/mumandfit/public/images');
+  const folderName = path.join(__dirname, '../VueJs/mumandfit/public/images');
 
   if (!fs.existsSync(folderName)) {
     fs.mkdir(folderName, function (err) {
@@ -181,14 +179,17 @@ app.post('/upload', (req, res)=>{
     }
     console.log(req.files.file.mimetype);
     console.log(req.files.file.data.byteLength);
-    var sampleFile = req.files.file;
-    sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', 'test.jpg'), function (err) {
-      var temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', 'test.jpg');
-      mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', 'test.jpg'));         // => 'text/plain'
+    const sampleFile = req.files.file;
+    const typeFile = req.files.file.mimetype.split('/');
+    const fileName = Date.now() +'.'+ typeFile[1];
+
+    sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName), function (err) {
+      const temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName);
+      mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName));         // => 'text/plain'
       if (err) {
         return res.status(500).send(err);
       }
-      res.send({ 'location': '../images/test.jpg' });
+      res.send({ 'location': '../images/'+fileName });
     });
   }
 });
