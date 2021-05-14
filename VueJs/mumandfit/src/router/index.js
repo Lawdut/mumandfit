@@ -9,6 +9,7 @@ import ListeArticles from '../components/ListeArticles.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
 import newArticle from '../components/Admin/NewArticle.vue'
+import Aside from '../components/Aside.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -23,6 +24,12 @@ const routes = [
     path: "/connexion",
     name : "Connexion",
     component: Connexion
+  },
+
+  {
+    path:"/aside",
+    name : "Aside",
+    component : Aside
   },
   /*{
     path: "/inscription",

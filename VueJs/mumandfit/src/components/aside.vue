@@ -21,6 +21,7 @@
 
 <script>
     export default {
+        name : 'Aside',
     data : function() {
             return {
                 token : this.$store.state.token
