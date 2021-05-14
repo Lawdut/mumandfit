@@ -34,7 +34,8 @@
                 <div id = "titreCreate"></div>
                 <div id = "chapeauCreate"></div>
                 <div id = "contenuCreate"></div>
-                <input type = 'submit' @click="createArticle" value="Enregistrer">
+                <input type = 'submit' @click="createArticle" value="Enregistrer" class = "Button1">
+                <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1"></router-link>
         </div>
     </div>
 </template>
