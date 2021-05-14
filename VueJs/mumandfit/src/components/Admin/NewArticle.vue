@@ -1,37 +1,40 @@
 <template>
     <div>
-        <editor @onSaveContent="createArticle()" v-model = unArticle.banniere output-format="html"
-            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :disabled="status"
-            :init="myInitBanniere"
-            initial-value="Placer une image de bannière ici"
-            />
+         <div class = "article">
+           
+                <editor  v-model = unArticle.banniere output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitBanniere"
+                    initial-value="Placer une image de bannière ici"
+                    />
+                    
+
+                <editor  v-model = unArticle.titre output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitTitre"
+                    initial-value="Placer un titre ici"
+                />
+                <editor  v-model = unArticle.chapeau output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitChapeau"
+                    initial-value="Placer un chapeau ici"
+                />
+                <editor  v-model = unArticle.contenu output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitContenu"
+                    initial-value="Placer le corps du post ici"
+                />
+
             
-
-        <editor @onSaveContent="createArticle()" v-model = unArticle.titre output-format="html"
-            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :disabled="status"
-            :init="myInitTitre"
-            initial-value="Placer un titre ici"
-        />
-        <editor @onSaveContent="createArticle()" v-model = unArticle.chapeau output-format="html"
-            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :disabled="status"
-            :init="myInitChapeau"
-            initial-value="Placer un chapeau ici"
-        />
-        <editor @onSaveContent="createArticle()" v-model = unArticle.contenu output-format="html"
-            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :disabled="status"
-            :init="myInitContenu"
-            initial-value="Placer le corps du post ici"
-        />
-
-        <div class = "article">
-            <div id = "banniereCreate"></div>
-            <div id = "titreCreate"></div>
-            <div id = "chapeauCreate"></div>
-            <div id = "contenuCreate"></div>
+                <div id = "banniereCreate"></div>
+                <div id = "titreCreate"></div>
+                <div id = "chapeauCreate"></div>
+                <div id = "contenuCreate"></div>
+                <input type = 'submit' @click="createArticle" value="Enregistrer">
         </div>
     </div>
 </template>
@@ -65,15 +68,15 @@ import jQuery from "jquery";
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    'directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat |  | imagetools',
                     encoding: 'UTF-8',
                     inline: true,
                     entity_encoding : 'raw',
@@ -103,15 +106,15 @@ import jQuery from "jquery";
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    ' directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat |  | imagetools',
                     encoding: 'UTF-8',
                     inline: true,
                     entity_encoding : 'raw',
@@ -126,15 +129,15 @@ import jQuery from "jquery";
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    'directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat |  | imagetools',
                     encoding: 'UTF-8',
                     inline: true,
                     entity_encoding : 'raw',
@@ -147,15 +150,15 @@ import jQuery from "jquery";
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    'directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat |  | imagetools',
                     language_url : './assets/js/fr_FR.js',
                     encoding: 'UTF-8',
                     inline: true,
@@ -197,7 +200,9 @@ import jQuery from "jquery";
         },
         methods : {
             createArticle : function () {
-                this.http.post('//localhost:8010/createArticle', {
+
+                if(this.unArticle.banniere != '' && this.unArticle.titre != '' && this.unArticle.chapeau != '' && this.unArticle.contenu != ''){
+                    this.http.post('//localhost:8010/createArticle', {
                     unArticle : {
                         banniere : this.unArticle.banniere,
                         titre : this.unArticle.titre,
@@ -206,6 +211,9 @@ import jQuery from "jquery";
                     }
                 })
                 .then(response => console.log(response.data))
+                .then(()=> this.$router.push('/blog'))
+                }
+            
             }
         }
     }

@@ -57,10 +57,11 @@ function authenticateToken(req, res, next) {
                     // ----- Nettoyage des données ----- //
   function clean(unArticle){
     const unArticleToClean = unArticle; 
-
+    
     for(let i in unArticleToClean['unArticle']){
       if (typeof unArticleToClean['unArticle'][i] === 'string'){
-          unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace("\'","&apos;").replace("-", "&#45;");
+      unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace(/'/g,"&apos;").replace(/#/g,"&num;").replace(/♯/g,"&sharp;");
+      //console.log(unArticleToClean['unArticle'][i]);
       } 
     }
     return unArticleToClean;
@@ -126,7 +127,7 @@ app.post('/createArticle', function(req, res) {
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle/',authenticateToken, function(req, res){
     let unArticleCleaned = clean(req.body);
-    bdd.updateArticle('articles', unArticleCleaned, function(err){
+    bdd.updateArticles('articles', unArticleCleaned, function(err){
       if (err) {
         res.status(500).send({ message: err });
       }
