@@ -114,30 +114,27 @@ app.get('/getAllArticles', function (req, res) {
   })
 })
 
-
           /* ----- CREATION ARTICLE ----- */
-app.post('/createArticle', function(req, res) {
+app.get('/idArticle', function(req, res) {
+  bdd.selectArticle('articles', function(idArticles){
+    let idArticle = (idArticles[0].id+1);
+    console.log(typeof idArticle)
+    res.send({idArticle : idArticle})
+  })
+})
+
+app.post('/createArticle',authenticateToken, function(req, res) {
     //console.log(req.body);
     
     let unArticleCreateClean = clean(req.body);
-    //console.log(unArticleCreateClean);
+    console.log(unArticleCreateClean);
     try{
-      bdd.createArticle('articles', unArticleCreateClean, function(err){
+      bdd.createArticle('articles', 'image', unArticleCreateClean, imageTab, function(err){
         if (err) {
           res.status(500).send({ message: err });
         }
+        imageTab.length = 0;
       });
-      bdd.selectArticle('articles', function(res){
-          var idArticle = res[0].id;
-          //console.log(idArticle);
-      })
-      bdd.insertImage('image', imageTab, idArticle, function(err){
-          if (err) {
-            res.status(500).send({ message: err });
-          }
-          res.json({res : 'COOOL'})
-          imageTab.length = 0;
-        })
       
     }catch(err){
       res.status(500);
@@ -145,7 +142,9 @@ app.post('/createArticle', function(req, res) {
       console.error(err.message);
     }
     
-})
+});
+
+
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle/',authenticateToken, function(req, res){
   try {

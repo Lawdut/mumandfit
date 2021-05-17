@@ -59,7 +59,7 @@ import jQuery from "jquery";
                    titre : '',
                    chapeau : '',
                    contenu : '',
-                   
+                   idArticle : ''
                },
                token : this.$store.state.token,
                status : null,
@@ -192,12 +192,18 @@ import jQuery from "jquery";
                 }
             }
         },
+        
         mounted : function (){
                 if(this.token === "") {
                     this.status = true
                 }else{
                    this.status = false
-                }
+                }  
+                this.http.get('//localhost:8010/idArticle')
+                .then(response=> {this.idArticle = response.data.idArticle})    
+        },
+        created : function(){
+            
         },
         methods : {
             createArticle : function () {
@@ -209,6 +215,7 @@ import jQuery from "jquery";
                         titre : this.unArticle.titre,
                         chapeau : this.unArticle.chapeau,
                         contenu : this.unArticle.contenu,
+                        idArticle : this.idArticle,
                     }
                 })
                 .then(response => console.log(response.data))

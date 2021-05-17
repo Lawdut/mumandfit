@@ -54,30 +54,37 @@ exports.getAllArticles = function (table, callback){
 
 
 
-exports.createArticle = function (table, article, callback){
+exports.createArticle = function (table, table2, article, images, callback){
     var sql = "INSERT INTO " + table + "(id, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');";
-   
+   console.log(article)
     conn.query(sql, function(error) {
         if (error) {
             console.log(error)      
-        }
-        callback();          
+        }else{
+            for(let i = 0; i < images.length; i++) {
+                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + article.unArticle.idArticle +"');" ;
+                conn.query(image, function(error){
+                    if(error){
+                        console.log(error)
+                    }
+                })
+            }
+            callback();
+        }        
     })
 }
 exports.selectArticle = function(table, callback){
-    var sql = "SELECT MAX(`id`) as id FROM " + table;
-    conn.query(sql, function(error, rows){
+    var idArticle = "SELECT MAX(`id`) as id FROM " + table;
+    conn.query(idArticle, function(error, rows){
         if(error){
             console.log(error)
         }
-        //console.log(sql);
-        //console.log(rows);
         callback(rows);
     })
     
 }
 
-exports.insertImage = function(table , images, idArticle, callback){
+/*exports.insertImage = function(table , images, idArticle, callback){
     console.log(idArticle);
     for(let i = 0; i < images.length; i++) {
         var image = "INSERT INTO "+ table + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + idArticle +"');" ;
@@ -89,7 +96,7 @@ exports.insertImage = function(table , images, idArticle, callback){
         })
     }
    
-}
+}*/
 
 exports.updateArticles = function (table1, table2, article, images, callback){
     //console.log(article);
