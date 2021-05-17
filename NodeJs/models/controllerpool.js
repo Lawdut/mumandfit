@@ -37,24 +37,77 @@ exports.getAllArticles = function (table, callback){
             callback(rows);
 })}
 
+/*exports.createArticle = async function(table, table2, article, images, callback){
+    try{
+        await conn.query('START TRANSACTION');
+        await conn.query("INSERT INTO " + table + "(id, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');");
+        await conn.query("SELECT MAX (`id`) FROM " + table);
+        for (let i = 0 ; i < images.length; i++){
+            await conn.query("INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + idArticle+"');");
+        }
+        await conn.query('COMMIT');
+    }catch(err){
+        await conn.query('ROLLBACK');
+}
+    callback();
+}*/
+
+
+
 exports.createArticle = function (table, article, callback){
     var sql = "INSERT INTO " + table + "(id, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');";
+   
     conn.query(sql, function(error) {
         if (error) {
+            console.log(error)      
+        }
+        callback();          
+    })
+}
+exports.selectArticle = function(table, callback){
+    var sql = "SELECT MAX(`id`) as id FROM " + table;
+    conn.query(sql, function(error, rows){
+        if(error){
             console.log(error)
-            
-        }   
-        callback();
-})}
+        }
+        //console.log(sql);
+        //console.log(rows);
+        callback(rows);
+    })
+    
+}
 
+exports.insertImage = function(table , images, idArticle, callback){
+    console.log(idArticle);
+    for(let i = 0; i < images.length; i++) {
+        var image = "INSERT INTO "+ table + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + idArticle +"');" ;
+        conn.query(image, function(error){
+            if(error){
+                console.log(error)
+            }
+            callback();
+        })
+    }
+   
+}
 
-exports.updateArticles = function (table, article, callback){
+exports.updateArticles = function (table1, table2, article, images, callback){
     //console.log(article);
-    var sql = "UPDATE " + table + " SET `banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'"  + " WHERE id = " + article.unArticle.id ;
+    var sql = "UPDATE " + table1 + " SET `banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'"  + " WHERE id = " + article.unArticle.id ;
     conn.query(sql, function(error) {
         if (error) {
             console.log(error)
             
-        }   
-        callback();
+        }else{
+            for(let i = 0; i < images.length; i++) {
+                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + article.unArticle.id+"');" ;
+                conn.query(image, function(error){
+                    if(error){
+                        console.log(error)
+                    }
+                })
+            }
+            callback();
+        }
+        
 })}

@@ -15,6 +15,8 @@ const salt = bcrypt.genSaltSync(10);
 const path = require("path");
 const config = require("./models/config.js")
 
+const imageTab = [];
+
 /*const mysqlStore = require('express-mysql-session')(session);
 const sessionStore = new mysqlStore(options);*/
 /*const multer = require("multer");
@@ -112,28 +114,55 @@ app.get('/getAllArticles', function (req, res) {
   })
 })
 
+
+          /* ----- CREATION ARTICLE ----- */
 app.post('/createArticle', function(req, res) {
     //console.log(req.body);
-    let unArticleCreateClean = clean(req.body);
-    console.log(unArticleCreateClean);
-    bdd.createArticle('articles', unArticleCreateClean, function(err){
-      if (err) {
-        res.status(500).send({ message: err });
-      }
     
-    res.json({res : "Créé"})
-    })
+    let unArticleCreateClean = clean(req.body);
+    //console.log(unArticleCreateClean);
+    try{
+      bdd.createArticle('articles', unArticleCreateClean, function(err){
+        if (err) {
+          res.status(500).send({ message: err });
+        }
+      });
+      bdd.selectArticle('articles', function(res){
+          var idArticle = res[0].id;
+          //console.log(idArticle);
+      })
+      bdd.insertImage('image', imageTab, idArticle, function(err){
+          if (err) {
+            res.status(500).send({ message: err });
+          }
+          res.json({res : 'COOOL'})
+          imageTab.length = 0;
+        })
+      
+    }catch(err){
+      res.status(500);
+      res.send('Erreur de création de l\'article');
+      console.error(err.message);
+    }
+    
 })
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle/',authenticateToken, function(req, res){
+  try {
     let unArticleCleaned = clean(req.body);
-    bdd.updateArticles('articles', unArticleCleaned, function(err){
+    bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
       if (err) {
         res.status(500).send({ message: err });
       }
-    
+    imageTab.length = 0;
     res.json({res : "Modifié"})
     })
+  }catch(err){
+    res.status(500);
+    res.send('Erreur de modification de l\'article');
+    console.error(err.message);
+  }
+    
 })
           /* ----- UPLOAD IMAGE PAR TINY DRIVE ----- */
 app.post('/jwt', (req, res) => {
@@ -159,6 +188,8 @@ app.post('/jwt', (req, res) => {
   
 });
         /* ----- UPLOAD IMAGE DANS REPERTOIRE IMAGES ----- */
+
+
 app.post('/upload', (req, res)=>{
   
 
@@ -183,6 +214,10 @@ app.post('/upload', (req, res)=>{
     const sampleFile = req.files.file;
     const typeFile = req.files.file.mimetype.split('/');
     const fileName = Date.now() +'.'+ typeFile[1];
+
+    let count = imageTab.push(fileName);
+    console.log(imageTab);
+    console.log(count); 
 
     sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName), function (err) {
       const temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName);

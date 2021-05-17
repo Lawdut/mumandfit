@@ -1,7 +1,7 @@
 var mysql  = require('mysql2');
 
 module.exports = {
-  "query": query
+  "query": query,
 };
 // Internal connection pool
 var pool = mysql.createPoolCluster({ canRetry: true });
@@ -47,3 +47,4 @@ function query (sql, params, cb) {
     });
   });
 }
+

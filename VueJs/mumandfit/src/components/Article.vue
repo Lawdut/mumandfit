@@ -1,35 +1,38 @@
 <template>
     <div>
         <div>
-            <editor @onSaveContent="saveArticle()" v-model = unArticle.banniere output-format="html"
-            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :disabled="status"
-                :init="myInitBanniere"
-
-            />
-
-            <editor @onSaveContent="saveArticle()" v-model = unArticle.titre output-format="html"
-            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :disabled="status"
-                :init="myInitTitre"
-
-            />
-            <editor @onSaveContent="saveArticle()" v-model = unArticle.chapeau output-format="html"
-                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                :disabled="status"
-                :init="myInitChapeau"
-            />
-            <editor @onSaveContent="saveArticle()" v-model = unArticle.contenu output-format="html"
-                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                :disabled="status"
-                :init="myInitContenu"
-            />
-
             <div class = "article">
-                <div id = "banniereModif"></div>
-                <div id = "titreModif"></div>
-                <div id = "chapeauModif"></div>
-                <div id = "contenuModif"></div>
+                <editor v-model = unArticle.banniere output-format="html"
+                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                :disabled="status"
+                    :init="myInitBanniere"
+
+                />
+
+                <editor v-model = unArticle.titre output-format="html"
+                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                :disabled="status"
+                    :init="myInitTitre"
+
+                />
+                <editor v-model = unArticle.chapeau output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitChapeau"
+                />
+                <editor v-model = unArticle.contenu output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitContenu"
+                />
+
+                
+                    <div id = "banniereModif"></div>
+                    <div id = "titreModif"></div>
+                    <div id = "chapeauModif"></div>
+                    <div id = "contenuModif"></div>
+                    <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1">
+                    <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1"></router-link>
             </div>
             
             
@@ -66,16 +69,16 @@ import jQuery from "jquery";
                     height: 500,
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
-                    'print preview paste importcss searchreplace autolink autosave',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    'print preview paste importcss searchreplace autolink',
+                    ' directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat | imagetools',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
@@ -83,10 +86,10 @@ import jQuery from "jquery";
                     image_advtab: true,
                     image_uploadtab: true,
                     images_upload_url : '//localhost:8010/upload',
-                    file_picker_callback : function (callback, value, meta) {
+                    /*file_picker_callback : function (callback, value, meta) {
                         if (meta.filetype == 'image') {
-                        $('#upload').trigger('click');
-                        $('#upload').on('change', function () {
+                        $('#banniereModif').trigger('click');
+                        $('#banniereModif').on('change', function () {
                             var file = this.files[ 0 ];
                             var reader = new FileReader();
                             reader.onload = function (e) {
@@ -97,7 +100,7 @@ import jQuery from "jquery";
                             reader.readAsDataURL(file);
                         });
                     }
-                    }
+                    }*/
                },
                myInitTitre : {
                    
@@ -105,16 +108,16 @@ import jQuery from "jquery";
                     height: 500,
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
-                    'print preview paste importcss searchreplace autolink autosave',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    'print preview paste importcss searchreplace autolink',
+                    ' directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat | imagetools',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
@@ -129,16 +132,16 @@ import jQuery from "jquery";
                     height: 500,
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
-                    'print preview paste importcss searchreplace autolink autosave',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    'print preview paste importcss searchreplace autolink',
+                    ' directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat | imagetools',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
@@ -151,16 +154,16 @@ import jQuery from "jquery";
                     height: 500,
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
-                    'print preview paste importcss searchreplace autolink autosave',
-                    'save directionality code visualblocks visualchars fullscreen image',
+                    'print preview paste importcss searchreplace autolink',
+                    ' directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons save'
+                    'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | save | imagetools',
+                    bullist numlist outdent indent | removeformat | imagetools',
                     toolbar_sticky: true,
                     inline: true,
                     language_url : './assets/js/fr_FR.js',
@@ -176,7 +179,7 @@ import jQuery from "jquery";
                     //tinydrive_token_provider : "//localhost:8010/jwt",
 
                     images_upload_url : '//localhost:8010/upload',
-                    file_picker_callback : function (callback, value, meta) {
+                    /*file_picker_callback : function (callback, value, meta) {
                         if (meta.filetype == 'image') {
                         $('#upload').trigger('click');
                         $('#upload').on('change', function () {
@@ -190,7 +193,7 @@ import jQuery from "jquery";
                             reader.readAsDataURL(file);
                         });
                     }
-                    }
+                    }*/
                 }
             }
         },
