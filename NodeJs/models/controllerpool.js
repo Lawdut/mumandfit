@@ -64,7 +64,7 @@ exports.createArticle = function (table, table2, article, images, callback){
             console.log(error)      
         }else{
             for(let i = 0; i < images.length; i++) {
-                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "/images/"+ images[i] + "','" + article.unArticle.idArticle +"');" ;
+                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + article.unArticle.idArticle +"');" ;
                 conn.query(image, function(error){
                     if(error){
                         console.log(error)
@@ -109,7 +109,7 @@ exports.updateArticles = function (table1, table2, article, images, callback){
             
         }else{
             for(let i = 0; i < images.length; i++) {
-                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "..\\images\\"+ images[i] + "','" + article.unArticle.id+"');" ;
+                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + article.unArticle.id+"');" ;
                 conn.query(image, function(error){
                     if(error){
                         console.log(error)

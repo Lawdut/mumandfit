@@ -168,7 +168,7 @@ app.post('/modifArticle/',authenticateToken, function(req, res){
           /* ----- SUPPRESSION D UN ARTICLE ----- */
 app.post('/deleteArticle', authenticateToken, async function(req, res){
   let unArticle = req.body;
-  const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public')
+  const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\images\\')
   
   //console.log(unArticle);
   try{
@@ -180,8 +180,9 @@ app.post('/deleteArticle', authenticateToken, async function(req, res){
       
     }
     for(let j = 0 ; j < imageTab.length; j++){
-      fs.unlinkSync(dirPath+imageTab[j])
+      fs.unlinkSync(dirPath+imageTab[j]);
     }
+    imageTab.length=0;
     }));
 
   }catch(error){
