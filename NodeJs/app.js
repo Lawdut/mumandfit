@@ -13,7 +13,10 @@ const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
 const salt = bcrypt.genSaltSync(10);
 const path = require("path");
-const config = require("./models/config.js")
+const config = require("./models/config.js");
+const helmet = require('helmet');
+const rp = require('request-promise');
+/*const ash = require('express-async-handler')*/
 
 const imageTab = [];
 
@@ -27,6 +30,7 @@ app.use(cors());
 app.use(express.json({}));
 app.use(express.urlencoded({extended : true}));
 app.use(fileUpload({}));
+app.use(helmet());
                     // ----- JWT ----- //
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: "24h" });
@@ -56,7 +60,7 @@ function authenticateToken(req, res, next) {
   }
 
 
-                    // ----- Nettoyage des données ----- //
+                    // ----- NETTOYAGE DES DONNEES ----- //
   function clean(unArticle){
     const unArticleToClean = unArticle; 
     
@@ -106,15 +110,7 @@ app.post('/connexion', function (req, res) {
     }
   })
 })
-          /* ----- AFFICHAGE ARTICLES -----*/
-app.get('/getAllArticles', function (req, res) {
-  bdd.getAllArticles('articles', function (articles) {
-    res.json({articles : articles});
-    //console.log(articles);
-  })
-})
-
-          /* ----- CREATION ARTICLE ----- */
+         /* ----- CREATION ARTICLE ----- */
 app.get('/idArticle', function(req, res) {
   bdd.selectArticle('articles', function(idArticles){
     let idArticle = (idArticles[0].id+1);
@@ -124,26 +120,31 @@ app.get('/idArticle', function(req, res) {
 })
 
 app.post('/createArticle',authenticateToken, function(req, res) {
-    //console.log(req.body);
     
-    let unArticleCreateClean = clean(req.body);
-    console.log(unArticleCreateClean);
-    try{
-      bdd.createArticle('articles', 'image', unArticleCreateClean, imageTab, function(err){
-        if (err) {
-          res.status(500).send({ message: err });
-        }
-        imageTab.length = 0;
-      });
-      
-    }catch(err){
-      res.status(500);
-      res.send('Erreur de création de l\'article');
-      console.error(err.message);
-    }
+  let unArticleCreateClean = clean(req.body);
+  console.log(unArticleCreateClean);
+  try{
+    bdd.createArticle('articles', 'image', unArticleCreateClean, imageTab, function(err){
+      if (err) {
+        res.status(500).send({ message: err });
+      }
+      imageTab.length = 0;
+    });
     
+  }catch(err){
+    res.status(500);
+    res.send('Erreur de création de l\'article');
+    console.error(err.message);
+  }
+  
 });
-
+          /* ----- AFFICHAGE ARTICLES -----*/
+app.get('/getAllArticles', function (req, res) {
+  bdd.getAllArticles('articles', function (articles) {
+    res.json({articles : articles});
+    //console.log(articles);
+  })
+})
 
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle/',authenticateToken, function(req, res){
@@ -163,6 +164,34 @@ app.post('/modifArticle/',authenticateToken, function(req, res){
   }
     
 })
+
+          /* ----- SUPPRESSION D UN ARTICLE ----- */
+app.post('/deleteArticle', authenticateToken, async function(req, res){
+  let unArticle = req.body;
+  const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public')
+  
+  //console.log(unArticle);
+  try{
+    await (bdd.getAllImage('image', unArticle , function(images){
+      //console.log(images[0].nom_image);
+    for(let i = 0 ; i < images.length; i++){
+      imageTab.push(images[i].nom_image);
+      console.log(imageTab[i]);
+      
+    }
+    for(let j = 0 ; j < imageTab.length; j++){
+      fs.unlinkSync(dirPath+imageTab[j])
+    }
+    }));
+
+  }catch(error){
+    console.log(error)
+    imageTab.length=0;
+  }    
+    
+})
+
+
           /* ----- UPLOAD IMAGE PAR TINY DRIVE ----- */
 app.post('/jwt', (req, res) => {
   

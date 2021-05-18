@@ -32,6 +32,7 @@
                     <div id = "chapeauModif"></div>
                     <div id = "contenuModif"></div>
                     <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1">
+                    <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1">
                     <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1"></router-link>
             </div>
             
@@ -224,6 +225,17 @@ import jQuery from "jquery";
                 })
                 .then(response => console.log(response.data))
             },
+            deleteArticle : function() {
+                this.http.post('//localhost:8010/deleteArticle', {
+                    unArticle : {
+                        id : this.$store.state.unArticle.id,
+                        banniere : this.$store.state.unArticle.banniere,
+                        titre : this.$store.state.unArticle.titre,
+                        chapeau : this.$store.state.unArticle.chapeau,
+                        contenu : this.$store.state.unArticle.contenu,
+                    }
+                })
+            }
             
         }
     }

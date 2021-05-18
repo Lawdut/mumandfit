@@ -19,6 +19,7 @@ exports.connexion = function(table, user, callback) {
     //console.log(user);
     var sql = "SELECT * FROM " + table + " WHERE email = " + "'" +user.mail +"'";
     //console.log(sql);
+    
     conn.query(sql, function(error, rows) {
         console.log(error);
         if (error){
@@ -26,6 +27,8 @@ exports.connexion = function(table, user, callback) {
         }
         callback(rows);
     })
+    
+    
 }
 
 exports.getAllArticles = function (table, callback){
@@ -41,9 +44,8 @@ exports.getAllArticles = function (table, callback){
     try{
         await conn.query('START TRANSACTION');
         await conn.query("INSERT INTO " + table + "(id, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');");
-        await conn.query("SELECT MAX (`id`) FROM " + table);
         for (let i = 0 ; i < images.length; i++){
-            await conn.query("INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + idArticle+"');");
+            await conn.query("INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + article.unArticle.idArticle+"');");
         }
         await conn.query('COMMIT');
     }catch(err){
@@ -62,7 +64,7 @@ exports.createArticle = function (table, table2, article, images, callback){
             console.log(error)      
         }else{
             for(let i = 0; i < images.length; i++) {
-                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + article.unArticle.idArticle +"');" ;
+                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "/images/"+ images[i] + "','" + article.unArticle.idArticle +"');" ;
                 conn.query(image, function(error){
                     if(error){
                         console.log(error)
@@ -107,7 +109,7 @@ exports.updateArticles = function (table1, table2, article, images, callback){
             
         }else{
             for(let i = 0; i < images.length; i++) {
-                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "../images/"+ images[i] + "','" + article.unArticle.id+"');" ;
+                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + "..\\images\\"+ images[i] + "','" + article.unArticle.id+"');" ;
                 conn.query(image, function(error){
                     if(error){
                         console.log(error)
@@ -118,3 +120,16 @@ exports.updateArticles = function (table1, table2, article, images, callback){
         }
         
 })}
+
+exports.getAllImage = function(table, article, callback){
+    var sql = "SELECT * FROM "+ table + " WHERE id_article = " + article.unArticle.id;
+    //console.log(sql);
+    conn.query(sql, function(error, rows) {
+            if(error){
+                console.log(error)
+            }
+            //console.log(rows);
+            callback (rows);  
+        })
+     
+}
