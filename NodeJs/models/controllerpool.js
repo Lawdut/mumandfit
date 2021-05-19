@@ -1,6 +1,22 @@
-const conn = require('./mysqlconfig.js');
+//const conn = require('./mysqlconfig.js');
+var mysql  = require('mysql');
 const bcrypt = require('bcrypt');
 const salt = bcrypt.genSaltSync(10);
+const conn = mysql.createConnection({
+    host     : 'localhost',
+    port     : 3306,
+    user     : 'root',
+    password : '',
+    database : 'mumandfit'
+});
+conn.connect(function(error){
+    if(!!error){
+      console.log(error);
+    }else{
+      console.log('Connected!:)');
+    }
+  });
+
 
 exports.inscription = function (table, user, callback) {
     const hash = bcrypt.hashSync(user.mdp, salt);
@@ -56,10 +72,54 @@ exports.getAllArticles = function (table, callback){
 
 
 
-exports.createArticle = function (table, table2, article, images, callback){
+exports.createArticle = async function (table, table2, article, images){
+
+    var idArticle = "SELECT MAX(`id`) as id FROM " + table;
     var sql = "INSERT INTO " + table + "(id, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');";
-   console.log(article)
-    conn.query(sql, function(error) {
+    
+
+    conn.beginTransaction(function(error){
+        if(error){
+            return conn.rollback(function() {
+                throw error;
+            })
+        }
+        conn.query(sql, function(error, results, fields){
+            if(error){
+                return conn.rollback(function(){
+                    throw error;
+                })
+            }
+            conn.query(idArticle, function(error, results, fields){
+                if(error){
+                    return conn.rollback(function(){
+                        throw error;
+                    })
+                }
+            let id = results[0].id;
+            for (let i = 0 ; i < images.length ; i++){
+                conn.query("INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + id +"');", function(error, results, fields){
+                    if(error){
+                        return conn.rollback(function() {
+                            throw error;
+                        })
+                    }
+                    conn.commit(function(err) {
+                        if (err) {
+                          return connection.rollback(function() {
+                            throw err;
+                          })
+                        } 
+                        console.log('success!');
+
+                    })
+                })
+            }
+            })
+        })
+    })
+}
+    /*conn.query(sql, function(error) {
         if (error) {
             console.log(error)      
         }else{
@@ -74,8 +134,8 @@ exports.createArticle = function (table, table2, article, images, callback){
             callback();
         }        
     })
-}
-exports.selectArticle = function(table, callback){
+}*/
+/*exports.selectArticle = function(table, callback){
     var idArticle = "SELECT MAX(`id`) as id FROM " + table;
     conn.query(idArticle, function(error, rows){
         if(error){
@@ -84,7 +144,7 @@ exports.selectArticle = function(table, callback){
         callback(rows);
     })
     
-}
+}*/
 
 /*exports.insertImage = function(table , images, idArticle, callback){
     console.log(idArticle);
@@ -118,10 +178,10 @@ exports.updateArticles = function (table1, table2, article, images, callback){
             }
             callback();
         }
-        
-})}
+    })
+}
 
-exports.getAllImage = function(table, article, callback){
+exports.getAllImage = async function(table, article, callback){
     var sql = "SELECT * FROM "+ table + " WHERE id_article = " + article.unArticle.id;
     //console.log(sql);
     conn.query(sql, function(error, rows) {
@@ -132,4 +192,39 @@ exports.getAllImage = function(table, article, callback){
             callback (rows);  
         })
      
+}
+
+exports.deleteAllInDBB = async function(table1, table2, article){
+    var image = "DELETE FROM " + table2 + " WHERE id_article = "+ article.unArticle.id;
+    var articles = "DELETE FROM " + table1 + " WHERE id = " + article.unArticle.id;
+    
+
+    conn.beginTransaction(function(err) {
+        if(err) {
+            throw err;
+        }
+        conn.query(image, function(error) {
+            if(error) {
+                return conn.rollback(function() {
+                    throw error;
+                })
+            }
+            conn.query(articles, function(error){
+                if(error){
+                    return conn.rollback(function(){
+                        throw error;
+                    })
+                }conn.commit(function(error){
+                    if(error){
+                        return conn.rollback(function(){
+                            throw error;
+                        })
+                    }
+                    console.log('Succès !!')
+                })
+            })
+        })
+
+    })
+  
 }

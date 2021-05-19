@@ -59,7 +59,6 @@ import jQuery from "jquery";
                    titre : '',
                    chapeau : '',
                    contenu : '',
-                   idArticle : ''
                },
                token : this.$store.state.token,
                status : null,
@@ -199,27 +198,27 @@ import jQuery from "jquery";
                 }else{
                    this.status = false
                 }  
-                this.http.get('//localhost:8010/idArticle')
-                .then(response=> {this.idArticle = response.data.idArticle})    
+                  
         },
         created : function(){
             
         },
         methods : {
             createArticle : function () {
-
+                
                 if(this.unArticle.banniere != '' && this.unArticle.titre != '' && this.unArticle.chapeau != '' && this.unArticle.contenu != ''){
-                    this.http.post('//localhost:8010/createArticle', {
-                    unArticle : {
+                    let unArticle = 
+                    { unArticle : {
                         banniere : this.unArticle.banniere,
                         titre : this.unArticle.titre,
                         chapeau : this.unArticle.chapeau,
                         contenu : this.unArticle.contenu,
-                        idArticle : this.idArticle,
-                    }
-                })
-                .then(response => console.log(response.data))
-                .then(()=> this.$router.push('/blog'))
+                    }}
+                    this.http.post('//localhost:8010/createArticle', unArticle)
+
+                    
+                //.then(response => {console.log(response.data)})
+                .then(()=> {console.log('toto'), this.$router.push('/blog')})
                 }
             
             }

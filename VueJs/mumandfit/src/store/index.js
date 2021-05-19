@@ -32,7 +32,6 @@ export default new Vuex.Store({
       axios.post('http://localhost:8010/connexion', infos) 
       .then((res)=> {
         localStorage.setItem("jwt", res.data);
-        //document.location.reload();
         context.commit('user', infos.mail);
         context.commit('token', res.data);
         axios.defaults.headers.common['authorization'] = res.data;

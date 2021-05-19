@@ -111,13 +111,6 @@ app.post('/connexion', function (req, res) {
   })
 })
          /* ----- CREATION ARTICLE ----- */
-app.get('/idArticle', function(req, res) {
-  bdd.selectArticle('articles', function(idArticles){
-    let idArticle = (idArticles[0].id+1);
-    console.log(typeof idArticle)
-    res.send({idArticle : idArticle})
-  })
-})
 
 app.post('/createArticle',authenticateToken, function(req, res) {
     
@@ -129,6 +122,7 @@ app.post('/createArticle',authenticateToken, function(req, res) {
         res.status(500).send({ message: err });
       }
       imageTab.length = 0;
+      res.send('hello');
     });
     
   }catch(err){
@@ -168,22 +162,32 @@ app.post('/modifArticle/',authenticateToken, function(req, res){
           /* ----- SUPPRESSION D UN ARTICLE ----- */
 app.post('/deleteArticle', authenticateToken, async function(req, res){
   let unArticle = req.body;
+  let unArticle2 = req.body;
   const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\images\\')
   
-  //console.log(unArticle);
+  
   try{
-    await (bdd.getAllImage('image', unArticle , function(images){
-      //console.log(images[0].nom_image);
-    for(let i = 0 ; i < images.length; i++){
-      imageTab.push(images[i].nom_image);
-      console.log(imageTab[i]);
-      
-    }
-    for(let j = 0 ; j < imageTab.length; j++){
-      fs.unlinkSync(dirPath+imageTab[j]);
-    }
-    imageTab.length=0;
-    }));
+
+    await(bdd.getAllImage('image', unArticle , function(images){
+
+      if(images.length > 0){
+        for(let i = 0 ; i < images.length; i++){
+          imageTab.push(images[i].nom_image);
+          console.log(imageTab[i]);
+          
+        }
+        for(let j = 0 ; j < imageTab.length; j++){
+          fs.unlinkSync(dirPath+imageTab[j]);
+        }
+        imageTab.length=0;
+      }
+     
+    }))
+
+    await (bdd.deleteAllInDBB('articles', 'image', unArticle2, function(){
+
+    }))
+    
 
   }catch(error){
     console.log(error)
