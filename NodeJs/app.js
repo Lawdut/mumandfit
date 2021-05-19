@@ -170,7 +170,7 @@ app.post('/deleteArticle', authenticateToken, async function(req, res){
 
     await(bdd.getAllImage('image', unArticle , function(images){
 
-      if(images.length > 0){
+      
         for(let i = 0 ; i < images.length; i++){
           imageTab.push(images[i].nom_image);
           console.log(imageTab[i]);
@@ -180,7 +180,7 @@ app.post('/deleteArticle', authenticateToken, async function(req, res){
           fs.unlinkSync(dirPath+imageTab[j]);
         }
         imageTab.length=0;
-      }
+      
      
     }))
 
