@@ -53,7 +53,6 @@ function authenticateToken(req, res, next) {
         return res.sendStatus(403)
       }else {
         req.user = user;
-  
       next();
       };
   
@@ -114,18 +113,19 @@ app.post('/connexion', function (req, res) {
 })
          /* ----- CREATION ARTICLE ----- */
 
-app.post('/createArticle',authenticateToken, function(req, res) {
+app.post('/createArticle',authenticateToken, async function(req, res) {
     
   let unArticleCreateClean = clean(req.body);
   console.log(unArticleCreateClean);
+  console.log(imageTab);
   try{
-    bdd.createArticle('articles', 'image', unArticleCreateClean, imageTab, function(err){
+    await (bdd.createArticle('articles', 'image', unArticleCreateClean, imageTab, function(err){
       if (err) {
         res.status(500).send({ message: err });
-      }
-    });
-    imageTab.length=0;
-    res.send('hello');
+      }imageTab.length=0;
+    }))
+    //console.log(imageTab);
+    res.send({res : 'Créé'});
   }catch(err){
     res.status(500);
     res.send('Erreur de création de l\'article');
@@ -142,16 +142,15 @@ app.get('/getAllArticles', function (req, res) {
 })
 
           /* ----- MODIFICATION ARTICLES -----*/
-app.post('/modifArticle/',authenticateToken, function(req, res){
+app.post('/modifArticle/',authenticateToken, async function(req, res){
   try {
     let unArticleCleaned = clean(req.body);
-    bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
+    await(bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
       if (err) {
         res.status(500).send({ message: err });
-      }
-    imageTab.length = 0;
+      }imageTab.length=0;
+    }))
     res.json({res : "Modifié"})
-    })
   }catch(err){
     res.status(500);
     res.send('Erreur de modification de l\'article');
@@ -177,7 +176,7 @@ app.post('/deleteArticle', authenticateToken, async function(req, res){
     await(bdd.deleteAllInDBB('articles', 'image', unArticle, function(){
 
     }))
-    
+    res.json({res : "Supprimé"})
 
   }catch(error){
     console.log(error)

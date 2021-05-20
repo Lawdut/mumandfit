@@ -190,6 +190,7 @@ import jQuery from "jquery";
                         }
                 })
                 .then(response => console.log(response.data))
+                .then(()=> {this.$router.push('/blog')})
             },
             deleteArticle : function() {
                 this.http.post('//localhost:8010/deleteArticle', {
@@ -201,6 +202,7 @@ import jQuery from "jquery";
                         contenu : this.$store.state.unArticle.contenu,
                     }
                 })
+                .then(response => console.log(response.data))
                 .then(()=> {this.$router.push('/blog')})
             }
             

@@ -60,7 +60,7 @@ import jQuery from "jquery";
                    chapeau : '',
                    contenu : '',
                },
-               uploadImageStatus : false,
+               uploadImageStatus : null,
                token : this.$store.state.token,
                status : null,
                myInitBanniere : {
@@ -202,7 +202,7 @@ import jQuery from "jquery";
                   
         },
         beforeDestroy : function(){
-            if(this.uploadImageStatus == false){
+            if(this.uploadImageStatus != true){
                 this.http.post('//localhost:8010/createCanceled')
             }
         },
