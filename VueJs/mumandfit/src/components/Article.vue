@@ -62,6 +62,7 @@ import jQuery from "jquery";
                    contenu : this.$store.state.unArticle.contenu,
                    
                },
+               uploadImageStatus : false,
                token : this.$store.state.token,
                status : null,
                image : null,
@@ -87,21 +88,7 @@ import jQuery from "jquery";
                     image_advtab: true,
                     image_uploadtab: true,
                     images_upload_url : '//localhost:8010/upload',
-                    /*file_picker_callback : function (callback, value, meta) {
-                        if (meta.filetype == 'image') {
-                        $('#banniereModif').trigger('click');
-                        $('#banniereModif').on('change', function () {
-                            var file = this.files[ 0 ];
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                            callback(e.target.result, {
-                                alt: ''
-                            });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    }
-                    }*/
+                    
                },
                myInitTitre : {
                    
@@ -123,8 +110,6 @@ import jQuery from "jquery";
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
 
                },
 
@@ -134,7 +119,7 @@ import jQuery from "jquery";
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    ' directionality code visualblocks visualchars fullscreen image',
+                    ' directionality code visualblocks visualchars fullscreen ',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
                     'anchor toc insertdatetime advlist lists wordcount imagetools',
                     'textpattern noneditable help charmap quickbars emoticons '
@@ -147,8 +132,6 @@ import jQuery from "jquery";
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
                },
                myInitContenu : {
                     selector : '#contenuModif',
@@ -172,29 +155,9 @@ import jQuery from "jquery";
                     entity_encoding : 'raw',
                     image_advtab: true,
                     image_uploadtab: true,
-                    //image_prepend_url : '/images/',
-                    //relative_urls : false,
                     automatic_uploads: true,
-                    //file_picker_types: 'image',
-                    //images_upload_base_path:'/images/',
-                    //tinydrive_token_provider : "//localhost:8010/jwt",
-
                     images_upload_url : '//localhost:8010/upload',
-                    /*file_picker_callback : function (callback, value, meta) {
-                        if (meta.filetype == 'image') {
-                        $('#upload').trigger('click');
-                        $('#upload').on('change', function () {
-                            var file = this.files[ 0 ];
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                            callback(e.target.result, {
-                                alt: ''
-                            });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    }
-                    }*/
+                    
                 }
             }
         },
@@ -207,12 +170,15 @@ import jQuery from "jquery";
                 /*this.http.post("//localhost:8010/jwt")
                 .then(response=>{this.tinyToken = response.data});*/
         },
-        created : function() {
-                
+        beforeDestroy : function(){
+            if(this.uploadImageStatus == false){
+                this.http.post('//localhost:8010/createCanceled')
+            }
         },
 
         methods : {
             saveArticle : function () {
+                this.uploadImageStatus = true;
                 this.$store.commit('modifArticleStore', this.unArticle);
                 this.http.post('//localhost:8010/modifArticle' , {
                     unArticle : {
@@ -235,6 +201,7 @@ import jQuery from "jquery";
                         contenu : this.$store.state.unArticle.contenu,
                     }
                 })
+                .then(()=> {this.$router.push('/blog')})
             }
             
         }

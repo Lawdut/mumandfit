@@ -18,6 +18,8 @@ const helmet = require('helmet');
 const rp = require('request-promise');
 /*const ash = require('express-async-handler')*/
 
+          /* ----- VARIABLE GLOBALE ----- */
+const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\images\\')
 const imageTab = [];
 
 /*const mysqlStore = require('express-mysql-session')(session);
@@ -121,10 +123,9 @@ app.post('/createArticle',authenticateToken, function(req, res) {
       if (err) {
         res.status(500).send({ message: err });
       }
-      imageTab.length = 0;
-      res.send('hello');
     });
-    
+    imageTab.length=0;
+    res.send('hello');
   }catch(err){
     res.status(500);
     res.send('Erreur de création de l\'article');
@@ -162,36 +163,24 @@ app.post('/modifArticle/',authenticateToken, function(req, res){
           /* ----- SUPPRESSION D UN ARTICLE ----- */
 app.post('/deleteArticle', authenticateToken, async function(req, res){
   let unArticle = req.body;
-  let unArticle2 = req.body;
-  const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\images\\')
-  
-  
+
   try{
 
     await(bdd.getAllImage('image', unArticle , function(images){
-
       
         for(let i = 0 ; i < images.length; i++){
-          imageTab.push(images[i].nom_image);
-          console.log(imageTab[i]);
+          fs.unlinkSync(dirPath+images[i].nom_image);
           
         }
-        for(let j = 0 ; j < imageTab.length; j++){
-          fs.unlinkSync(dirPath+imageTab[j]);
-        }
-        imageTab.length=0;
-      
-     
     }))
 
-    await (bdd.deleteAllInDBB('articles', 'image', unArticle2, function(){
+    await(bdd.deleteAllInDBB('articles', 'image', unArticle, function(){
 
     }))
     
 
   }catch(error){
     console.log(error)
-    imageTab.length=0;
   }    
     
 })
@@ -262,5 +251,16 @@ app.post('/upload', (req, res)=>{
     });
   }
 });
+
+          /* ----- ANNULATION DE L'UPLOAD PHOTO ----- */
+
+app.post('/createCanceled', (req, res) =>{
+  for(let i = 0 ; i < imageTab.length; i++){
+    fs.unlinkSync(dirPath+imageTab[i]);
+    console.log(imageTab[i]);
+  }
+  imageTab.length=0;
+  res.send('Supprimé');
+})
 
 app.listen(8010)

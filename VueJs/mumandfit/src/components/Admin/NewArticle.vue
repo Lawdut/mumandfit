@@ -35,7 +35,7 @@
                 <div id = "chapeauCreate"></div>
                 <div id = "contenuCreate"></div>
                 <input type = 'submit' @click="createArticle" value="Enregistrer" class = "Button1">
-                <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1"></router-link>
+                <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
         </div>
     </div>
 </template>
@@ -60,6 +60,7 @@ import jQuery from "jquery";
                    chapeau : '',
                    contenu : '',
                },
+               uploadImageStatus : false,
                token : this.$store.state.token,
                status : null,
                myInitBanniere : {
@@ -200,12 +201,16 @@ import jQuery from "jquery";
                 }  
                   
         },
-        created : function(){
-            
+        beforeDestroy : function(){
+            if(this.uploadImageStatus == false){
+                this.http.post('//localhost:8010/createCanceled')
+            }
         },
         methods : {
             createArticle : function () {
-                
+
+                this.uploadImageStatus = true;
+
                 if(this.unArticle.banniere != '' && this.unArticle.titre != '' && this.unArticle.chapeau != '' && this.unArticle.contenu != ''){
                     let unArticle = 
                     { unArticle : {
@@ -217,11 +222,12 @@ import jQuery from "jquery";
                     this.http.post('//localhost:8010/createArticle', unArticle)
 
                     
-                //.then(response => {console.log(response.data)})
-                .then(()=> {console.log('toto'), this.$router.push('/blog')})
+                .then(response => {console.log(response.data)})
+                .then(()=> {this.$router.push('/blog')})
                 }
             
-            }
+            },
+            
         }
     }
 </script>
