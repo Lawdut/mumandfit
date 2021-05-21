@@ -148,11 +148,11 @@ app.post('/modifArticle/',authenticateToken, async function(req, res){
   try {
     let unArticleCleaned = clean(req.body);
     await(cleanFolderImages(unArticleCleaned))
-    /*await(bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
+    await(bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
       if (err) {
         res.status(500).send({ message: err });
       }imageTab.length=0;
-    }))*/
+    }))
     res.json({res : "Modifié"})
   }catch(err){
     res.status(500);
@@ -265,39 +265,33 @@ app.post('/createCanceled', (req, res) =>{
 
 async function cleanFolderImages(article) {
 art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
-console.log(art);
 let img = 'kkfmaf_';
 
 let tabOfFolder = [];
 let imageTab2= [];
-console.log('imagTabInit:' +imageTab);
 let index = art.indexOf(img)
 
 
   while (index != -1){
-    //art.substring(index, index+25);
+
     if(art.substring(index+24, index+25) != '"'){
       tabOfFolder.push(art.substring(index, index+25));
     }else{
       tabOfFolder.push(art.substring(index, index+24))
     }
-    
-
     index = art.indexOf(img, index+1)
-    console.log('taboffolder before for :' +tabOfFolder);
   }
 
   if(imageTab.length > 0){
-    console.log('coucou from if imageTab')
+    
     for(let h = 0 ; h < imageTab.length; h++){
       imageTab2[h]= imageTab[h];
     }
     imageTab.length = 0;
-    console.log('tab2 :' +imageTab2);
+    
 
     for(let i = 0 ; i < imageTab2.length; i++){
-      console.log("coucou from first for")
-      //console.log(imageTab2[i].substring(0,19));
+      
       let count = 0;
 
       for(let j = 0 ; j < tabOfFolder.length ; j++){
@@ -306,14 +300,9 @@ let index = art.indexOf(img)
         console.log(imageTab2[i] == tabOfFolder[j])
         if(imageTab2[i] == tabOfFolder[j]){
           imageTab.push(imageTab2[i]);
-          console.log('Coucou from if equals')
-          console.log('imagTab :' +imageTab);
-          console.log('taboffolder in IF :' + tabOfFolder);
-          console.log('imageTabe2:' +imageTab2);
           count = 1;  
       }
     }if (count == 0){
-      console.log ('hello in fs')
       fs.unlinkSync(dirPath+imageTab2[i])
     }
   }
