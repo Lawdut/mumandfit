@@ -119,6 +119,7 @@ app.post('/createArticle',authenticateToken, async function(req, res) {
   console.log(unArticleCreateClean);
   console.log(imageTab);
   try{
+    await(cleanFolderImages(unArticleCreateClean));
     await (bdd.createArticle('articles', 'image', unArticleCreateClean, imageTab, function(err){
       if (err) {
         res.status(500).send({ message: err });
@@ -145,11 +146,12 @@ app.get('/getAllArticles', function (req, res) {
 app.post('/modifArticle/',authenticateToken, async function(req, res){
   try {
     let unArticleCleaned = clean(req.body);
-    await(bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
+    await(cleanFolderImages(unArticleCleaned))
+    /*await(bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
       if (err) {
         res.status(500).send({ message: err });
       }imageTab.length=0;
-    }))
+    }))*/
     res.json({res : "Modifié"})
   }catch(err){
     res.status(500);
@@ -173,9 +175,7 @@ app.post('/deleteArticle', authenticateToken, async function(req, res){
         }
     }))
 
-    await(bdd.deleteAllInDBB('articles', 'image', unArticle, function(){
-
-    }))
+    await(bdd.deleteAllInDBB('articles', 'image', unArticle, function(){}))
     res.json({res : "Supprimé"})
 
   }catch(error){
@@ -234,7 +234,7 @@ app.post('/upload', (req, res)=>{
     console.log(req.files.file.data.byteLength);
     const sampleFile = req.files.file;
     const typeFile = req.files.file.mimetype.split('/');
-    const fileName = Date.now() +'.'+ typeFile[1];
+    const fileName = 'kkfmaf_'+Date.now() +'.'+ typeFile[1];
 
     let count = imageTab.push(fileName);
     console.log(imageTab);
@@ -261,5 +261,56 @@ app.post('/createCanceled', (req, res) =>{
   imageTab.length=0;
   res.send('Supprimé');
 })
+
+async function cleanFolderImages(article) {
+art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
+console.log(art);
+let img = 'kkfmaf_';
+
+let tabOfFolder = [];
+let imageTab2= [];
+console.log(imageTab);
+let index = art.indexOf(img)
+
+
+  while (index != -1){
+    tabOfFolder.push(art.substring(index, index+20));
+
+    index = art.indexOf(img, index+1)
+    console.log(tabOfFolder);
+  }
+
+  if(imageTab.length > 0){
+    console.log('coucou from if imageTab')
+    for(let h = 0 ; h < imageTab.length; h++){
+      imageTab2[h]= imageTab[h];
+    }
+    imageTab.length = 0;
+    console.log(imageTab2);
+    for(let i = 0 ; i < imageTab2.length; i++){
+      console.log("coucou from first for")
+      //console.log(imageTab2[i].substring(0,19));
+
+      for(let j = 0 ; j < tabOfFolder.length ; j++){
+        console.log("coucou from second for")
+     
+        console.log(imageTab2[i].substring(0,20) == tabOfFolder[j])
+        if(imageTab2[i].substring(0,20) == tabOfFolder[j]){
+          imageTab.push(imageTab2[i]);
+          tabOfFolder = tabOfFolder.splice(j, 1);
+          console.log('Coucou from if equals')
+          console.log(imageTab);
+          console.log(tabOfFolder);
+        }else{
+          console.log('coucou from else')
+        }
+      }
+    }
+    for(let k =0; k<tabOfFolder.length; k++){
+      console.log('hello');
+      fs.unlinkSync(dirPath+tabOfFolder[k])
+    }
+  }
+}
 
 app.listen(8010)
