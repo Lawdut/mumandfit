@@ -82,7 +82,7 @@ exports.createArticle = async function (table, table2, article, images, callback
                     })
                 }
             let id = results[0].id;
-            console.log(images);
+            //console.log(images);
 
             if(images.length > 0){
                 for (let i = 0 ; i < images.length ; i++){
