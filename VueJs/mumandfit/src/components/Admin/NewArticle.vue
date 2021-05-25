@@ -214,6 +214,7 @@ import jQuery from "jquery";
                 if(this.unArticle.banniere != '' && this.unArticle.titre != '' && this.unArticle.chapeau != '' && this.unArticle.contenu != ''){
                     let unArticle = 
                     { unArticle : {
+                        id : "",
                         banniere : this.unArticle.banniere,
                         titre : this.unArticle.titre,
                         chapeau : this.unArticle.chapeau,

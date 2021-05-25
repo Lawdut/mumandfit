@@ -57,7 +57,7 @@ exports.getAllArticles = function (table, callback){
 })}
 
 
-exports.createArticle = async function (table, table2, article, images, callback){
+exports.createArticle = function (table, table2, article, images, callback){
 
     var idArticle = "SELECT MAX(`id`) as id FROM " + table;
     var sql = "INSERT INTO " + table + "(id, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');";
@@ -82,7 +82,7 @@ exports.createArticle = async function (table, table2, article, images, callback
                     })
                 }
             let id = results[0].id;
-            //console.log(images);
+            console.log('controller :'+images);
 
             if(images.length > 0){
                 for (let i = 0 ; i < images.length ; i++){
@@ -123,29 +123,46 @@ exports.createArticle = async function (table, table2, article, images, callback
 }
 
 
-exports.updateArticles = async function (table1, table2, article, images, callback){
+exports.updateArticles = function (table1, table2, article, images, callback){
     //console.log(article);
     var sql = "UPDATE " + table1 + " SET `banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'"  + " WHERE id = " + article.unArticle.id ;
+    //var imageBdd = [];
     conn.query(sql, function(error) {
         if (error) {
             console.log(error)
             
         }else{
-            for(let i = 0; i < images.length; i++) {
-                var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + article.unArticle.id+"');" ;
-                conn.query(image, function(error){
-                    if(error){
-                        console.log(error)
-                    }
-                })
-            }
+            var imageDelBdd = "DELETE FROM " + table2 + " WHERE id_article = "+ article.unArticle.id;
+            
+            conn.query(imageDelBdd, function(error){
+                console.log('hello from delete contoller pool')
+                if(error){
+                    return conn.rollback(function(){
+                        throw error;
+                    })
+                }
+                //console.log(imageBdd.nom_image);*/
+                console.log('controller2 :' +images);
+                for(let i = 0; i < images.length; i++) {
+                    console.log('hello from insert contoller pool')
+                    console.log(images[i])
+                    var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + article.unArticle.id+"');" ;
+                    conn.query(image, function(error){
+                        if(error){
+                            return conn.rollback(function(){
+                                throw error;
+                            })
+                        }
+                    })
+                }
+            })
             console.log('modifié')
             callback();
         }
     })
 }
 
-exports.getAllImage = async function(table, article, callback){
+exports.getAllImage = function(table, article, callback){
     var sql = "SELECT * FROM "+ table + " WHERE id_article = " + article.unArticle.id;
     //console.log(sql);
     conn.query(sql, function(error, rows) {
@@ -153,8 +170,18 @@ exports.getAllImage = async function(table, article, callback){
                 console.log(error)
             }
             //console.log(rows);
-            callback (rows);  
+            callback (rows);
         })
+     
+}
+
+exports.getAllImages = function(table, article){
+    var sql = "SELECT * FROM "+ table + " WHERE id_article = " + article.unArticle.id;
+    //console.log(sql);
+    conn.query(sql, function (err, results){
+        console.log(results)
+        return results
+    })   
      
 }
 

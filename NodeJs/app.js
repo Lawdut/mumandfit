@@ -16,11 +16,13 @@ const path = require("path");
 const config = require("./models/config.js");
 const helmet = require('helmet');
 const rp = require('request-promise');
+const { format } = require("mysql");
+const { Console } = require("console");
 /*const ash = require('express-async-handler')*/
 
           /* ----- VARIABLE GLOBALE ----- */
 const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\images\\')
-const imageTab = [];
+var imageTab = [];
 
 /*const mysqlStore = require('express-mysql-session')(session);
 const sessionStore = new mysqlStore(options);*/
@@ -113,27 +115,28 @@ app.post('/connexion', function (req, res) {
 })
          /* ----- CREATION ARTICLE ----- */
 
-app.post('/createArticle',authenticateToken, async function(req, res) {
+app.post('/createArticle',authenticateToken, function(req, res) {
     
   
   //console.log(unArticleCreateClean);
-  console.log(imageTab);
+  //console.log(imageTab);
   try{
-    let unArticleCreateClean = await(clean(req.body));
-    await(cleanFolderImages(unArticleCreateClean));
-    await (bdd.createArticle('articles', 'image', unArticleCreateClean, imageTab, function(err){
+    let unArticleCreateClean = clean(req.body);
+    let imageTabToBDDcreate = cleanFolderImages(unArticleCreateClean);
+    imageTab = [];
+    bdd.createArticle('articles', 'image', unArticleCreateClean, imageTabToBDDcreate, function(err){
       if (err) {
         res.status(500).send({ message: err });
-      }imageTab.length=0;
-    }))
-    //console.log(imageTab);
+      }
+    })
+    
     res.send({res : 'Créé'});
+    
   }catch(err){
     res.status(500);
     res.send('Erreur de création de l\'article');
     console.error(err.message);
   }
-  
 });
           /* ----- AFFICHAGE ARTICLES -----*/
 app.get('/getAllArticles', function (req, res) {
@@ -144,39 +147,44 @@ app.get('/getAllArticles', function (req, res) {
 })
 
           /* ----- MODIFICATION ARTICLES -----*/
-app.post('/modifArticle/',authenticateToken, async function(req, res){
+app.post('/modifArticle/',authenticateToken, function(req, res){
   try {
     let unArticleCleaned = clean(req.body);
-    await(cleanFolderImages(unArticleCleaned))
-    await(bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
+    //console.log(unArticleCleaned);
+    //imageTab = [];
+    //let imageTabToBDDupdate = cleanFolderImages(unArticleCleaned);
+    //console.log('envoi vers bdd : '+imageTabToBDDupdate)
+    bdd.updateArticles('articles', 'image', unArticleCleaned, cleanFolderImages(unArticleCleaned), function(err){
+      //console.log(imageTab)
       if (err) {
         res.status(500).send({ message: err });
-      }imageTab.length=0;
-    }))
+      }
+      //await(imageTab.length = 0);
+    }) 
     res.json({res : "Modifié"})
   }catch(err){
     res.status(500);
     res.send('Erreur de modification de l\'article');
     console.error(err.message);
   }
-    
+  
 })
 
           /* ----- SUPPRESSION D UN ARTICLE ----- */
-app.post('/deleteArticle', authenticateToken, async function(req, res){
+app.post('/deleteArticle', authenticateToken, function(req, res){
   let unArticle = req.body;
 
   try{
 
-    await(bdd.getAllImage('image', unArticle , function(images){
+    bdd.getAllImage('image', unArticle , function(images){
       
         for(let i = 0 ; i < images.length; i++){
           fs.unlinkSync(dirPath+images[i].nom_image);
           
         }
-    }))
+    })
 
-    await(bdd.deleteAllInDBB('articles', 'image', unArticle, function(){}))
+    bdd.deleteAllInDBB('articles', 'image', unArticle, function(){})
     res.json({res : "Supprimé"})
 
   }catch(error){
@@ -237,9 +245,8 @@ app.post('/upload', (req, res)=>{
     const typeFile = req.files.file.mimetype.split('/');
     const fileName = 'kkfmaf_'+Date.now() +'.'+ typeFile[1];
 
-    let count = imageTab.push(fileName);
+    imageTab.push(fileName);
     console.log(imageTab);
-    console.log(count); 
 
     sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName), function (err) {
       const temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName);
@@ -263,51 +270,159 @@ app.post('/createCanceled', (req, res) =>{
   res.send('Supprimé');
 })
 
-async function cleanFolderImages(article) {
+function cleanFolderImages(article) {
+console.log(article.unArticle.id);
 art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
 let img = 'kkfmaf_';
 
-let tabOfFolder = [];
+//console.log(article);
+let imageInArticle = [];
 let imageTab2= [];
+var imageFromBDD = [];
+
 let index = art.indexOf(img)
 
 
   while (index != -1){
 
     if(art.substring(index+24, index+25) != '"'){
-      tabOfFolder.push(art.substring(index, index+25));
+      imageInArticle.push(art.substring(index, index+25));
     }else{
-      tabOfFolder.push(art.substring(index, index+24))
+      imageInArticle.push(art.substring(index, index+24))
     }
     index = art.indexOf(img, index+1)
   }
 
-  if(imageTab.length > 0){
-    
+  //Dans le cas de la création d'un article
+  if(imageTab.length > 0 && article.unArticle.id === ''){
+    console.log('hello hi ouille')
     for(let h = 0 ; h < imageTab.length; h++){
       imageTab2[h]= imageTab[h];
     }
-    imageTab.length = 0;
+    imageTab.length = 0 ;
     
 
     for(let i = 0 ; i < imageTab2.length; i++){
       
       let count = 0;
 
-      for(let j = 0 ; j < tabOfFolder.length ; j++){
-        console.log("coucou from second for")
+      for(let j = 0 ; j < imageInArticle.length ; j++){
      
-        console.log(imageTab2[i] == tabOfFolder[j])
-        if(imageTab2[i] == tabOfFolder[j]){
+        console.log(imageTab2[i] == imageInArticle[j])
+        if(imageTab2[i] == imageInArticle[j]){
           imageTab.push(imageTab2[i]);
+          console.log(imageTab);
           count = 1;  
       }
     }if (count == 0){
       fs.unlinkSync(dirPath+imageTab2[i])
     }
   }
+  return imageTab;
 
+
+  //Dans le cas de la modification d'un article ET/OU de la suppression d'images déjà existantes antérieurement ET avec ajout de nouvelles images.
+  // Il faudra nettoyer le dossier images ET la BDD.
+  }else if (imageInArticle.length > 0 && imageTab.length > 0 && article.unArticle.id !== ''){
+    console.log('hello ouailllllle');
+    let imageFromBDD = bdd.getAllImage('image', article, function(images){
+      for(let i = 0 ; i < images.length; i++){
+        
+        imageFromBDD.push(images[i].nom_image);
+        console.log(imageFromBDD);
+      }
+    })
+      for(let j = 0 ; j < imageTab.length; j++){
+        imageTab2.push(imageTab[j]);
+        console.log(imageTab2);
+      }
+      imageTab.length == 0;
+
+      //Nettoyage des images contenues dans la base de données MAIS plus présentes dans l'article
+      for(let k = 0 ; k < imageFromBDD.length; k++){
+        console.log('premier for')
+          let count = 0;
+    
+          for(let m = 0 ; m < imageInArticle.length ; m++){
+            console.log('deuxième for')
+            console.log(typeof imageFromBDD)
+            console.log(typeof imageInArticle)
+            console.log('nettoyage bdd')
+            console.log(imageFromBDD[k] == imageInArticle[m])
+            if(imageFromBDD[k] == imageInArticle[m]){
+              console.log(imageInArticle[m]);
+              imageTab.push(imageInArticle[m]);
+              console.log('imageTab rempli dans if 1 : ' +imageTab);
+              count = 1;  
+              console.log('premier if')
+          }
+        }if (count == 0){
+          console.log('deuxième if')
+          fs.unlinkSync(dirPath+imageFromBDD[k])
+        }
+      }
+      
+      for(let n = 0 ; n < imageTab2.length; n++){
+        
+        let count = 0;
+  
+        for(let p = 0 ; p < imageInArticle.length ; p++){
+          console.log('nettoyage folder')
+          console.log(imageTab2)
+          console.log(imageInArticle)
+          console.log(imageTab2[n] == imageInArticle[p])
+          if(imageTab2[n] == imageInArticle[p]){
+            //console.log(imageTab);
+            count = 1;  
+        }
+      }if (count == 0){
+        console.log('error')
+        fs.unlinkSync(dirPath+imageTab2[n])
+      }
+      }
+      return imageTab;
+    
+
+
+  //Dans le cas de la modification d'un article ET de la suppression d'images déjà existante antérieurement sans ajout de nouvelles images.
+  }else if (imageTab.length == 0 && article.unArticle.id !== ''){
+    console.log('hello ouille')
+    //console.log(imageInArticle);
+
+    let imageFromBDD = bdd.getAllImage('image', article, function(images){
+     for(let i = 0 ; i < images.length ; i++){
+       imageFromBDD.push(images[i].nom_image)
+       console.log(typeof imageFromBDD)
+     }
+    
+      console.log(tab2)
+      for(let k = 0 ; k < imageFromBDD.length; k++){
+        console.log(imageFromBDD)
+        console.log('premier for')
+        let count = 0;
+  
+        for(let j = 0 ; j < imageInArticle.length ; j++){
+          console.log('deuxième for')
+          console.log(typeof imageFromBDD)
+          console.log(typeof imageInArticle)
+          console.log(imageFromBDD[k] == imageInArticle[j])
+          if(imageFromBDD[k] == imageInArticle[j]){
+            console.log(imageInArticle[j]);
+            imageTab.push(imageInArticle[j]);
+            console.log(imageTab)
+            console.log('imageTab rempli dans if 2 : ' +imageTab);
+            count = 1;  
+            console.log('premier if')
+        }
+      }if (count == 0){
+        console.log('deuxième for')
+        fs.unlinkSync(dirPath+imageFromBDD[k])
+      }
+    }
+    return imageTab;
+  })
   }
+  
 }
 
 app.listen(8010)

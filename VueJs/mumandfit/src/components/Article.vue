@@ -180,20 +180,8 @@ import jQuery from "jquery";
             saveArticle : function () {
                 this.uploadImageStatus = true;
                 this.$store.commit('modifArticleStore', this.unArticle);
-                this.http.post('//localhost:8010/modifArticle' , {
-                    unArticle : {
-                        id : this.$store.state.unArticle.id,
-                        banniere : this.$store.state.unArticle.banniere,
-                        titre : this.$store.state.unArticle.titre,
-                        chapeau : this.$store.state.unArticle.chapeau,
-                        contenu : this.$store.state.unArticle.contenu,
-                        }
-                })
-                .then(response => console.log(response.data))
-                .then(()=> {this.$router.push('/blog')})
-            },
-            deleteArticle : function() {
-                this.http.post('//localhost:8010/deleteArticle', {
+                
+                let unArticle = {
                     unArticle : {
                         id : this.$store.state.unArticle.id,
                         banniere : this.$store.state.unArticle.banniere,
@@ -201,7 +189,23 @@ import jQuery from "jquery";
                         chapeau : this.$store.state.unArticle.chapeau,
                         contenu : this.$store.state.unArticle.contenu,
                     }
-                })
+                }
+                this.http.post('//localhost:8010/modifArticle' , unArticle)
+                .then(response => console.log(response.data))
+                .then(()=> {this.$router.push('/blog')})
+            },
+            deleteArticle : function() {
+                
+                let unArticle = {
+                    unArticle : {
+                        id : this.$store.state.unArticle.id,
+                        banniere : this.$store.state.unArticle.banniere,
+                        titre : this.$store.state.unArticle.titre,
+                        chapeau : this.$store.state.unArticle.chapeau,
+                        contenu : this.$store.state.unArticle.contenu,
+                    }
+                }
+                this.http.post('//localhost:8010/deleteArticle', unArticle)
                 .then(response => console.log(response.data))
                 .then(()=> {this.$router.push('/blog')})
             }
