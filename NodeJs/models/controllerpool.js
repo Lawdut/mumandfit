@@ -123,7 +123,7 @@ exports.createArticle = function (table, table2, article, images, callback){
 }
 
 
-exports.updateArticles = function (table1, table2, article, images, callback){
+exports.updateArticles = async function (table1, table2, article, images, callback){
     //console.log(article);
     var sql = "UPDATE " + table1 + " SET `banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'"  + " WHERE id = " + article.unArticle.id ;
     //var imageBdd = [];
@@ -170,20 +170,12 @@ exports.getAllImage = function(table, article, callback){
                 console.log(error)
             }
             //console.log(rows);
-            callback (rows);
+            callback(rows);
         })
      
 }
 
-exports.getAllImages = function(table, article){
-    var sql = "SELECT * FROM "+ table + " WHERE id_article = " + article.unArticle.id;
-    //console.log(sql);
-    conn.query(sql, function (err, results){
-        console.log(results)
-        return results
-    })   
-     
-}
+
 
 exports.deleteAllInDBB = async function(table1, table2, article, callback){
     var image = "DELETE FROM " + table2 + " WHERE id_article = "+ article.unArticle.id;

@@ -31,7 +31,7 @@ export default new Vuex.Store({
       console.log(infos);
       axios.post('http://localhost:8010/connexion', infos) 
       .then((res)=> {
-        localStorage.setItem("jwt", res.data);
+        localStorage.setItem("jwt-mumandfit", res.data);
         context.commit('user', infos.mail);
         context.commit('token', res.data);
         axios.defaults.headers.common['authorization'] = res.data;

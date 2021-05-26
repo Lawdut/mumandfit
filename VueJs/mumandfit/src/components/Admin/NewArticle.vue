@@ -1,39 +1,39 @@
 <template>
     <div>
          <div class = "article">
-           
+            <div id = "banniereCreate">
                 <editor  v-model = unArticle.banniere output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
                     :init="myInitBanniere"
                     initial-value="Placer une image de bannière ici"
                     />
-                    
-
+            </div>        
+            <div id = "titreCreate">
                 <editor  v-model = unArticle.titre output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
                     :init="myInitTitre"
                     initial-value="Placer un titre ici"
                 />
+            </div>
+            <div id = "chapeauCreate">
                 <editor  v-model = unArticle.chapeau output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
                     :init="myInitChapeau"
                     initial-value="Placer un chapeau ici"
                 />
+            </div>
+            <div id = "contenuCreate">
                 <editor  v-model = unArticle.contenu output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
                     :init="myInitContenu"
                     initial-value="Placer le corps du post ici"
                 />
-
+            </div>
             
-                <div id = "banniereCreate"></div>
-                <div id = "titreCreate"></div>
-                <div id = "chapeauCreate"></div>
-                <div id = "contenuCreate"></div>
                 <input type = 'submit' @click="createArticle" value="Enregistrer" class = "Button1">
                 <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
         </div>
@@ -66,18 +66,18 @@ import jQuery from "jquery";
                myInitBanniere : {
                     selector : '#banniereCreate',
                     height: 300,
-                    menubar: 'file edit view insert format tools table help',
+                    menubar: 'file edit insert tools table help',
                     plugins: [
-                    'print preview paste importcss searchreplace autolink',
-                    'directionality code visualblocks visualchars fullscreen image',
-                    'link media template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount imagetools',
-                    'textpattern noneditable help charmap quickbars emoticons '
+                    'paste importcss',
+                    'fullscreen image',
+                    'imagetools',
+                    'help quickbars '
                     ],
                     toolbar:
-                    'undo redo | formatselect | bold italic backcolor | \
+                    'undo redo | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat |  | imagetools',
+                    outdent indent | imagetools | quickimage',
+                    quickbars_insert_toolbar: 'quickimage',
                     encoding: 'UTF-8',
                     inline: true,
                     entity_encoding : 'raw',

@@ -2,35 +2,37 @@
     <div>
         <div>
             <div class = "article">
-                <editor v-model = unArticle.banniere output-format="html"
-                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                :disabled="status"
-                    :init="myInitBanniere"
-
-                />
-
-                <editor v-model = unArticle.titre output-format="html"
-                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                :disabled="status"
-                    :init="myInitTitre"
-
-                />
-                <editor v-model = unArticle.chapeau output-format="html"
+                <div id = "banniereModif">
+                    <editor v-model = unArticle.banniere output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
-                    :init="myInitChapeau"
-                />
-                <editor v-model = unArticle.contenu output-format="html"
+                        :init="myInitBanniere"
+
+                    />
+                </div>
+                <div id = "titreModif">
+                    <editor v-model = unArticle.titre output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
-                    :init="myInitContenu"
-                />
+                        :init="myInitTitre"
 
+                    />
+                </div>
+                <div id = "chapeauModif">
+                    <editor v-model = unArticle.chapeau output-format="html"
+                        api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                        :disabled="status"
+                        :init="myInitChapeau"
+                    />
+                </div>
+                <div id = "contenuModif">
+                    <editor v-model = unArticle.contenu output-format="html"
+                        api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                        :disabled="status"
+                        :init="myInitContenu"
+                    />
+                </div>
                 
-                    <div id = "banniereModif"></div>
-                    <div id = "titreModif"></div>
-                    <div id = "chapeauModif"></div>
-                    <div id = "contenuModif"></div>
                     <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1">
                     <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1">
                     <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1"></router-link>

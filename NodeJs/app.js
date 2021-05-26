@@ -122,7 +122,7 @@ app.post('/createArticle',authenticateToken, function(req, res) {
   //console.log(imageTab);
   try{
     let unArticleCreateClean = clean(req.body);
-    let imageTabToBDDcreate = cleanFolderImages(unArticleCreateClean);
+    let imageTabToBDDcreate = cleanFolderImagesCreate(unArticleCreateClean);
     imageTab = [];
     bdd.createArticle('articles', 'image', unArticleCreateClean, imageTabToBDDcreate, function(err){
       if (err) {
@@ -148,19 +148,23 @@ app.get('/getAllArticles', function (req, res) {
 
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle/',authenticateToken, function(req, res){
+  let unArticleCleaned = clean(req.body);
+  const imageFromBDD = []
+  //let imageFromBDD = bdd.getAllImages('image', unArticleCleaned);
   try {
-    let unArticleCleaned = clean(req.body);
-    //console.log(unArticleCleaned);
-    //imageTab = [];
-    //let imageTabToBDDupdate = cleanFolderImages(unArticleCleaned);
-    //console.log('envoi vers bdd : '+imageTabToBDDupdate)
-    bdd.updateArticles('articles', 'image', unArticleCleaned, cleanFolderImages(unArticleCleaned), function(err){
-      //console.log(imageTab)
-      if (err) {
-        res.status(500).send({ message: err });
+    bdd.getAllImage('image', unArticleCleaned, function(images){
+      for (let i = 0 ; i < images.length; i++){
+        imageFromBDD.push(images[i].nom_image)
       }
-      //await(imageTab.length = 0);
-    }) 
+      cleanFolderImagesUpdate(unArticleCleaned, imageFromBDD, function() {
+
+        bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
+          if (err) {
+            res.status(500).send({ message: err });
+          }imageTab = [];
+        })
+      })
+    })
     res.json({res : "Modifié"})
   }catch(err){
     res.status(500);
@@ -171,12 +175,12 @@ app.post('/modifArticle/',authenticateToken, function(req, res){
 })
 
           /* ----- SUPPRESSION D UN ARTICLE ----- */
-app.post('/deleteArticle', authenticateToken, function(req, res){
+app.post('/deleteArticle', authenticateToken, async function(req, res){
   let unArticle = req.body;
 
   try{
 
-    bdd.getAllImage('image', unArticle , function(images){
+    await bdd.getAllImage('image', unArticle , function(images){
       
         for(let i = 0 ; i < images.length; i++){
           fs.unlinkSync(dirPath+images[i].nom_image);
@@ -184,7 +188,7 @@ app.post('/deleteArticle', authenticateToken, function(req, res){
         }
     })
 
-    bdd.deleteAllInDBB('articles', 'image', unArticle, function(){})
+    await bdd.deleteAllInDBB('articles', 'image', unArticle, function(){})
     res.json({res : "Supprimé"})
 
   }catch(error){
@@ -270,7 +274,7 @@ app.post('/createCanceled', (req, res) =>{
   res.send('Supprimé');
 })
 
-function cleanFolderImages(article) {
+function cleanFolderImagesCreate(article) {
 console.log(article.unArticle.id);
 art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
 let img = 'kkfmaf_';
@@ -278,7 +282,6 @@ let img = 'kkfmaf_';
 //console.log(article);
 let imageInArticle = [];
 let imageTab2= [];
-var imageFromBDD = [];
 
 let index = art.indexOf(img)
 
@@ -319,19 +322,43 @@ let index = art.indexOf(img)
     }
   }
   return imageTab;
+  }
+}
+function cleanFolderImagesUpdate(article, images, callback){
+console.log(images)
+console.log(article.unArticle.id);
+art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
+let img = 'kkfmaf_';
+
+//console.log(article);
+let imageInArticle = [];
+let imageFromBDD = [];
+let imageTab2= [];
+
+let index = art.indexOf(img)
 
 
-  //Dans le cas de la modification d'un article ET/OU de la suppression d'images déjà existantes antérieurement ET avec ajout de nouvelles images.
+  for(let i = 0 ; i < images.length; i++){
+    imageFromBDD.push(images[i])
+  }
+  console.log(imageFromBDD)
+
+  while (index != -1){
+
+    if(art.substring(index+24, index+25) != '"'){
+      imageInArticle.push(art.substring(index, index+25));
+    }else{
+      imageInArticle.push(art.substring(index, index+24))
+    }
+    index = art.indexOf(img, index+1)
+  }
+
+
+//Dans le cas de la modification d'un article ET/OU de la suppression d'images déjà existantes antérieurement ET avec ajout de nouvelles images.
   // Il faudra nettoyer le dossier images ET la BDD.
-  }else if (imageInArticle.length > 0 && imageTab.length > 0 && article.unArticle.id !== ''){
+  if (imageTab.length > 0 ){
     console.log('hello ouailllllle');
-    let imageFromBDD = bdd.getAllImage('image', article, function(images){
-      for(let i = 0 ; i < images.length; i++){
-        
-        imageFromBDD.push(images[i].nom_image);
-        console.log(imageFromBDD);
-      }
-    })
+    
       for(let j = 0 ; j < imageTab.length; j++){
         imageTab2.push(imageTab[j]);
         console.log(imageTab2);
@@ -372,30 +399,25 @@ let index = art.indexOf(img)
           console.log(imageInArticle)
           console.log(imageTab2[n] == imageInArticle[p])
           if(imageTab2[n] == imageInArticle[p]){
-            //console.log(imageTab);
+            //imageTab.push(imageTab2[n]);
+            console.log('imagTab version finale : ' +imageTab)
             count = 1;  
         }
       }if (count == 0){
         console.log('error')
+        imageTab.splice(n, 1)
         fs.unlinkSync(dirPath+imageTab2[n])
       }
       }
-      return imageTab;
+      callback();
     
 
 
   //Dans le cas de la modification d'un article ET de la suppression d'images déjà existante antérieurement sans ajout de nouvelles images.
-  }else if (imageTab.length == 0 && article.unArticle.id !== ''){
+  }else if (imageTab.length == 0){
     console.log('hello ouille')
     //console.log(imageInArticle);
 
-    let imageFromBDD = bdd.getAllImage('image', article, function(images){
-     for(let i = 0 ; i < images.length ; i++){
-       imageFromBDD.push(images[i].nom_image)
-       console.log(typeof imageFromBDD)
-     }
-    
-      console.log(tab2)
       for(let k = 0 ; k < imageFromBDD.length; k++){
         console.log(imageFromBDD)
         console.log('premier for')
@@ -419,10 +441,11 @@ let index = art.indexOf(img)
         fs.unlinkSync(dirPath+imageFromBDD[k])
       }
     }
-    return imageTab;
-  })
+    callback();
   }
-  
 }
+
+  
+
 
 app.listen(8010)
