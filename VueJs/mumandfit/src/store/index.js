@@ -9,6 +9,7 @@ export default new Vuex.Store({
     unArticle : "",
     token : localStorage.getItem('token') || "",
     user : "",
+    numberOfArticle : "",
   },
   mutations: {
     selectedArticle(state, unArticle) {state.unArticle = unArticle},
@@ -18,6 +19,8 @@ export default new Vuex.Store({
     token(state, token) {state.token = token},
 
     user (state, data) {state.user = data},
+
+    numberOfArticle(state, data) {state.numberOfArticle = data}
 
   },
   actions: {
@@ -36,6 +39,10 @@ export default new Vuex.Store({
         context.commit('token', res.data);
         axios.defaults.headers.common['authorization'] = res.data;
       })
+    },
+    numberOfArticle(context){
+      axios.get('//localhost:8010/numberOfArticles')
+      .then(response=>{context.commit('numberOfArticle', response.data.number)})
     }
   },
   modules: {

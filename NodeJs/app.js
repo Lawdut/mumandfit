@@ -141,8 +141,13 @@ app.post('/createArticle',authenticateToken, function(req, res) {
           /* ----- AFFICHAGE ARTICLES -----*/
 app.get('/getAllArticles', function (req, res) {
   bdd.getAllArticles('articles', function (articles) {
-    res.json({articles : articles});
-    //console.log(articles);
+    res.send({articles});
+  })
+})
+
+app.get('/numberOfArticles', function(req, res){
+  bdd.getNumberOfArticles('articles', function(number) {
+    res.json({number : number[0].number})
   })
 })
 

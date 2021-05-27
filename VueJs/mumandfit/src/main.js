@@ -6,6 +6,7 @@ import session from "vue-session";
 import store from './store';
 import $ from "jquery";
 import jQuery from "jquery";
+import JwPagination from 'jw-vue-pagination';
 
 
 
@@ -18,6 +19,7 @@ var options = {
 Vue.use(session,options);
 Vue.config.productionTip = false;
 Vue.prototype.http=Axios;
+Vue.component('jw-pagination', JwPagination);
 
 window.$ = $;
 window.jQuery = jQuery;
