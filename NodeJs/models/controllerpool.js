@@ -56,6 +56,16 @@ exports.getAllArticles = function (table, callback){
             callback(rows);
 })}
 
+exports.getNumberOfArticles = function (table, callback){
+    var sql = "SELECT count(*) as number FROM "+ table;
+    conn.query(sql, function(error, rows) {
+        if (error) {
+            console.log(error);
+        }
+        callback(rows);
+    })
+}
+
 
 exports.createArticle = function (table, table2, article, images, callback){
 
@@ -82,9 +92,9 @@ exports.createArticle = function (table, table2, article, images, callback){
                     })
                 }
             let id = results[0].id;
-            console.log('controller :'+images);
+            //console.log('controller :'+images);
 
-            if(images.length > 0){
+            if(typeof images !== 'undefined' /*images.length > 0*/){
                 for (let i = 0 ; i < images.length ; i++){
                     conn.query("INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + id +"');", function(error){
                         if(error){
