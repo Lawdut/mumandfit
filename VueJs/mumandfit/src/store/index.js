@@ -43,7 +43,7 @@ export default new Vuex.Store({
     numberOfArticle(context){
       axios.get('//localhost:8010/numberOfArticles')
       .then(response=>{context.commit('numberOfArticle', response.data.number)})
-    }
+    },
   },
   modules: {
   },

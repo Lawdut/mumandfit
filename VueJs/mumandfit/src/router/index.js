@@ -5,7 +5,6 @@ import Home from '../views/Home.vue'
 import Connexion from '../components/Connexion.vue'
 //import Inscription from '../components/Inscription.vue'
 import Blog from '../views/Blog.vue'
-import ListeArticles from '../components/ListeArticles.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
 import newArticle from '../components/Admin/NewArticle.vue'
@@ -44,12 +43,6 @@ const routes = [
   },
 
   {
-    path : "/listeArticles",
-    name : "ListeArticles",
-    component : ListeArticles
-  },
-
-  {
     path: "/article",
     name : "Article",
     component : Article
@@ -59,21 +52,29 @@ const routes = [
     path : '/admin',
     name : "AdminHome",
     component : AdminHome,
-    beforeEnter : (to, from, next) =>{
-      const loggedIn = localStorage.getItem('jwt');
+    /*beforeEnter : (to, from, next) =>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
         if (to.path === '/admin' && loggedIn) {
           return next();
         }else if (to.path === '/admin' && !loggedIn){
           next({ path: '/' });
         }
       
-    }
+    }*/
   },
 
   {
     path : '/newArticle',
     name : "NewArticle",
     component : newArticle,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/admin' && loggedIn){
+        return next();
+      }else if (from.path === '/admin' && !loggedIn){
+        next({path : '/connexion'})
+      }
+    }
   },
 
   {
