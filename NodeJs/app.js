@@ -345,15 +345,20 @@ let index = art.indexOf(img)
 
   for(let i = 0 ; i < images.length; i++){
     imageFromBDD.push(images[i])
+    console.log('remplissage de imagefromBDD via imageTab :' + i)
+    console.log(imageFromBDD)
   }
-  console.log(imageFromBDD)
 
   while (index != -1){
 
     if(art.substring(index+24, index+25) != '"'){
       imageInArticle.push(art.substring(index, index+25));
+      console.log('remplissage de imageinArticle')
+      console.log(imageInArticle)
     }else{
       imageInArticle.push(art.substring(index, index+24))
+      console.log('remplissage de imageinArticle')
+      console.log(imageInArticle)
     }
     index = art.indexOf(img, index+1)
   }
@@ -366,9 +371,10 @@ let index = art.indexOf(img)
     
       for(let j = 0 ; j < imageTab.length; j++){
         imageTab2.push(imageTab[j]);
+        console.log('remplissage de imageTab2 via imageTab :' + j)
         console.log(imageTab2);
       }
-      imageTab.length == 0;
+      imageTab = [];
 
       //Nettoyage des images contenues dans la base de données MAIS plus présentes dans l'article
       for(let k = 0 ; k < imageFromBDD.length; k++){
@@ -383,20 +389,19 @@ let index = art.indexOf(img)
             console.log(imageFromBDD[k] == imageInArticle[m])
             if(imageFromBDD[k] == imageInArticle[m]){
               console.log(imageInArticle[m]);
-              imageTab.push(imageInArticle[m]);
+              //imageTab.push(imageInArticle[m]);
               console.log('imageTab rempli dans if 1 : ' +imageTab);
               count = 1;  
               console.log('premier if')
           }
         }if (count == 0){
-          console.log('deuxième if')
+          //console.log('deuxième if' + imageFromBDD[k])
           fs.unlinkSync(dirPath+imageFromBDD[k])
         }
       }
-      
       for(let n = 0 ; n < imageTab2.length; n++){
-        
-        let count = 0;
+          
+        let count2 = 0;
   
         for(let p = 0 ; p < imageInArticle.length ; p++){
           console.log('nettoyage folder')
@@ -404,17 +409,27 @@ let index = art.indexOf(img)
           console.log(imageInArticle)
           console.log(imageTab2[n] == imageInArticle[p])
           if(imageTab2[n] == imageInArticle[p]){
-            //imageTab.push(imageTab2[n]);
+            //imageTab.push(imageInArticle[p]);
             console.log('imagTab version finale : ' +imageTab)
-            count = 1;  
+            count2 = 1;  
         }
-      }if (count == 0){
-        console.log('error')
-        imageTab.splice(n, 1)
+      }if (count2 == 0){
+        console.log(n)
+        console.log('suppression de : '+ imageTab.splice(n,1))
+        console.log('hello')
         fs.unlinkSync(dirPath+imageTab2[n])
+      }        
       }
+
+      for(let q = 0 ; q < imageInArticle.length; q++){
+        imageTab.push(imageInArticle[q])
       }
       callback();
+          
+          
+        
+      
+      
     
 
 
