@@ -33,11 +33,10 @@
                     />
                 </div>
                 
-                    <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1">
-                    <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1">
-                    <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1"></router-link>
             </div>
-            
+                <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1">
+                <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1">
+                <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1"></router-link>
             
         </div>
     </div>

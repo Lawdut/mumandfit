@@ -1,17 +1,18 @@
 <template>
-    <div>
-        <div class = "articles">
-            <div class = "card-article" v-for="unArticle in articles" v-bind:key ="unArticle.id">
-                <span v-html="unArticle.banniere">{{unArticle.banniere}}</span> <br>
-                <span v-html="unArticle.titre">{{unArticle.titre}}</span>
-                <span v-html="unArticle.chapeau">{{unArticle.chapeau}}</span>
-                <button @click ="selectArticle(unArticle)">Lire cet article</button>
+    <div class = "blog">
+        <div class = "list-articles">
+            <div class = "articles">
+                <div class = "card-article" v-for="unArticle in articles" v-bind:key ="unArticle.id">
+                    <div class ="banniere" v-html="unArticle.banniere">{{unArticle.banniere}}</div>
+                    <div class = "titre" v-html="unArticle.titre">{{unArticle.titre}}</div>
+                    <div class = "chapeau" v-html="unArticle.chapeau">{{unArticle.chapeau}}</div>
+                    <div class = "button-article first"><span @click ="selectArticle(unArticle)">Lire la suite</span></div>
+                </div>
             </div>
         </div>
-        <div class="card-footer pb-2 pt-3">
+        <div class="card-footer">
             <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="4"></jw-pagination>
         </div>
-
     </div>
 </template>
 
@@ -70,15 +71,109 @@
 </script>
 
 <style scoped>
+
+.blog {
+    width: 100%;
+    display : grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+.list-articles{
+    grid-row: 1/6 ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .articles{
+
     display : flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
+    align-items: center;
+    column-gap: 30px;
+    row-gap: 10px;
+}
+.card-footer{
+    grid-row: 6/7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.card-article{
+    box-shadow: 1px 1px 10px 3px #F56345;
+    width: 300px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-template-rows: repeat(6, 1fr);
+}
+.banniere{
+    grid-column: 1 / 1;
+    grid-row: 1/3;
+}
+.banniere >>> p {
+    width: 100% ;
+    height: 100% ;
+    display:  flex;
+    justify-content: center;
     align-items: flex-start;
+    padding: 0;
+    margin: 0;
 }
 
-.card-article{
-    
+.banniere >>> img {
+    width: 300px;
+	height: 100%;
+    object-fit: cover;
 }
+
+.titre{
+    grid-column: 1 / 1;
+    grid-row: 3/4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chapeau{
+    grid-column: 1 / 1;
+    grid-row: 4/6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button-article{
+    grid-column: 1 / 1;
+    grid-row: 6/7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ec7463;
+
+}
+
+.button-article {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: #F56345;
+  cursor: pointer;  
+  text-transform: uppercase;
+  color: black;
+}
+.button-article:hover, .button-article:focus {
+  color: #fff;
+  outline: 0;
+}
+
+.first {
+  -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.first:hover {
+  box-shadow: 0 0 40px 40px #F56345 inset;
+}
+
+
 </style>

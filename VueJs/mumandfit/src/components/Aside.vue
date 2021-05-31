@@ -5,10 +5,10 @@
         </div>
         <div id='liens'>
                 <div class = "texteLiens"><router-link to = "/blog">Actualité</router-link></div>
-                <div class = "texteLiens">Réservation</div>
-                <div class = "texteLiens">E-Boutiques</div>
-                <div class = "texteLiens">Réseau sociaux</div>
-                <div class = "texteLiens">Contact</div>
+                <div class = "texteLiens"><router-link to = "/blog">Réservation</router-link></div>
+                <div class = "texteLiens"><router-link to = "/blog">E-Boutiques</router-link></div>
+                <div class = "texteLiens"><router-link to = "/blog">Réseau sociaux</router-link></div>
+                <div class = "texteLiens"><router-link to = "/blog">Contact</router-link></div>
                 <div class = "logoUser" v-if="this.$store.state.token">
                     <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="70px"></router-link>
                 </div>
@@ -52,6 +52,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    align-items: flex-start;
+    margin-left: 90px;
 }
 
 #titre:hover {
@@ -67,8 +69,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    margin: 0;
+    align-items: flex-start;
+    margin-left: 90px;
+    /*margin: 0;*/
     padding: 0;
     row-gap: 90px;
 }
@@ -93,8 +96,9 @@
 .texteLiens:hover{
     border-bottom: 1px solid black;
 }
-#liens div:hover{
+#liens a:hover{
     transform: scale(1.1) ;
+    font-weight: bold;
 }
 h1 {
     font-family: 'Montserrat';

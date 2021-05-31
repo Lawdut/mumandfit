@@ -60,41 +60,43 @@ a, router-link{
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(12, 1fr);
-  height: 100vh;
+  max-height: 100vh;
 }
 
 
 
 #aside {
-  grid-column: 1 / 3;
+  grid-column: 1 / 6;
   grid-row: 1 / 13;
-   
+  height: 100vh;
+  background: url("./assets/background-2.svg") no-repeat center;
+  background-color: #ec7463;
+  background-size: cover;
+  background-position: center;
+
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
 }
 
 .main {
-  grid-column : 3 / 21;
+  grid-column : 6 / 21;
   grid-row : 1/13;
-  background: url("./assets/background.svg") no-repeat center;
-  background-size: cover;
-  background-position: center;
   height: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: white;
 }
 
 .box {
-  height : 90vh;
-  width: 900px;
+  height : 100%;
+  width: 100%;
 
   overflow-y: auto;
-
-  
-
   display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 
