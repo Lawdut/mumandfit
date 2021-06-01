@@ -56,6 +56,16 @@ exports.getAllArticles = function (table, callback){
             callback(rows);
 })}
 
+exports.getResultsOfSearch = function(table, requestCleaned, callback){
+    var sql = "SELECT * FROM "+table+" WHERE titre LIKE '" + "%" + requestCleaned.search + "%" +"' OR chapeau LIKE '" + "%" + requestCleaned.search + "%" +"' OR contenu LIKE '" + "%" + requestCleaned.search + "%" +"' ORDER BY id;";
+    conn.query(sql, function(error, rows){
+        if(error) {
+            console.log(error)
+        }
+        callback(rows);
+    })
+}
+
 exports.getNumberOfArticles = function (table, callback){
     var sql = "SELECT count(*) as number FROM "+ table;
     conn.query(sql, function(error, rows) {

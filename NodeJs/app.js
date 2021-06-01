@@ -64,18 +64,24 @@ function authenticateToken(req, res, next) {
 
 
                     // ----- NETTOYAGE DES DONNEES ----- //
-  function clean(unArticle){
+  function cleanArticle(unArticle){
     const unArticleToClean = unArticle; 
     
     for(let i in unArticleToClean['unArticle']){
       if (typeof unArticleToClean['unArticle'][i] === 'string'){
       unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace(/'/g,"&apos;").replace(/#/g,"&num;").replace(/♯/g,"&sharp;");
-      //console.log(unArticleToClean['unArticle'][i]);
+      console.log(unArticleToClean['unArticle'][i]);
       } 
     }
     return unArticleToClean;
   }
-
+function cleanSearch(request){
+  const requestToClean = request;
+ 
+  requestToClean['search'] = requestToClean['search'].replace(/'/g,"&apos;").replace(/#/g,"&num;").replace(/♯/g,"&sharp;").replace(/ /g, "% %");
+  
+  return requestToClean;
+}
 
 app.post('/inscription', function (req, res) {
     
@@ -121,7 +127,7 @@ app.post('/createArticle',authenticateToken, function(req, res) {
   //console.log(unArticleCreateClean);
   //console.log(imageTab);
   try{
-    let unArticleCreateClean = clean(req.body);
+    let unArticleCreateClean = cleanArticle(req.body);
     let imageTabToBDDcreate = cleanFolderImagesCreate(unArticleCreateClean);
     imageTab = [];
     bdd.createArticle('articles', 'image', unArticleCreateClean, imageTabToBDDcreate, function(err){
@@ -139,21 +145,29 @@ app.post('/createArticle',authenticateToken, function(req, res) {
   }
 });
           /* ----- AFFICHAGE ARTICLES -----*/
-app.get('/getAllArticles', function (req, res) {
+app.post('/getAllArticles', function (req, res) {
   bdd.getAllArticles('articles', function (articles) {
     res.send({articles});
   })
 })
 
-app.get('/numberOfArticles', function(req, res){
-  bdd.getNumberOfArticles('articles', function(number) {
-    res.json({number : number[0].number})
+
+
+          /* ----- MOTEUR DE RECHERCHE ----- */
+app.post('/searchArticle', function(req, res){
+  console.log(req.body);
+  let requestCleaned = cleanSearch(req.body);
+
+  bdd.getResultsOfSearch('articles', requestCleaned, function(filterArticles){
+    console.log(filterArticles);
+    res.send({filterArticles})
   })
+  //res.send('salut')
 })
 
           /* ----- MODIFICATION ARTICLES -----*/
-app.post('/modifArticle/',authenticateToken, function(req, res){
-  let unArticleCleaned = clean(req.body);
+app.post('/modifArticle',authenticateToken, function(req, res){
+  let unArticleCleaned = cleanArticle(req.body);
   const imageFromBDD = []
   //let imageFromBDD = bdd.getAllImages('image', unArticleCleaned);
   try {
@@ -389,7 +403,6 @@ let index = art.indexOf(img)
             console.log(imageFromBDD[k] == imageInArticle[m])
             if(imageFromBDD[k] == imageInArticle[m]){
               console.log(imageInArticle[m]);
-              //imageTab.push(imageInArticle[m]);
               console.log('imageTab rempli dans if 1 : ' +imageTab);
               count = 1;  
               console.log('premier if')
@@ -409,7 +422,6 @@ let index = art.indexOf(img)
           console.log(imageInArticle)
           console.log(imageTab2[n] == imageInArticle[p])
           if(imageTab2[n] == imageInArticle[p]){
-            //imageTab.push(imageInArticle[p]);
             console.log('imagTab version finale : ' +imageTab)
             count2 = 1;  
         }
@@ -436,7 +448,6 @@ let index = art.indexOf(img)
   //Dans le cas de la modification d'un article ET de la suppression d'images déjà existante antérieurement sans ajout de nouvelles images.
   }else if (imageTab.length == 0){
     console.log('hello ouille')
-    //console.log(imageInArticle);
 
       for(let k = 0 ; k < imageFromBDD.length; k++){
         console.log(imageFromBDD)

@@ -7,7 +7,8 @@ import Connexion from '../components/Connexion.vue'
 import Blog from '../views/Blog.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
-import newArticle from '../components/Admin/NewArticle.vue'
+import NewArticle from '../components/Admin/NewArticle.vue'
+import ResultsSearch from '../components/ResultsSearch.vue'
 import Aside from '../components/Aside.vue'
 
 Vue.use(VueRouter)
@@ -49,6 +50,12 @@ const routes = [
   },
 
   {
+    path : "/results",
+    name : "ResultsSearch",
+    component : ResultsSearch
+  },
+
+  {
     path : '/admin',
     name : "AdminHome",
     component : AdminHome,
@@ -66,7 +73,7 @@ const routes = [
   {
     path : '/newArticle',
     name : "NewArticle",
-    component : newArticle,
+    component : NewArticle,
     beforeEnter : (to, from, next)=>{
       const loggedIn = localStorage.getItem('jwt-mumandfit');
       if(from.path === '/admin' && loggedIn){

@@ -5,10 +5,10 @@
         </div>
         <div id='liens'>
                 <div class = "texteLiens"><router-link to = "/blog">Actualité</router-link></div>
-                <div class = "texteLiens"><router-link to = "/blog">Réservation</router-link></div>
-                <div class = "texteLiens"><router-link to = "/blog">E-Boutiques</router-link></div>
-                <div class = "texteLiens"><router-link to = "/blog">Réseau sociaux</router-link></div>
                 <div class = "texteLiens"><router-link to = "/blog">Contact</router-link></div>
+                <div class = "texteLiens"><router-link to = "/blog">E-Boutiques</router-link></div>
+                <div class = "searchBox"><input class="searchInput" id='searchInputId' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results)">Go</button></div>
+                <div class = "texteLiens"><router-link to = "/blog">Mentions légales</router-link></div>
                 <div class = "logoUser" v-if="this.$store.state.token">
                     <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="70px"></router-link>
                 </div>
@@ -22,9 +22,19 @@
         name : 'Aside',
     data : function() {
             return {
-                token : this.$store.state.token
+                token : this.$store.state.token,
+                results : ''
              }
         },
+
+    methods : {
+        searchArticle(results){
+            this.$store.dispatch('searching', results)
+            .catch(err => console.log(err))
+            .then( ()=>this.$router.push('/results'))
+            .then(this.results = '')
+        }
+    }
     }  
     
 
@@ -33,6 +43,7 @@
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Zen+Dots&display=swap');
+
 
 #aside {
     background-color: #ec7463;
@@ -110,6 +121,42 @@ h1 {
     color : black;
 }
 
+.searchBox{
+    display: flex;
+
+}
+.searchInput{
+    border-bottom: 1px solid black;
+    border-left: none;
+    border-top: none;
+    border-right:none;
+    background-color :#ec7463;
+    width: 45%;
+    height: 20px;
+    font-family: 'Montserrat';
+    font-size: 15px;
+}
+.searchInput::placeholder{
+    color: #303030;
+    font-family: 'Montserrat';
+    font-size: 15px;
+}
+.searchInput:focus{
+    outline: none;
+    border-bottom : 1px dotted black;
+}
+.searchButton{
+    background-color: #ec7463;
+    border: solid black;
+    border-width: 1px;
+    color :black;
+    font-family: 'Montserrat';
+    cursor: pointer;
+}
+.searchButton:hover{
+    background-color: black;
+    color :#ec7463;
+}
 /*<div class = "logoUser" v-else>
                     <router-link to="/connexion"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
                 </div>*/

@@ -1,61 +1,58 @@
 <template>
-    <div class = "blog">
+    <div class = "blogFiltered">
         <div class = "list-articles">
             <div class = "articles">
-                <div class = "card-article" v-for="unArticle in articles" v-bind:key ="unArticle.id">
+                <div class = "card-article" v-for="unArticle in articleTabFiltered" v-bind:key ="unArticle.id">
                     <div class ="banniere" v-html="unArticle.banniere">{{unArticle.banniere}}</div>
                     <div class = "titre" v-html="unArticle.titre">{{unArticle.titre}}</div>
                     <div class = "chapeau" v-html="unArticle.chapeau">{{unArticle.chapeau}}</div>
-                    <div class = "button-article first"><span @click ="selectArticle(unArticle)">Lire la suite</span></div>
+                    <div class = "button-article first"><span @click ="selectArticleF(unArticle)">Lire la suite</span></div>
                 </div>
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="4"></jw-pagination>
+            <jw-pagination :items="articleTabFiltered" @changePage="onChangePageF(articleTabFiltered)" :pageSize ="4"></jw-pagination>
         </div>
+
     </div>
 </template>
 
 <script>
-
-    
-
     export default {
-        name : "Blog",
-
-        data : function() {
-            return {
-                articles : [],
-                articleTab : [],
+        name : 'ResultsSearch',
+        data : function () {
+            return{
+                results : this.$store.state.search,
+                articleTabFiltered : [],
             }
+        },
+            
+        beforeMount : function () {
+            let search = this.$store.state.search;
+            this.http.post('http://localhost:8010/searchArticle', {search})
+            .then(response=>{this.articleTabFiltered = response.data.filterArticles.reverse()})
+        },
+
+        mounted : function() {
             
         },
-        
-        
-        beforeMount : function (){
-            this.http.post('//localhost:8010/getAllArticles')
-                .then(response=>{this.articleTab = response.data.articles.reverse()})
-        },
-        
-        methods : {
-            selectArticle(unArticle) {
+        method : {
+            selectArticleF(unArticle) {
 
                 this.$store.dispatch('selectArticle', unArticle)
                 .then(()=> this.$router.push('/article'))
                 .catch(err => console.log(err))
             },
-            onChangePage(articles) {
-            this.articles = articles;
+            onChangePageF(articleTabFiltered) {
+            this.articleTabFiltered = articleTabFiltered;
             document.body.scrollTop = document.documentElement.scrollTop = 0;
         }
         }
-
-        }
+    }
 </script>
 
 <style scoped>
-
-.blog {
+.blogFiltered {
     width: 100%;
     display : grid;
     grid-template-columns: repeat(1, 1fr);
@@ -169,6 +166,4 @@
 .first:hover {
   box-shadow: 0 0 40px 40px #F56345 inset;
 }
-
-
 </style>

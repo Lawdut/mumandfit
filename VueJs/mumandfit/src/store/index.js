@@ -9,7 +9,7 @@ export default new Vuex.Store({
     unArticle : "",
     token : localStorage.getItem('token') || "",
     user : "",
-    numberOfArticle : "",
+    search : "",
   },
   mutations: {
     selectedArticle(state, unArticle) {state.unArticle = unArticle},
@@ -20,7 +20,7 @@ export default new Vuex.Store({
 
     user (state, data) {state.user = data},
 
-    numberOfArticle(state, data) {state.numberOfArticle = data}
+    search(state, data) {state.search = data},
 
   },
   actions: {
@@ -31,7 +31,6 @@ export default new Vuex.Store({
     },
 
     connexionStore(context, infos) {
-      console.log(infos);
       axios.post('http://localhost:8010/connexion', infos) 
       .then((res)=> {
         localStorage.setItem("jwt-mumandfit", res.data);
@@ -40,10 +39,10 @@ export default new Vuex.Store({
         axios.defaults.headers.common['authorization'] = res.data;
       })
     },
-    numberOfArticle(context){
-      axios.get('//localhost:8010/numberOfArticles')
-      .then(response=>{context.commit('numberOfArticle', response.data.number)})
-    },
+
+    searching(context, search){
+      context.commit('search', search)
+    }
   },
   modules: {
   },
