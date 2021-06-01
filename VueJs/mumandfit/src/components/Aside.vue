@@ -29,9 +29,13 @@
 
     methods : {
         searchArticle(results){
+            const path = `/results`;
             this.$store.dispatch('searching', results)
             .catch(err => console.log(err))
-            .then( ()=>this.$router.push('/results'))
+            .then( ()=>{
+                if(this.$route.path !==path) 
+                this.$router.push(path)
+                })
             .then(this.results = '')
         }
     }

@@ -2,16 +2,16 @@
     <div class = "blogFiltered">
         <div class = "list-articles">
             <div class = "articles">
-                <div class = "card-article" v-for="unArticle in articleTabFiltered" v-bind:key ="unArticle.id">
+                <div class = "card-article" v-for="unArticle in articlesFiltered" v-bind:key ="unArticle.id">
                     <div class ="banniere" v-html="unArticle.banniere">{{unArticle.banniere}}</div>
                     <div class = "titre" v-html="unArticle.titre">{{unArticle.titre}}</div>
                     <div class = "chapeau" v-html="unArticle.chapeau">{{unArticle.chapeau}}</div>
-                    <div class = "button-article first"><span @click ="selectArticleF(unArticle)">Lire la suite</span></div>
+                    <div class = "button-article first"><span @click ="selectArticle(unArticle)">Lire la suite</span></div>
                 </div>
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTabFiltered" @changePage="onChangePageF(articleTabFiltered)" :pageSize ="4"></jw-pagination>
+            <jw-pagination :items="articleTabFiltered" @changePage="onChangePage" :pageSize ="4"></jw-pagination>
         </div>
 
     </div>
@@ -24,6 +24,7 @@
             return{
                 results : this.$store.state.search,
                 articleTabFiltered : [],
+                articlesFiltered : [],
             }
         },
             
@@ -36,15 +37,14 @@
         mounted : function() {
             
         },
-        method : {
-            selectArticleF(unArticle) {
-
+        methods : {
+            selectArticle(unArticle) {
                 this.$store.dispatch('selectArticle', unArticle)
-                .then(()=> this.$router.push('/article'))
+                .then(()=>this.$router.push('/article'))
                 .catch(err => console.log(err))
             },
-            onChangePageF(articleTabFiltered) {
-            this.articleTabFiltered = articleTabFiltered;
+            onChangePage(articlesFiltered) {
+            this.articlesFiltered = articlesFiltered;
             document.body.scrollTop = document.documentElement.scrollTop = 0;
         }
         }
