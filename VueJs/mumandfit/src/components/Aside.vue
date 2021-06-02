@@ -10,7 +10,7 @@
                 <div class = "searchBox"><input class="searchInput" @focus="onFocus" id='searchInputId' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results)">Go</button></div>
                 <div class = "texteLiens"><router-link to = "/blog">Mentions légales</router-link></div>
                 <div class = "logoUser" v-if="this.$store.state.token">
-                    <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="70px"></router-link>
+                    <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
                 </div>
                 
         </div> 
@@ -161,8 +161,9 @@ h1 {
     cursor: pointer;
 }
 .searchButton:hover{
-    background-color: black;
+    background-color: #434343;
     color :#ec7463;
+    border : 1px solid #434343
 }
 /*<div class = "logoUser" v-else>
                     <router-link to="/connexion"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>

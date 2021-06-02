@@ -1,6 +1,6 @@
 <template>
     <div class = "blogFiltered">
-        <p>Résultat de votre recherche pour : {{this.$store.state.search}}</p>
+        <h1 class="title-search">Résultat de votre recherche pour : {{this.$store.state.search}}</h1>
         <p class ="list-articles" v-if="articleTabFiltered.length == 0">Aucun Résultat pour votre recherche</p>
         <div class = "list-articles" v-if="articleTabFiltered.length > 0">
             <div class = "articles">
@@ -8,7 +8,7 @@
                     <div class ="banniere" v-html="unArticle.banniere">{{unArticle.banniere}}</div>
                     <div class = "titre" v-html="unArticle.titre">{{unArticle.titre}}</div>
                     <div class = "chapeau" v-html="unArticle.chapeau">{{unArticle.chapeau}}</div>
-                    <div class = "button-article first"><span @click ="selectArticle(unArticle)">Lire la suite</span></div>
+                    <div class = "button-article first1" @click ="selectArticle(unArticle)"><span >Lire la suite</span></div>
                 </div>
             </div>
         </div>
@@ -64,10 +64,13 @@
     width: 100%;
     display : grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(7, 1fr);
+}
+.title-search{
+    grid-row: 1/2;
 }
 .list-articles{
-    grid-row: 1/6 ;
+    grid-row: 2/7 ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -80,10 +83,10 @@
     justify-content: center;
     align-items: center;
     column-gap: 30px;
-    row-gap: 10px;
+    row-gap: 30px;
 }
 .card-footer{
-    grid-row: 6/7;
+    grid-row: 7/8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,26 +160,64 @@
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  color: #F56345;
   cursor: pointer;  
   text-transform: uppercase;
   color: black;
 }
 .button-article:hover, .button-article:focus {
-  color: #fff;
+  color: #ec7463;
   outline: 0;
 }
 
-.first {
+.first1 {
   -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
-.first:hover {
-  box-shadow: 0 0 40px 40px #98000a inset;
+.first1:hover {
+  box-shadow: 0 0 40px 40px #303030 inset;
 }
 
 .card-footer >>> ul{
     
     background-color: #ec7463;
+    box-shadow: 1px 1px 10px 3px #F56345;
+    border-radius: 10px;
 }
+
+.pagination >>> .first > a{
+    border: 1px solid #303030 ;
+    border-radius: 10px 0px 0px 10px;
+}
+.pagination >>> .last > a{
+    border-radius : 0px 10px 10px 0px;
+    border: 1px solid #303030 ;
+}
+.pagination >>> .previous > a {
+    border-top: 1px solid #303030 ;
+    border-bottom: 1px solid #303030 ;
+    border-right:1px solid #303030 ;
+    
+}
+.pagination >>> .next > a {
+    border-top: 1px solid #303030 ;
+    border-bottom: 1px solid #303030 ;
+}
+.pagination >>> .page-number > a{
+    border-top: 1px solid #303030 ;
+    border-bottom: 1px solid #303030 ;
+    border-right:1px solid #303030 ;
+}
+.pagination >>> .disabled{
+    color : #303030;
+}
+
+.pagination >>> a {
+    -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+.pagination >>> a:hover {
+    box-shadow: 0 0 40px 40px #434343 inset;
+    color : #ec7463;
+}
+
 </style>

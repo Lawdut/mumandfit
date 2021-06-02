@@ -95,8 +95,8 @@ a, router-link{
   width: 100%;
 
   overflow-y: auto;
-  display: flex;
-  justify-content: center;
+  /*display: flex;
+  justify-content: center;*/
 }
 
 
