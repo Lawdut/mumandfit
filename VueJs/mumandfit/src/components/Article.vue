@@ -34,10 +34,10 @@
                 </div>
                 
             </div>
-            <div  v-if="token" id = "buttonArticle">
-                <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1">
-                <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1">
-                <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1"></router-link>
+            <div id = "buttonArticle">
+                <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1 save" v-if="token">
+                <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1 delete" v-if="token">
+                <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1 return"></router-link>
             </div>
         </div>
     </div>
@@ -217,5 +217,7 @@ import jQuery from "jquery";
 </script>
 
 <style scoped>
-
+.article {
+    width: 90%;
+}
 </style>

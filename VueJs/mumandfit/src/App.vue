@@ -74,9 +74,6 @@ a, router-link{
   background-size: cover;
   background-position: center;
 
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0px;
 }
 
 .main {
@@ -124,5 +121,9 @@ a, router-link{
 	transition: all 0.4s ease 0s;
 }
 
-
+@media screen and (max-width: 100px){
+#aside {
+  display: none;
+}
+}
 </style>

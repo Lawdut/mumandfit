@@ -27,23 +27,23 @@ export default {
 .home{
   display: grid;
   grid-template-columns: repeat(6 , 1fr);
-  grid-template-rows: repeat(7, 1fr);
-  row-gap: 30px;
+  grid-template-rows: repeat(2, 1fr);
 }
 #imagePres{
   grid-column: 2/6;
-  grid-row: 2/6;
+  grid-row: 1/2;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 50px;
 }
 #pres{
   grid-column: 2/6;
-  grid-row: 6/7;
+  grid-row: 2/3;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 </style>

@@ -53,11 +53,7 @@
 
 
 #aside {
-    background-color: #ec7463;
     font-size: 15px;
-
-    position: relative;
-
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: repeat( 7, 1fr);

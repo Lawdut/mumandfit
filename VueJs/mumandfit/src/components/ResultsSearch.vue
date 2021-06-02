@@ -1,6 +1,6 @@
 <template>
     <div class = "blogFiltered">
-        <h1 class="title-search">Résultat de votre recherche pour : {{this.$store.state.search}}</h1>
+        <h1 class="title-search">Résultat de votre recherche pour : "{{this.$store.state.search}}"</h1>
         <p class ="list-articles" v-if="articleTabFiltered.length == 0">Aucun Résultat pour votre recherche</p>
         <div class = "list-articles" v-if="articleTabFiltered.length > 0">
             <div class = "articles">
@@ -13,7 +13,7 @@
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTabFiltered" @changePage="onChangePage" :pageSize ="4" :labels="customLabels"></jw-pagination>
+            <jw-pagination :items="articleTabFiltered" @changePage="onChangePage" :pageSize ="8" :labels="customLabels"></jw-pagination>
         </div>
 
     </div>
@@ -68,6 +68,11 @@
 }
 .title-search{
     grid-row: 1/2;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .list-articles{
     grid-row: 2/7 ;
