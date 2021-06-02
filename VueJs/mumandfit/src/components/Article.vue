@@ -1,44 +1,42 @@
 <template>
-    <div>
-        <div>
-            <div class = "article">
-                <div id = "banniereModif">
-                    <editor v-model = unArticle.banniere output-format="html"
+    <div class = "article-box">
+        <div class = "article">
+            <div id = "banniereModif">
+                <editor v-model = unArticle.banniere output-format="html"
+                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                :disabled="status"
+                    :init="myInitBanniere"
+
+                />
+            </div>
+            <div id = "titreModif">
+                <editor v-model = unArticle.titre output-format="html"
+                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                :disabled="status"
+                    :init="myInitTitre"
+
+                />
+            </div>
+            <div id = "chapeauModif">
+                <editor v-model = unArticle.chapeau output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
-                        :init="myInitBanniere"
-
-                    />
-                </div>
-                <div id = "titreModif">
-                    <editor v-model = unArticle.titre output-format="html"
+                    :init="myInitChapeau"
+                />
+            </div>
+            <div id = "contenuModif">
+                <editor v-model = unArticle.contenu output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
-                        :init="myInitTitre"
-
-                    />
-                </div>
-                <div id = "chapeauModif">
-                    <editor v-model = unArticle.chapeau output-format="html"
-                        api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                        :disabled="status"
-                        :init="myInitChapeau"
-                    />
-                </div>
-                <div id = "contenuModif">
-                    <editor v-model = unArticle.contenu output-format="html"
-                        api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                        :disabled="status"
-                        :init="myInitContenu"
-                    />
-                </div>
-                
+                    :init="myInitContenu"
+                />
             </div>
-            <div id = "buttonArticle">
-                <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1 save" v-if="token">
-                <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1 delete" v-if="token">
-                <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1 return"></router-link>
-            </div>
+            
+        </div>
+        <div id = "buttonArticle">
+            <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1 save" v-if="token">
+            <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1 delete" v-if="token">
+            <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1 return"></router-link>
         </div>
     </div>
 </template>
@@ -217,6 +215,13 @@ import jQuery from "jquery";
 </script>
 
 <style scoped>
+.article-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px 30px 0px;
+}
 .article {
     width: 90%;
 }
