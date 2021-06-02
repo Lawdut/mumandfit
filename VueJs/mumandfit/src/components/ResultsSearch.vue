@@ -1,6 +1,8 @@
 <template>
     <div class = "blogFiltered">
-        <div class = "list-articles">
+        <p>Résultat de votre recherche pour : {{this.$store.state.search}}</p>
+        <p class ="list-articles" v-if="articleTabFiltered.length == 0">Aucun Résultat pour votre recherche</p>
+        <div class = "list-articles" v-if="articleTabFiltered.length > 0">
             <div class = "articles">
                 <div class = "card-article" v-for="unArticle in articlesFiltered" v-bind:key ="unArticle.id">
                     <div class ="banniere" v-html="unArticle.banniere">{{unArticle.banniere}}</div>
@@ -11,7 +13,7 @@
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTabFiltered" @changePage="onChangePage" :pageSize ="4"></jw-pagination>
+            <jw-pagination :items="articleTabFiltered" @changePage="onChangePage" :pageSize ="4" :labels="customLabels"></jw-pagination>
         </div>
 
     </div>
@@ -25,6 +27,12 @@
                 results : this.$store.state.search,
                 articleTabFiltered : [],
                 articlesFiltered : [],
+                customLabels : {
+                    first : 'Début',
+                    last : 'Fin',
+                    previous : 'Précédent',
+                    next : 'Suivant'
+                },
             }
         },
             
@@ -164,6 +172,11 @@
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 .first:hover {
-  box-shadow: 0 0 40px 40px #F56345 inset;
+  box-shadow: 0 0 40px 40px #98000a inset;
+}
+
+.card-footer >>> ul{
+    
+    background-color: #ec7463;
 }
 </style>

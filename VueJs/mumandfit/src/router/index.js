@@ -14,6 +14,8 @@ import Aside from '../components/Aside.vue'
 Vue.use(VueRouter)
 //Vue.use($)
 
+
+
 const routes = [
   {
     path: '/',
@@ -52,7 +54,7 @@ const routes = [
   {
     path : "/results",
     name : "ResultsSearch",
-    component : ResultsSearch
+    component : ResultsSearch,
   },
 
   {
@@ -105,7 +107,6 @@ const router = new VueRouter({
   mode : 'history',
   routes,
 });
-
 
 
 export default router

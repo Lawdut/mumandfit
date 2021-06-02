@@ -11,7 +11,7 @@
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="4"></jw-pagination>
+            <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="4" :labels="customLabels"></jw-pagination>
         </div>
     </div>
 </template>
@@ -27,6 +27,12 @@
             return {
                 articles : [],
                 articleTab : [],
+                customLabels : {
+                    first : 'Début',
+                    last : 'Fin',
+                    previous : 'Précédent',
+                    next : 'Suivant'
+                },
             }
             
         },
