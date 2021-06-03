@@ -10,6 +10,7 @@ import AdminHome from '../components/Admin/AdminHome.vue'
 import NewArticle from '../components/Admin/NewArticle.vue'
 import ResultsSearch from '../components/ResultsSearch.vue'
 import Aside from '../components/Aside.vue'
+import HeaderResp from '../components/HeaderResp.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -84,6 +85,13 @@ const routes = [
         next({path : '/connexion'})
       }
     }
+  },
+
+            //-----RESPONSIVE-----//
+  {
+    path : '/headerResp',
+    name : "HeaderResp",
+    component : HeaderResp
   },
 
   {

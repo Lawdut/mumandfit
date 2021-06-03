@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <Aside />
+    <div id = "headerRespApp">
+      <HeaderResp />
+    </div>
+    <div id = "asideApp">
+      <Aside />
+    </div>
     <div class = "main">
       <div class = "box">
         <router-view />
@@ -11,6 +16,7 @@
 
 <script>
 import Aside  from '@/components/Aside.vue';
+import HeaderResp from './components/HeaderResp.vue';
 
 
 
@@ -28,6 +34,7 @@ export default {
   },
   components: {
     Aside,
+    HeaderResp,
   },
 };
 
@@ -63,11 +70,13 @@ a, router-link{
   max-height: 100vh;
 }
 
-
-
-#aside {
+#asideApp{
   grid-column: 1 / 6;
   grid-row: 1 / 13;
+  height: 100vh;
+}
+
+#aside {
   height: 100vh;
   background: url("./assets/background-2.svg") no-repeat center;
   background-color: #ec7463;
@@ -75,7 +84,9 @@ a, router-link{
   background-position: center;
 
 }
-
+#headerRespApp{
+  display: none;
+}
 .main {
   grid-column : 6 / 21;
   grid-row : 1/13;
@@ -92,8 +103,6 @@ a, router-link{
   width: 100%;
 
   overflow-y: auto;
-  /*display: flex;
-  justify-content: center;*/
 }
 
 
@@ -120,10 +129,34 @@ a, router-link{
 	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
 	transition: all 0.4s ease 0s;
 }
-
-@media screen and (max-width: 100px){
-#aside {
+#headerRespApp{
   display: none;
 }
+
+@media(max-width: 1600px){
+  #titre {
+     
+    margin-left: 45px !important;
+}
+  #liens{
+    margin-left: 45px !important;
+  }
+
+}
+
+@media (max-width: 1000px) {
+  #asideApp {
+    display: none;
+  }
+  .main{
+    grid-column: 1/21;
+    grid-row: 3/13;
+  }
+  #headerRespApp{
+    display: block;
+    grid-column: 1/21;
+    grid-row: 1/3;    
+  }
+  
 }
 </style>

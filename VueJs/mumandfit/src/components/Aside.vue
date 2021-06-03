@@ -3,7 +3,7 @@
         <div id = 'titre'>
             <h1><router-link to = "/">Mum&Fit</router-link></h1>
         </div>
-        <div id='liens'>
+        <div class='liens'>
                 <div class = "texteLiens"><router-link to = "/blog">Actualité</router-link></div>
                 <div class = "texteLiens"><router-link to = "/blog">Contact</router-link></div>
                 <div class = "texteLiens"><router-link to = "/blog">E-Boutiques</router-link></div>
@@ -65,7 +65,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     align-items: flex-start;
     margin-left: 90px;
 }
@@ -78,16 +77,15 @@
     text-decoration: none;
 }
 
-#liens{
+.liens{
     grid-row: 3 / 7;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: flex-start;
     margin-left: 90px;
-    /*margin: 0;*/
     padding: 0;
-    row-gap: 90px;
+    
 }
 
 .texteLiens{
@@ -110,7 +108,7 @@
 .texteLiens:hover{
     border-bottom: 1px solid black;
 }
-#liens a:hover{
+.liens a:hover{
     transform: scale(1.1) ;
     font-weight: bold;
 }
@@ -161,6 +159,11 @@ h1 {
     color :#ec7463;
     border : 1px solid #434343
 }
+/*@media (min-width: 768px) and (max-width: 979px) {
+  #aside {
+    font-size: 50px;
+  }
+}*/
 /*<div class = "logoUser" v-else>
                     <router-link to="/connexion"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
                 </div>*/
