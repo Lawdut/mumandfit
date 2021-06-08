@@ -11,6 +11,7 @@ import NewArticle from '../components/Admin/NewArticle.vue'
 import ResultsSearch from '../components/ResultsSearch.vue'
 import Aside from '../components/Aside.vue'
 import HeaderResp from '../components/HeaderResp.vue'
+import Contact from '../components/Contact.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -57,9 +58,14 @@ const routes = [
     name : "ResultsSearch",
     component : ResultsSearch,
   },
+  {
+    path : "/contact",
+    name : "Contact",
+    component : Contact
+  },
 
   {
-    path : '/admin',
+    path : "/admin",
     name : "AdminHome",
     component : AdminHome,
     /*beforeEnter : (to, from, next) =>{
@@ -72,6 +78,8 @@ const routes = [
       
     }*/
   },
+  
+
 
   {
     path : '/newArticle',

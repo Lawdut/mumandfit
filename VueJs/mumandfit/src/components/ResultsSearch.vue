@@ -28,10 +28,10 @@
                 articleTabFiltered : [],
                 articlesFiltered : [],
                 customLabels : {
-                    first : 'Début',
-                    last : 'Fin',
-                    previous : 'Précédent',
-                    next : 'Suivant'
+                    first : '<<',
+                    last : '>>',
+                    previous : '<',
+                    next : '>'
                 },
             }
         },
@@ -97,7 +97,7 @@
     align-items: center;
 }
 .card-article{
-    box-shadow: 1px 1px 10px 3px #F56345;
+    box-shadow: 1px 1px 10px 3px #2c3e50;
     width: 300px;
     height: 600px;
     display: grid;
@@ -185,35 +185,35 @@
 .card-footer >>> ul{
     
     background-color: #ec7463;
-    box-shadow: 1px 1px 10px 3px #F56345;
+    box-shadow: 1px 1px 10px 3px #2c3e50;
     border-radius: 10px;
 }
 
 .pagination >>> .first > a{
-    border: 1px solid #303030 ;
+    border: 1px solid #2c3e50 ;
     border-radius: 10px 0px 0px 10px;
 }
 .pagination >>> .last > a{
     border-radius : 0px 10px 10px 0px;
-    border: 1px solid #303030 ;
+    border: 1px solid #2c3e50 ;
 }
 .pagination >>> .previous > a {
-    border-top: 1px solid #303030 ;
-    border-bottom: 1px solid #303030 ;
-    border-right:1px solid #303030 ;
+    border-top: 1px solid #2c3e50 ;
+    border-bottom: 1px solid #2c3e50 ;
+    border-right:1px solid #2c3e50 ;
     
 }
 .pagination >>> .next > a {
-    border-top: 1px solid #303030 ;
-    border-bottom: 1px solid #303030 ;
+    border-top: 1px solid #2c3e50 ;
+    border-bottom: 1px solid #2c3e50 ;
 }
 .pagination >>> .page-number > a{
-    border-top: 1px solid #303030 ;
-    border-bottom: 1px solid #303030 ;
-    border-right:1px solid #303030 ;
+    border-top: 1px solid #2c3e50 ;
+    border-bottom: 1px solid #2c3e50 ;
+    border-right:1px solid #2c3e50 ;
 }
 .pagination >>> .disabled{
-    color : #303030;
+    color : #2c3e50;
 }
 
 .pagination >>> a {
@@ -221,7 +221,7 @@
     transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
 }
 .pagination >>> a:hover {
-    box-shadow: 0 0 40px 40px #434343 inset;
+    box-shadow: 0 0 40px 40px #2c3e50 inset;
     color : #ec7463;
 }
 

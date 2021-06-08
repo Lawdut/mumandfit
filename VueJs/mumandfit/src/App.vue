@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id = "headerRespApp">
-      <HeaderResp />
+      <HeaderResp/>
     </div>
     <div id = "asideApp">
       <Aside />
@@ -23,7 +23,6 @@ import HeaderResp from './components/HeaderResp.vue';
 export default {
   data: function () {
     return {
-      
     };
   },
   mounted() {
@@ -31,6 +30,9 @@ export default {
     if (jwt) {
       this.$store.commit("connected");
     }
+  },
+  methods : {
+    
   },
   components: {
     Aside,
@@ -67,7 +69,7 @@ a, router-link{
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(12, 1fr);
-  max-height: 100vh;
+  height: 100vh;
 }
 
 #asideApp{
@@ -87,11 +89,11 @@ a, router-link{
 #headerRespApp{
   display: none;
 }
+
 .main {
   grid-column : 6 / 21;
   grid-row : 1/13;
   height: 100%;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,6 +105,8 @@ a, router-link{
   width: 100%;
 
   overflow-y: auto;
+  padding-right: 50px;
+  padding-left: 50px;
 }
 
 
@@ -155,7 +159,10 @@ a, router-link{
   #headerRespApp{
     display: block;
     grid-column: 1/21;
-    grid-row: 1/3;    
+    grid-row: 1/3;  
+   box-shadow: 1px 1px 10px 3px #2c3e50;
+   z-index:500;
+   /*border : solid 3px black*/
   }
   
 }

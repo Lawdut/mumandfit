@@ -28,10 +28,10 @@
                 articles : [],
                 articleTab : [],
                 customLabels : {
-                    first : 'Début',
-                    last : 'Fin',
-                    previous : 'Précédent',
-                    next : 'Suivant'
+                    first : '<<',
+                    last : '>>',
+                    previous : '<',
+                    next : '>'
                 },
             }
             
@@ -89,7 +89,7 @@
     align-items: center;
 }
 .card-article{
-    box-shadow: 1px 1px 10px 3px #F56345;
+    box-shadow: 1px 1px 10px 3px #2c3e50;
     width: 300px;
     height: 600px;
     display: grid;
@@ -176,7 +176,7 @@
 
 .card-footer >>> ul{
     background-color: #ec7463;
-    box-shadow: 1px 1px 10px 3px #F56345;
+    box-shadow: 1px 1px 10px 3px #2c3e50;
     border-radius: 10px;
 }
 
