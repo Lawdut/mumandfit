@@ -26,7 +26,9 @@
         </div>
 
         <div class = "reseauxSociaux">
-            <h3>Res</h3>
+            <h3>Réseaux sociaux</h3>
+            <div id = "facebook"><a href="https://www.facebook.com/korinne.lancette"><img src ="../assets/logoResSociaux/facebook.svg" width="40px"></a></div>
+            <div id = "instagram"><a href="https://www.instagram.com/kokofit25/?hl=fr"><img src ="../assets/logoResSociaux/instagram.svg" width="40px"></a></div>
         </div>
     </div>
 </template>
@@ -79,7 +81,6 @@
         grid-template-columns: repeat(2, 1fr) ;
         grid-template-rows: repeat(5, 1fr);
         column-gap: 30px;
-        row-gap: 10px;
         padding-bottom: 10px;
     }
     .formTitre{
@@ -94,17 +95,17 @@
         align-items: center;
     }
     #lastName{
-        grid-column: 1/2;
-        grid-row: 3/4;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
-    #email{
         grid-column: 2/3;
         grid-row: 2/3;
         display: flex;
         justify-content: flex-start;
+        align-items: center;
+    }
+    #email{
+        grid-column: 1/2;
+        grid-row: 3/4;
+        display: flex;
+        justify-content: flex-end;
         align-items: center;
     }
     #phone{
