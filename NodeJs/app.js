@@ -8,6 +8,7 @@ const dotenv = require("dotenv");
 const fs = require('fs');
 const mime = require('mime');
 const fileUpload = require('express-fileupload');
+const nodemailer = require('nodemailer');
 dotenv.config();
 const bcrypt = require("bcrypt");
 const cookieParser = require("cookie-parser");
@@ -16,6 +17,9 @@ const path = require("path");
 const config = require("./models/config.js");
 const helmet = require('helmet');
 const rp = require('request-promise');
+
+
+
 const { format } = require("mysql");
 const { Console } = require("console");
 /*const ash = require('express-async-handler')*/
@@ -476,6 +480,39 @@ let index = art.indexOf(img)
   }
 }
 
+          /*-----FORMULAIRE DE CONTACT ET ENVOI MAIL-----*/
+app.post('/formContact', (req, res)=>{
+  console.log(req.body.mail);
+  let userMail = req.body.mail
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth:{
+      user : process.env.EMAIL,
+      pass: process.env.PASSWORD,
+    }
+  });
+
+  let mailOption = {
+    from: '"MumAndFit Contact" <mumandfit@gmail.com>',
+    to:'mumandfit@gmail.com',
+    subject:'Demande de prise de contact',
+    html: 
+    '<h1>Demande de contact de :</h1> <br> <strong>Prénom :</strong> ' + req.body.firstName + '<br> <strong>Nom :</strong> ' +req.body.lastName + '<br> <strong>Email :</strong> ' + req.body.mail + '<br> <strong>Numéro de téléphone :</strong> '+req.body.phone+ '<br> <strong>Message :</strong> <br>'+ req.body.message
+    
+    
+  };
+
+  transporter.sendMail(mailOption, function(err, data){
+    if(err){
+      console.log('email non envoyé', err);
+    }else{
+      console.log('email envoyé')
+    }
+  })
+res.send('message envoyé !')
+})
+
+    
   
 
 

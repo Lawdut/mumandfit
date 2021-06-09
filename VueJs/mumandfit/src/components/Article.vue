@@ -36,7 +36,7 @@
         <div id = "buttonArticle">
             <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1 save" v-if="token">
             <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1 delete" v-if="token">
-            <router-link to = "/blog" ><input type ="submit" value = "Retour" class = "Button1 return"></router-link>
+            <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
         </div>
     </div>
 </template>
@@ -208,6 +208,9 @@ import jQuery from "jquery";
                 this.http.post('//localhost:8010/deleteArticle', unArticle)
                 .then(response => console.log(response.data))
                 .then(()=> {this.$router.push('/blog')})
+            },
+            navigation : function () {
+                this.$router.go(-1)
             }
             
         }

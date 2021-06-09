@@ -2,7 +2,7 @@
     <div id ="headerResp" >
         <div id="headerContainer">
             <div id= "header">
-                <h1 @click="isActive = !isActive"><router-link to = "/">Mum&Fit</router-link></h1>
+                <h1 @click="isActive = false"><router-link to = "/">Mum&Fit</router-link></h1>
             </div>
 
             <div id = "menuBurger">
@@ -14,12 +14,12 @@
             </div>
 
             <div class='liensResp' v-if="isActive" v-bind:class="{overlay: isActive}">
-                    <div class = "texteLiensResp" @click="isActive = !isActive"><router-link to = "/blog">Actualité</router-link></div>
-                    <div class = "texteLiensResp" @click="isActive = !isActive"><router-link to = "/contact">Contact</router-link></div>
-                    <div class = "texteLiensResp" @click="isActive = !isActive"><router-link to = "/blog">E-Boutiques</router-link></div>
-                    <div class = "searchBoxResp"><input class="searchInputResp" @focus="onFocus" id='searchInputIdResp' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results) ; isActive = !isActive">Go</button></div>
-                    <div class = "texteLiensResp" @click="isActive = !isActive"><router-link to = "/blog">Mentions légales</router-link></div>
-                    <div class = "logoUserResp" v-if="this.$store.state.token">
+                    <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/blog">Actualité</router-link></div>
+                    <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/contact">Contact</router-link></div>
+                    <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/blog">E-Boutiques</router-link></div>
+                    <div class = "searchBoxResp"><input class="searchInputResp" @focus="onFocus" id='searchInputIdResp' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results) ; isActive = false">Go</button></div>
+                    <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/blog">Mentions légales</router-link></div>
+                    <div class = "logoUserResp" v-if="this.$store.state.token" @click="isActive = false">
                         <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
                     </div>
             </div> 

@@ -117,7 +117,7 @@ a, router-link{
 	text-transform: uppercase;
 	text-decoration: none;
 	background: #ec7463;
-	padding: 20px;
+	padding: 10px;
 	border-radius: 5px;
 	display: inline-block;
 	border: none;
@@ -164,6 +164,8 @@ a, router-link{
    z-index:500;
    /*border : solid 3px black*/
   }
-  
+  ::placeholder{
+    font-size: 9px;
+  }
 }
 </style>
