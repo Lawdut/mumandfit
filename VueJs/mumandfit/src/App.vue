@@ -80,7 +80,7 @@ a, router-link{
 
 #aside {
   height: 100vh;
-  background: url("./assets/background-2.svg") no-repeat center;
+  background: url("./assets/background.svg") no-repeat center;
   background-color: #ec7463;
   background-size: cover;
   background-position: center;

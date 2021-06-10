@@ -11,11 +11,10 @@
       api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
                     :init="myInitPresentation"
-                    initial-value="Placer une présentation ici"
       />
-    </div>
-    <div id = "buttonModifPres">
+      <div id = "buttonModifPres" v-if="token">
             <input type = 'submit' @click="saveModifPres" value="Modifier" class = "Button1 save" v-if="token">
+      </div>
     </div>
   </div>
 </template>
@@ -43,26 +42,28 @@ export default {
         },
       ],
       
+      
       presentation : this.presentation,
+     
       
       token : this.$store.state.token,
       status : null,
       myInitPresentation : {
                    
                     selector : '#pres',
-                    height: 500,
+                    height: 400,
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    ' directionality code visualblocks visualchars fullscreen image',
-                    'link media template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    ' directionality code visualblocks visualchars fullscreen ',
+                    'template codesample table charmap hr pagebreak nonbreaking',
+                    'anchor toc insertdatetime advlist lists wordcount',
                     'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | imagetools',
+                    bullist numlist outdent indent | removeformat ',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
@@ -83,6 +84,16 @@ export default {
                    this.status = false
                 }
   },
+  methods : {
+    saveModifPres() {
+      if(this.presentation != ''){
+        let pres = this.presentation;
+        
+        this.http.post('//localhost:8010/modifPres', {pres})
+        .then(response=>console.log(response.data))
+      }
+    }
+  },
   components: {
     VueperSlides,
     VueperSlide,
@@ -93,32 +104,33 @@ export default {
 
 <style scoped>
 .home{
-  display: grid;
-  grid-template-columns: repeat(6 , 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
   
 }
 #imagePres{
-  grid-column: 1/7;
-  grid-row: 1/2;
-  margin : 50px 0px;
   width: 65%;
-  padding-left : 17.5%;
+  padding-left: 17.5%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 #pres{
-  grid-column: 2/6;
-  grid-row: 2/4;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
+  width: 65%;
+  padding-left: 17.5%;
+  padding-bottom: 50px;
 }
 #buttonModifPres{
-  grid-column: 2/6;
-  grid-row: 4/5;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 }
 
@@ -126,8 +138,12 @@ export default {
   #imagePres{
     width: 100%;
     padding-left: 0;
-    align-content: center;
-    justify-items: center;
+    margin-top: 0;
+  }
+  #pres{
+    width: 80%;
+    padding-left: 10%;
+    padding-bottom: 50px;
   }
 }
 </style>

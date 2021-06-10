@@ -128,8 +128,17 @@ app.post('/connexion', function (req, res) {
         /* ----- GESTION DE LA PAGE HOME ----- */
 app.post('/getPres', function(req, res){
   bdd.getPresentation('textPresentation', function(pres){
-    console.log(pres[0])
     res.send(pres[0]);
+  })
+})
+app.post('/modifPres',authenticateToken, function (req, res){
+  let modifPres = cleanArticle(req.body.pres);
+  console.log (modifPres)
+  bdd.modifPresentation('textPresentation', modifPres, function(err){
+    if(err){
+      res.json({response : 'modification annulée'})
+    }
+    res.json({response : 'modification validée'})
   })
 })
         /* ----- CREATION ARTICLE ----- */
@@ -181,6 +190,7 @@ app.post('/searchArticle', function(req, res){
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle',authenticateToken, function(req, res){
   let unArticleCleaned = cleanArticle(req.body);
+  console.log (req.body)
   const imageFromBDD = []
   //let imageFromBDD = bdd.getAllImages('image', unArticleCleaned);
   try {
@@ -294,7 +304,26 @@ app.post('/upload', (req, res)=>{
     });
   }
 });
+          /* ----- UPLOAD IMAGE SLIDER ----- */
+app.post('/uploadSlider', (req, res)=>{
+  console.log(req.files)
+  console.log(req.body)
+  const folderName = path.join(__dirname, '/VueJs/mumandfit/public/imagesSlider');
+  const sampleFile = req.files.image;
+  const typeFile = req.files.image.mimetype.split('/');
+  const fileName = 'image'+req.body.id +"."+'jpg';
+  console.log(fileName);
 
+  sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName), function (err) {
+    const temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName);
+    mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName));         // => 'text/plain'
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json({ res: 'image changée'});
+    })
+  
+});
           /* ----- ANNULATION DE L'UPLOAD PHOTO ----- */
 
 app.post('/createCanceled', (req, res) =>{

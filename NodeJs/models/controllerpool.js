@@ -55,6 +55,16 @@ exports.getPresentation = function (table, callback){
         callback(rows);
     })
 }
+
+exports.modifPresentation = function(table, modifPres, callback){
+    var sql = "UPDATE " + table + " SET `textPres` = " + "'" + modifPres  + "'" + " WHERE id = " + 1;
+    conn.query(sql, function(err) {
+        if(err){
+            console.log(err)
+        }
+        callback();
+    })
+}
 exports.getAllArticles = function (table, callback){
     var sql = "SELECT * FROM " + table;
         conn.query(sql, function(error, rows) {

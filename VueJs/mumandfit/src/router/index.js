@@ -12,6 +12,7 @@ import ResultsSearch from '../components/ResultsSearch.vue'
 import Aside from '../components/Aside.vue'
 import HeaderResp from '../components/HeaderResp.vue'
 import Contact from '../components/Contact.vue'
+import ChangeImageSlider from '../components/Admin/ChangeImageSlider.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -34,6 +35,11 @@ const routes = [
     path:"/aside",
     name : "Aside",
     component : Aside
+  },
+  {
+    path:"/changeSlider",
+    name : "ChangeImageSlider",
+    component : ChangeImageSlider,
   },
   /*{
     path: "/inscription",

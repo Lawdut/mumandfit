@@ -27,8 +27,10 @@
 
         <div class = "reseauxSociaux">
             <h3>Réseaux sociaux</h3>
+            <div class= "logoRes">
             <div id = "facebook"><a href="https://www.facebook.com/korinne.lancette"><img src ="../assets/logoResSociaux/facebook.svg" width="40px"></a></div>
             <div id = "instagram"><a href="https://www.instagram.com/kokofit25/?hl=fr"><img src ="../assets/logoResSociaux/instagram.svg" width="40px"></a></div>
+            </div>
         </div>
     </div>
 </template>
@@ -153,7 +155,13 @@
     }
     .reseauxSociaux{
         grid-row: 10/11;
-        
+    
+    }
+    .logoRes{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     column-gap: 30px;
     }
     textarea{
         border : 1px solid #ccc;
