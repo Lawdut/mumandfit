@@ -105,8 +105,6 @@ a, router-link{
   width: 100%;
 
   overflow-y: auto;
-  padding-right: 50px;
-  padding-left: 50px;
 }
 
 

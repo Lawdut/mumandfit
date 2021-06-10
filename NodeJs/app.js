@@ -123,7 +123,16 @@ app.post('/connexion', function (req, res) {
     }
   })
 })
-         /* ----- CREATION ARTICLE ----- */
+
+          
+        /* ----- GESTION DE LA PAGE HOME ----- */
+app.post('/getPres', function(req, res){
+  bdd.getPresentation('textPresentation', function(pres){
+    console.log(pres[0])
+    res.send(pres[0]);
+  })
+})
+        /* ----- CREATION ARTICLE ----- */
 
 app.post('/createArticle',authenticateToken, function(req, res) {
     

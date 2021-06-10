@@ -46,7 +46,15 @@ exports.connexion = function(table, user, callback) {
     
     
 }
-
+exports.getPresentation = function (table, callback){
+    var sql = "SELECT `textPres` FROM " + table + " WHERE id = " + 1;
+    conn.query(sql, function(error, rows){
+        if(error){
+            console.log(error)
+        }
+        callback(rows);
+    })
+}
 exports.getAllArticles = function (table, callback){
     var sql = "SELECT * FROM " + table;
         conn.query(sql, function(error, rows) {
