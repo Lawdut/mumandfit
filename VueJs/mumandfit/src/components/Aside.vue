@@ -66,7 +66,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-left: 90px;
+    margin-left: 60px;
 }
 
 #titre:hover {
@@ -83,7 +83,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    margin-left: 90px;
+    margin-left: 60px;
     padding: 0;
     
 }
