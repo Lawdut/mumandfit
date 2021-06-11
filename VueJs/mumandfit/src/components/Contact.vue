@@ -50,17 +50,26 @@
         },
         methods : {
             sendMessage : function(){
-                let userMessage = {
-                    firstName : this.firstName,
-                    lastName : this.lastName,
-                    mail : this.mail,
-                    phone : this.phone,
-                    message : this.message,
-                }
-                if(this.firstName != '' && this.lastName != '' && this.mail != '' && this.phone != '' )
-                this.http.post("//localhost:8010/formContact", userMessage)
-                .then(response => console.log(response.data))
-                .then(()=> {this.$router.push('/')})
+                let self = this;
+                window.grecaptcha.ready(function(){
+                    window.grecaptcha.execute("6LeJiycbAAAAAKiNDgZRDkzPXsObmQjM1hOgtYmk", {
+                        action : "submit"
+                    })
+                    .then(function(token) {
+                        let userMessage = {
+                            firstName : self.firstName,
+                            lastName : self.lastName,
+                            mail : self.mail,
+                            phone : self.phone,
+                            message : self.message,
+                            token : token,
+                        }
+                        if(self.firstName != '' && self.lastName != '' && self.mail != '' && self.phone != '' )
+                        self.http.post("//localhost:8010/formContact", userMessage)
+                        .then(response => console.log(response.data))
+                        .then(()=> {self.$router.push('/')})
+                    })
+                })
             }
         }
     }

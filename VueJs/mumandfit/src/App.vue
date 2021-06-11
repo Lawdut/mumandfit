@@ -135,6 +135,10 @@ a, router-link{
   display: none;
 }
 
+.grecaptcha-badge {
+        visibility: hidden;
+    }
+
 @media(max-width: 1600px){
   #titre {
      

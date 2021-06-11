@@ -29,13 +29,22 @@
         methods : {
 
             connexion () {
-                if(this.email != "" && this.password !=""){
-                    const mail = this.email;
-                    const passwd = this.password;
-                    this.$store.dispatch('connexionStore', {mail, passwd})
-                    .then(()=> this.$router.push("/admin"))
+                let self = this;
+                window.grecaptcha.ready(function(){
+                    window.grecaptcha.execute("6LeJiycbAAAAAKiNDgZRDkzPXsObmQjM1hOgtYmk", {
+                        action : "submit"
+                    })
+                .then(function(token){
+                    if(self.email != "" && self.password !=""){
+                    const mail = self.email;
+                    const passwd = self.password;
+                    self.$store.dispatch('connexionStore', {mail, passwd, token})
+                    .then(()=> self.$router.push("/admin"))
                 }
+
+                })
                 
+                })
             },
             
 

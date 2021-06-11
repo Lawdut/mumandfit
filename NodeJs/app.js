@@ -16,7 +16,7 @@ const salt = bcrypt.genSaltSync(10);
 const path = require("path");
 const config = require("./models/config.js");
 const helmet = require('helmet');
-const rp = require('request-promise');
+const axios = require("axios");
 
 
 
@@ -99,27 +99,36 @@ app.post('/inscription', function (req, res) {
 });
 
 app.post('/connexion', function (req, res) {
-  bdd.connexion('user', req.body, function(user){
-    //console.log(req.body);
-    if(user.length !== 0 ){
-      //console.log(user);
-    
-      const isValidPass = bcrypt.compareSync(req.body.passwd, user[0].mdp);
-    
-      if(isValidPass) {
+
+  axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=6LeJiycbAAAAAC2O9CmLGEV96ZYSMJcOdyDKtoYL&response=${req.body.token}`)
+  .then((resp)=>{
+    console.log(resp.data)
+    if(resp.data.success === true){
+      bdd.connexion('user', req.body, function(user){
+        //console.log(req.body);
+        if(user.length !== 0 ){
+          //console.log(user);
         
-        const token = generateAccessToken({
-          email : user[0].email,
-          role : user[0].role,
-        });
-        //console.log(token);
-        res.status(200).send(token);
-      }
-      else{
-        res.status(500).send("Le mot de passe est invalide");
-      }
+          const isValidPass = bcrypt.compareSync(req.body.passwd, user[0].mdp);
+        
+          if(isValidPass) {
+            
+            const token = generateAccessToken({
+              email : user[0].email,
+              role : user[0].role,
+            });
+            //console.log(token);
+            res.status(200).send(token);
+          }
+          else{
+            res.status(500).send("Le mot de passe est invalide");
+          }
+        }else{
+          res.status(500).send('L\'utilisateur n\'existe pas');
+        }
+      })
     }else{
-      res.status(500).send('L\'utilisateur n\'existe pas');
+      res.send("Erreur Recaptcha")
     }
   })
 })
@@ -521,33 +530,40 @@ let index = art.indexOf(img)
           /*-----FORMULAIRE DE CONTACT ET ENVOI MAIL-----*/
 app.post('/formContact', (req, res)=>{
   console.log(req.body.mail);
-  let userMail = req.body.mail
-  let transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth:{
-      user : process.env.EMAIL,
-      pass: process.env.PASSWORD,
-    }
-  });
-
-  let mailOption = {
-    from: '"MumAndFit Contact" <mumandfit@gmail.com>',
-    to:'mumandfit@gmail.com',
-    subject:'Demande de prise de contact',
-    html: 
-    '<h1>Demande de contact de :</h1> <br> <strong>Prénom :</strong> ' + req.body.firstName + '<br> <strong>Nom :</strong> ' +req.body.lastName + '<br> <strong>Email :</strong> ' + req.body.mail + '<br> <strong>Numéro de téléphone :</strong> '+req.body.phone+ '<br> <strong>Message :</strong> <br>'+ req.body.message
+  axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=6LeJiycbAAAAAC2O9CmLGEV96ZYSMJcOdyDKtoYL&response=${req.body.token}`)
+  .then((resp)=>{
+    console.log(resp.data)
     
-    
-  };
-
-  transporter.sendMail(mailOption, function(err, data){
-    if(err){
-      console.log('email non envoyé', err);
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth:{
+        user : process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      }
+    });
+  
+    let mailOption = {
+      from: '"MumAndFit Contact" <mumandfit@gmail.com>',
+      to:'mumandfit@gmail.com',
+      subject:'Demande de prise de contact',
+      html: 
+      '<h1>Demande de contact de :</h1> <br> <strong>Prénom :</strong> ' + req.body.firstName + '<br> <strong>Nom :</strong> ' +req.body.lastName + '<br> <strong>Email :</strong> ' + req.body.mail + '<br> <strong>Numéro de téléphone :</strong> '+req.body.phone+ '<br> <strong>Message :</strong> <br>'+ req.body.message
+      
+      
+    };
+    if(resp.data.success === true){
+      transporter.sendMail(mailOption, function(err, data){
+        if(err){
+          console.log('email non envoyé', err);
+        }else{
+          console.log('email envoyé')
+        }
+      })
+      res.send('message envoyé !')
     }else{
-      console.log('email envoyé')
+      res.send('Erreur recaptcha')
     }
   })
-res.send('message envoyé !')
 })
 
     
