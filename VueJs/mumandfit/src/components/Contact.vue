@@ -6,10 +6,10 @@
         
         <div class ="formContact">
             <h3 class = "formTitre">Laissez-nous vos coordonnées</h3>
-            <div id ="firstName"><input type ="text" class = "inputForm" name="firstName" v-model="firstName" placeholder="Prénom" required></div>
-            <div id = "lastName"><input type ="text" class = "inputForm"  name="lastName" v-model="lastName" placeholder="Nom" required></div>
-            <div id = "email"><input type ="mail" class = "inputForm" name="email" v-model="mail" placeholder="exemple@exemple.com" required></div>
-            <div id = "phone"><input type ="tel" class = "inputForm" name="phone" v-model="phone" placeholder="0102030405" required></div>
+            <div id ="firstName"><input type ="text" id = "inputFormFirstName" name="firstName" @focus="borderFirstNameChange" v-bind:style="`--borderFirstName : ${computedBorderFirstName}`" v-model="firstName" placeholder="Prénom" required></div>
+            <div id = "lastName"><input type ="text" id = "inputFormLastName"  name="lastName" @focus="borderLastNameChange" v-bind:style="`--borderLastName : ${computedBorderLastName}`" v-model="lastName" placeholder="Nom" required></div>
+            <div id = "email"><input type ="mail" id = "inputFormEmail" name="email" @focus="borderEmailChange" v-bind:style="`--borderEmail : ${computedBorderEmail}`" v-model="mail" placeholder="exemple@exemple.com" required></div>
+            <div id = "phone"><input type ="tel" id = "inputFormPhone" name="phone" @focus="borderPhoneChange" v-bind:style="`--borderPhone : ${computedBorderPhone}`" v-model="phone" placeholder="0102030405" required></div>
             <div id = "message"> <textarea id="textArea" name="message" v-model="message" placeholder="Votre message ici (optionnel)"></textarea></div>
             <div id="submitForm"><button id = "send" class = "Button1" name = "send" @click ="sendMessage">Envoyer</button></div>
         </div>
@@ -46,6 +46,24 @@
                 mail : '',
                 phone : '',
                 message : '',
+                borderFirstName : '',
+                borderLastName : '',   
+                borderEmail : '',
+                borderPhone : ''              
+            }
+        },
+        computed: {
+            computedBorderFirstName: function () {
+            return this.borderFirstName;
+            },
+            computedBorderLastName: function () {
+            return this.borderLastName;
+            },
+            computedBorderEmail: function () {
+            return this.borderEmail;
+            },
+            computedBorderPhone: function () {
+            return this.borderPhone;
             }
         },
         methods : {
@@ -64,12 +82,36 @@
                             message : self.message,
                             token : token,
                         }
-                        if(self.firstName != '' && self.lastName != '' && self.mail != '' && self.phone != '' )
-                        self.http.post("//localhost:8010/formContact", userMessage)
-                        .then(response => console.log(response.data))
-                        .then(()=> {self.$router.push('/')})
+                        if(self.firstName != '' && self.lastName != '' && self.mail != '' && self.phone != '' ){
+                            self.http.post("//localhost:8010/formContact", userMessage)                        
+                            .then(response => console.log(response.data))
+                            .then(()=> {self.$router.push('/')})
+                        }if(self.firstName == ''){
+                            self.borderFirstName = "1px solid red"
+                        }if(self.lastName == ''){
+                            self.borderLastName = "1px solid red"
+                        }if(self.mail == ''){
+                            self.borderEmail = "1px solid red"
+                        }if(self.phone == ''){
+                            self.borderPhone = "1px solid red"
+                        }
                     })
                 })
+            },
+            borderFirstNameChange : function() {
+                this.borderFirstName = "1px solid #ccc"
+            },
+            borderLastNameChange : function() {
+                this.borderLastName = "1px solid #ccc"
+            },
+            borderEmailChange : function() {
+                this.borderEmail = "1px solid #ccc"
+            },
+            borderPhoneChange : function() {
+                this.borderPhone = "1px solid #ccc"
+            },
+            verifyPattern : function() {
+                console.log('hello')
             }
         }
     }
@@ -153,12 +195,43 @@
         justify-content: center;
         align-items: center;
     }
-    .inputForm{
+    #inputFormFirstName{
         width: 50%;
         padding: 12px 20px;
         margin: 8px 0;
+        --borderFirstName : 1px solid #ccc;
+        border: var(--borderFirstName);
         display: inline-block;
-        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    #inputFormLastName{
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        --borderLastName : 1px solid #ccc;
+        border: var(--borderLastName);
+        display: inline-block;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    #inputFormEmail{
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        --borderEmail : 1px solid #ccc;
+        border: var(--borderEmail);
+        display: inline-block;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    #inputFormPhone{
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        --borderPhone : 1px solid #ccc;
+        border: var(--borderPhone);
+        display: inline-block;
         border-radius: 4px;
         box-sizing: border-box;
     }
