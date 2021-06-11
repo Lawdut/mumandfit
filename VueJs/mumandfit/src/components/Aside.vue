@@ -4,9 +4,9 @@
             <h1><router-link to = "/">Mum&Fit</router-link></h1>
         </div>
         <div class='liens'>
-                <div class = "texteLiens"><router-link to = "/blog">Actualité</router-link></div>
-                <div class = "texteLiens"><router-link to = "/contact">Contact</router-link></div>
+                <div class = "texteLiens"><router-link to = "/blog">Blog</router-link></div>
                 <div class = "texteLiens"><router-link to = "/blog">E-Boutiques</router-link></div>
+                <div class = "texteLiens"><router-link to = "/contact">Contact</router-link></div>
                 <div class = "searchBox"><input class="searchInput" @focus="onFocus" id='searchInputId' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results)">Go</button></div>
                 <div class = "texteLiens"><router-link to = "/blog">Mentions légales</router-link></div>
                 <div class = "logoUser" v-if="this.$store.state.token">

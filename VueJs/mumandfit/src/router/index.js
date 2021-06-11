@@ -13,7 +13,7 @@ import Aside from '../components/Aside.vue'
 import HeaderResp from '../components/HeaderResp.vue'
 import Contact from '../components/Contact.vue'
 import ChangeImageSlider from '../components/Admin/ChangeImageSlider.vue'
-
+import NewEbook from '../components/Admin/NewEbook.vue'
 Vue.use(VueRouter)
 //Vue.use($)
 
@@ -46,7 +46,11 @@ const routes = [
     name : "Inscription",
     component: Inscription
   },*/
-
+  {
+    path:"/newEbook",
+    name:"newEbook",
+    component : NewEbook
+  },
   {
     path : "/blog",
     name : "Blog",

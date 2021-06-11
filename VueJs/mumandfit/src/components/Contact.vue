@@ -87,13 +87,13 @@
                             .then(response => console.log(response.data))
                             .then(()=> {self.$router.push('/')})
                         }if(self.firstName == ''){
-                            self.borderFirstName = "1px solid red"
+                            self.borderFirstName = "2px solid red"
                         }if(self.lastName == ''){
-                            self.borderLastName = "1px solid red"
+                            self.borderLastName = "2px solid red"
                         }if(self.mail == ''){
-                            self.borderEmail = "1px solid red"
+                            self.borderEmail = "2px solid red"
                         }if(self.phone == ''){
-                            self.borderPhone = "1px solid red"
+                            self.borderPhone = "2px solid red"
                         }
                     })
                 })

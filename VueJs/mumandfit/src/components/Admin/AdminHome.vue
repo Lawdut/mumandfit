@@ -6,7 +6,8 @@
             </div>
 
             <div id = "navAdmin">
-                <div class = "liensAdmin"><router-link to="/newArticle"><button class = "Button1">Création d'article</button></router-link></div>
+                <div class = "liensAdmin"><router-link to="/newEbook"><button class = "Button1">Référencer un nouvel e-book</button></router-link></div>
+                <div class = "liensAdmin"><router-link to="/newArticle"><button class = "Button1">Création d'article pour le blog</button></router-link></div>
                 <div class = "liensAdmin"><router-link to="/changeSlider"><button class = "Button1">Changer les images du slider</button></router-link></div>
                 <div class = "deconnexion"><button @click='deconnexion' class = "Button1">Déconnexion</button></div>
             </div>
