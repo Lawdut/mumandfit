@@ -248,5 +248,23 @@ exports.deleteAllInDBB = async function(table1, table2, article, callback){
         })
 
     })
-  
+}
+exports.createEbook = function (table, ebook, callback){
+    console.log(ebook.ebook.guid)
+    var sql = "INSERT INTO " + table + "(id, guid, titre, prix, description) VALUE (NULL, '"+ebook.ebook.guid+"','"+ebook.ebook.titre+"','"+ebook.ebook.prix+"','"+ebook.ebook.description+"');";
+    conn.query(sql, function(err){
+        if(err){
+            console.log(err)
+        }
+        callback();
+    })
+}
+exports.getAllEbooks = function (table, callback){
+    var sql = "SELECT * FROM " + table;
+    conn.query(sql, function(err, rows){
+        if(err){
+            console.log(err)
+        }
+        callback(rows);
+    })
 }

@@ -40,7 +40,8 @@
         
         beforeMount : function (){
             this.http.post('//localhost:8010/getAllArticles')
-                .then(response=>{this.articleTab = response.data.articles.reverse()})
+            //.then(response=>{console.log(response.data.articles)})
+            .then(response=>{this.articleTab = response.data.articles.reverse()})
         },
         
         methods : {
@@ -53,7 +54,7 @@
             onChangePage(articles) {
             this.articles = articles;
             document.body.scrollTop = document.documentElement.scrollTop = 0;
-        }
+            }
         }
 
         }

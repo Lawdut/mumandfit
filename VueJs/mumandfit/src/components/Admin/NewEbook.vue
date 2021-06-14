@@ -3,14 +3,14 @@
         <h1>Référencer un nouvel e-book sur le site</h1>
 
         <h2>Etape 1</h2>
-        <p>Se rendre sur Snipcart à l'adresse <a href = "https://app.snipcart.com/dashboard/digital/upload">en suivant ce lien</a> et télécharger le fichier</p>
+        <p>Se rendre sur Snipcart <a href = "https://app.snipcart.com/dashboard/digital/upload">en suivant ce lien</a> et télécharger le fichier</p>
 
         <h2>Etape 2</h2>
         <p>Récupérer le GUID et l'insérer ci-dessous</p>
         <input type = "text" class = "inputForm" v-model = ebook.guid>
 
         <h2>Etape 3</h2>
-        <p>Fixer un prix (sous ce format : 79.95)</p>
+        <p>Fixer un prix (sous ce format ex : 79.95)</p>
         <input type = "text" class = "inputForm" v-model = ebook.prix>
 
         <h2>Etape 4</h2>
@@ -29,7 +29,7 @@
         </div>
 
         <div id = "buttonEbook">
-            <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1 save" v-if="token">
+            <input type = 'submit' @click="saveEbook" value="Enregistrer" class = "Button1 save" v-if="token">
             <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
         </div>
     </div>
@@ -88,7 +88,24 @@ import Editor from '@tinymce/tinymce-vue';
                 }
         },
         methods : {
-            
+            saveEbook(){
+
+                if(this.ebook.guid != '' && this.ebook.titre != '' && this.ebook.titre != '' && this.ebook.description != ''){
+                    let ebook = {
+                        ebook : {
+                    guid : this.ebook.guid,
+                    titre : this.ebook.titre,
+                    prix : this.ebook.prix,
+                    description : this.ebook.description,
+                }}
+                console.log('hello')
+                this.http.post('//localhost:8010/saveEbook', ebook)
+                .then(response=>{console.log(response.data)})
+                .then(()=>{this.$router.push('/')})
+                }else{
+                    console.log("idiot")
+                }
+            }
         }
     }
 </script>

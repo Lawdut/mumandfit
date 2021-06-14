@@ -66,10 +66,11 @@ function authenticateToken(req, res, next) {
     });
   }
 
-
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
                     // ----- NETTOYAGE DES DONNEES ----- //
   function cleanArticle(unArticle){
-    const unArticleToClean = unArticle; 
+    let unArticleToClean = unArticle; 
     
     for(let i in unArticleToClean['unArticle']){
       if (typeof unArticleToClean['unArticle'][i] === 'string'){
@@ -80,13 +81,22 @@ function authenticateToken(req, res, next) {
     return unArticleToClean;
   }
 function cleanSearch(request){
-  const requestToClean = request;
+  let requestToClean = request;
  
   requestToClean['search'] = requestToClean['search'].replace(/'/g,"&apos;").replace(/#/g,"&num;").replace(/♯/g,"&sharp;").replace(/ /g, "% %");
   
   return requestToClean;
 }
 
+function clean(request){
+  let requestToClean = request;
+
+  requestToClean = requestToClean.replace(/'/g,"&apos;").replace(/#/g,"&num;").replace(/♯/g,"&sharp;");
+
+  return requestToClean;
+}
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 app.post('/inscription', function (req, res) {
     
     //console.log(req.body);
@@ -133,6 +143,8 @@ app.post('/connexion', function (req, res) {
   })
 })
 
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
           
         /* ----- GESTION DE LA PAGE HOME ----- */
 app.post('/getPres', function(req, res){
@@ -141,7 +153,7 @@ app.post('/getPres', function(req, res){
   })
 })
 app.post('/modifPres',authenticateToken, function (req, res){
-  let modifPres = cleanArticle(req.body.pres);
+  let modifPres = clean(req.body.pres);
   console.log (modifPres)
   bdd.modifPresentation('textPresentation', modifPres, function(err){
     if(err){
@@ -150,6 +162,24 @@ app.post('/modifPres',authenticateToken, function (req, res){
     res.json({response : 'modification validée'})
   })
 })
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+          /* ----- MOTEUR DE RECHERCHE ----- */
+app.post('/searchArticle', function(req, res){
+  console.log(req.body);
+  let requestCleaned = cleanSearch(req.body);
+
+  bdd.getResultsOfSearch('articles', requestCleaned, function(filterArticles){
+    console.log(filterArticles);
+    res.send({filterArticles})
+  })
+})
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
         /* ----- CREATION ARTICLE ----- */
 
 app.post('/createArticle',authenticateToken, function(req, res) {
@@ -165,9 +195,8 @@ app.post('/createArticle',authenticateToken, function(req, res) {
       if (err) {
         res.status(500).send({ message: err });
       }
+      res.send({res : 'Créé'});
     })
-    
-    res.send({res : 'Créé'});
     
   }catch(err){
     res.status(500);
@@ -182,19 +211,6 @@ app.post('/getAllArticles', function (req, res) {
   })
 })
 
-
-
-          /* ----- MOTEUR DE RECHERCHE ----- */
-app.post('/searchArticle', function(req, res){
-  console.log(req.body);
-  let requestCleaned = cleanSearch(req.body);
-
-  bdd.getResultsOfSearch('articles', requestCleaned, function(filterArticles){
-    console.log(filterArticles);
-    res.send({filterArticles})
-  })
-  //res.send('salut')
-})
 
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle',authenticateToken, function(req, res){
@@ -248,6 +264,43 @@ app.post('/deleteArticle', authenticateToken, async function(req, res){
     
 })
 
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+          /* ----- REFERENCEMENT D UN NOUVEL EBOOK ----- */
+
+app.post('/saveEbook', authenticateToken, function (req, res){
+//console.log(req.body)
+
+req.body.ebook.titre = clean(req.body.ebook.titre)
+req.body.ebook.description = clean(req.body.ebook.description)
+
+//console.log(req.body)
+
+  try {
+    bdd.createEbook('ebook', req.body, function(err){
+      if(err){
+        res.status(500).send({ message: err });
+      }
+      res.send({res : 'Ebook créé'});
+    })
+
+  }catch(err){
+    res.status(500);
+    res.send('Erreur de création de l\'ebook');
+    console.error(err.message);
+  }
+})
+
+          /* AFFICHAGE DES EBOOKS ----- */
+app.post('/getAllEbooks', function(req, res){
+  bdd.getAllEbooks('ebook', function(ebooks){
+    res.send({ebooks})
+  })
+})
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
           /* ----- UPLOAD IMAGE PAR TINY DRIVE ----- */
 app.post('/jwt', (req, res) => {
@@ -526,6 +579,9 @@ let index = art.indexOf(img)
     callback();
   }
 }
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
           /*-----FORMULAIRE DE CONTACT ET ENVOI MAIL-----*/
 app.post('/formContact', (req, res)=>{

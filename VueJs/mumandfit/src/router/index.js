@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Connexion from '../components/Connexion.vue'
 //import Inscription from '../components/Inscription.vue'
-import Blog from '../views/Blog.vue'
+import Blog from '../components/Blog.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
 import NewArticle from '../components/Admin/NewArticle.vue'
@@ -14,6 +14,7 @@ import HeaderResp from '../components/HeaderResp.vue'
 import Contact from '../components/Contact.vue'
 import ChangeImageSlider from '../components/Admin/ChangeImageSlider.vue'
 import NewEbook from '../components/Admin/NewEbook.vue'
+import Eboutique from '../components/Eboutique.vue'
 Vue.use(VueRouter)
 //Vue.use($)
 
@@ -50,6 +51,11 @@ const routes = [
     path:"/newEbook",
     name:"newEbook",
     component : NewEbook
+  },
+  {
+    path:"/eboutique",
+    name : "eboutique",
+    component : Eboutique,
   },
   {
     path : "/blog",
