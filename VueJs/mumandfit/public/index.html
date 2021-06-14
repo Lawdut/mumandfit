@@ -7,15 +7,17 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <script src="https://www.google.com/recaptcha/api.js?render=6LeJiycbAAAAAKiNDgZRDkzPXsObmQjM1hOgtYmk"></script>
+    <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.css" />
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
+    <div hidden id="snipcart" data-api-key="OTc5Y2VjZTgtZDk4NC00ZjA5LWFhNWItOTBiMjk4YzA1YjYwNjM3NTkwMDk0OTIwNjcxOTc1" data-currency="eur" data-config-modal-style="side"></div>
     <div id="app"></div>
     <!-- built files will be auto injected -->
     <script src="https://use.fontawesome.com/f76a371efc.js"></script>
-   
+    <script async src="https://cdn.snipcart.com/themes/v3.2.0/default/snipcart.js"></script>
   </body>
 </html>

@@ -268,3 +268,12 @@ exports.getAllEbooks = function (table, callback){
         callback(rows);
     })
 }
+exports.getOneEbook = function (table, id, callback){
+    var sql = "SELECT * FROM " +table +" WHERE id = "+id
+    conn.query(sql, function(err, rows){
+        if(err){
+            console.log(err)
+        }
+        callback(rows);
+    })
+}

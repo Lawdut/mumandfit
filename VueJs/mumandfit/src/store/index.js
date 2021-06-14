@@ -7,12 +7,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     unArticle : "",
+    ebook : "",
     token : localStorage.getItem('token') || "",
     user : "",
     search : "",
   },
   mutations: {
     selectedArticle(state, unArticle) {state.unArticle = unArticle},
+
+    selectedEbook(state, ebook) {state.ebook = ebook},
     
     modifArticleStore(state, unArticleModifie) {state.unArticle = unArticleModifie},
 
@@ -26,8 +29,11 @@ export default new Vuex.Store({
   actions: {
 
     selectArticle(context, unArticle) {
-    console.log(unArticle);
     context.commit('selectedArticle', unArticle)
+    },
+
+    selectEbook(context, ebook){
+      context.commit('selectedEbook', ebook)
     },
 
     connexionStore(context, infos) {

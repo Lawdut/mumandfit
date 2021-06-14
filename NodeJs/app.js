@@ -274,6 +274,7 @@ app.post('/saveEbook', authenticateToken, function (req, res){
 
 req.body.ebook.titre = clean(req.body.ebook.titre)
 req.body.ebook.description = clean(req.body.ebook.description)
+req.body.ebook.corps = clean(req.body.ebook.corps)
 
 //console.log(req.body)
 
@@ -296,6 +297,13 @@ req.body.ebook.description = clean(req.body.ebook.description)
 app.post('/getAllEbooks', function(req, res){
   bdd.getAllEbooks('ebook', function(ebooks){
     res.send({ebooks})
+  })
+})
+
+app.post('/getOneEbook', function(req, res){
+  console.log(req.body)
+  bdd.getOneEbook('ebook', req.body.id, function(ebook){
+    res.send({ebook})
   })
 })
 

@@ -11,7 +11,7 @@
 
         <h2>Etape 3</h2>
         <p>Fixer un prix (sous ce format ex : 79.95)</p>
-        <input type = "text" class = "inputForm" v-model = ebook.prix>
+        <input type = "number" class = "inputForm" v-model = ebook.prix>
 
         <h2>Etape 4</h2>
         <p>Donner un titre à l'e-book</p>
@@ -22,9 +22,20 @@
         <div id = "description">
             <editor v-model = ebook.description 
             api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :init="myInit"
+            :init="myInitDescription"
             :disabled="status"
-            initial-value="<strong>Clic ici</strong>"
+            initial-value="<strong>Clic ici pour écrire la description</strong>"
+            />
+        </div>
+
+        <h2>Etape 6</h2>
+        <p>Ecrire le corps de l'article présentant l'Ebook</p>
+        <div id= "corps">
+            <editor v-model = ebook.corps 
+            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+            :init="myInitCorps"
+            :disabled="status"
+            initial-value="<strong>Clic ici pour écrire le corps du texte</strong>"
             />
         </div>
 
@@ -49,12 +60,38 @@ import Editor from '@tinymce/tinymce-vue';
                     guid : '',
                     titre : '',
                     prix : '',
-                    description : ''
+                    description : '',
+                    corps :'',
                 },
                 token : this.$store.state.token,
                 status : null,
-                myInit : {
+                myInitDescription : {
                     selector : '#description',
+                    height: 500,
+                    
+                    menubar: 'file edit view insert format tools table help',
+                    plugins: [
+                    'print preview paste importcss searchreplace autolink',
+                    ' directionality code visualblocks visualchars fullscreen image',
+                    'link media template codesample table charmap hr pagebreak nonbreaking',
+                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    'textpattern noneditable help charmap quickbars emoticons '
+                    ],
+                    toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | imagetools',
+                    toolbar_sticky: true,
+                    inline: true,
+                    encoding: 'UTF-8',
+                    entity_encoding : 'raw',
+                    image_advtab: true,
+                    image_uploadtab: true,
+                    images_upload_url : '//localhost:8010/upload',
+                    
+               },
+               myInitCorps : {
+                    selector : '#corps',
                     height: 500,
                     
                     menubar: 'file edit view insert format tools table help',
@@ -90,13 +127,14 @@ import Editor from '@tinymce/tinymce-vue';
         methods : {
             saveEbook(){
 
-                if(this.ebook.guid != '' && this.ebook.titre != '' && this.ebook.titre != '' && this.ebook.description != ''){
+                if(this.ebook.guid != '' && this.ebook.titre != '' && this.ebook.titre != '' && this.ebook.description != '' && this.ebook.corps){
                     let ebook = {
                         ebook : {
                     guid : this.ebook.guid,
                     titre : this.ebook.titre,
                     prix : this.ebook.prix,
                     description : this.ebook.description,
+                    corps : this.ebook.corps
                 }}
                 console.log('hello')
                 this.http.post('//localhost:8010/saveEbook', ebook)

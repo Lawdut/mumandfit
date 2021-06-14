@@ -15,6 +15,9 @@ import Contact from '../components/Contact.vue'
 import ChangeImageSlider from '../components/Admin/ChangeImageSlider.vue'
 import NewEbook from '../components/Admin/NewEbook.vue'
 import Eboutique from '../components/Eboutique.vue'
+import Ebook from '../components/Ebook.vue'
+import AllEbook from '../components/AllEbook.vue'
+
 Vue.use(VueRouter)
 //Vue.use($)
 
@@ -56,6 +59,17 @@ const routes = [
     path:"/eboutique",
     name : "eboutique",
     component : Eboutique,
+  },
+  {
+    path : "/ebook/:id",
+    name : "ebook",
+    component : Ebook,
+    props : true
+  },
+  {
+    path : "/allEbook",
+    name: "AllEbook",
+    component : AllEbook
   },
   {
     path : "/blog",
