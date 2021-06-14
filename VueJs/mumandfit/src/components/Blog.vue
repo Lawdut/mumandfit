@@ -11,7 +11,7 @@
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="8" :labels="customLabels"></jw-pagination>
+            <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="8" :labels="customLabels" :maxPages ="3"></jw-pagination>
         </div>
     </div>
 </template>
@@ -40,7 +40,7 @@
         
         beforeMount : function (){
             this.http.post('//localhost:8010/getAllArticles')
-            //.then(response=>{console.log(response.data.articles)})
+            
             .then(response=>{this.articleTab = response.data.articles.reverse()})
         },
         
@@ -217,5 +217,13 @@
     color : #ec7463;
 }
 
+@media (max-width: 1000px) {
+    .card-footer{
+        padding-top: 50px;
+        height: 10%;
+    }
+    
+    
+}
 
 </style>
