@@ -1,10 +1,10 @@
 <template>
-    <div class = "article-box">
-    <div class = "article">
+    <div class = "ebook-box">
+    <div class = "ebook">
         <div id = "titreModifEbook">
             <editor v-model = ebook.titre output-format="html"
-            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-            :disabled="status"
+                api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                :disabled="status"
                 :init="myInitTitreEbook"
 
             />
@@ -25,15 +25,15 @@
         </div>
         
     </div>
-    <div id = "buttonArticle">
-        <input type = 'submit'  value="Enregistrer" class = "Button1 save" v-if="token">
-        <input type = 'submit'  value = "Supprimer" class = "Button1 delete" v-if="token">
+    <div id = "buttonEbook">
+        <input type = 'submit'  value="Enregistrer" class = "Button1 save" v-if="token" @click="saveEbookModif">
+        <input type = 'submit'  value = "Supprimer" class = "Button1 delete" v-if="token" @click="deleteEbook">
         <button class = "snipcart-add-item Button1" 
             :data-item-id= this.ebook.id
             :data-item-price= this.ebook.prix
             :data-item-url= this.ebook.url
             :data-item-file-guid = this.ebook.guid
-            :data-item-name = this.ebook.titre
+            :data-item-name = this.titreSansBalise
         >Ajouter au panier</button>
         <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
     </div>
@@ -58,7 +58,7 @@ import Editor from '@tinymce/tinymce-vue';
                     corps : '',
                     url : "http://localhost:8080/ebook/"+`${this.$route.params.id}` ,
                 },
-                urls : this.$route.params.id,
+                titreSansBalise : "",
                 token : this.$store.state.token,
                 status : null,
                 myInitTitreEbook : {
@@ -147,7 +147,9 @@ import Editor from '@tinymce/tinymce-vue';
                 this.ebook.titre = response.data.ebook[0].titre;
                 this.ebook.description = response.data.ebook[0].description;
                 this.ebook.corps = response.data.ebook[0].corps;
+                this.titreSansBalise = response.data.ebook[0].titre.replace(/<h1>/g, "").replace(/<\/h1>/g, "")
             })
+            //.then(response=>{console.log(response.data)})
         },
         mounted : function (){
                 if(this.token === "") {
@@ -159,11 +161,50 @@ import Editor from '@tinymce/tinymce-vue';
         methods : {
             navigation : function () {
                 this.$router.go(-1)
+            },
+            deleteEbook : function() {
+                let ebook = {
+                    ebook : {
+                        id : this.ebook.id,
+                        guid : this.ebook.guid,
+                        prix : this.ebook.prix,
+                        titre : this.ebook.titre,
+                        description : this.ebook.description,
+                        corps : this.ebook.corps,
+                        url : "http://localhost:8080/ebook/"+`${this.$route.params.id}`
+                    }  
+                }
+                this.http.post('//localhost:8010/deleteEbook', ebook)
+                .then(()=>{this.$router.push('/eboutique')})
+            },
+            saveEbookModif : function(){
+                let ebook = {
+                    ebook : {
+                        id : this.ebook.id,
+                        guid : this.ebook.guid,
+                        prix : this.ebook.prix,
+                        titre : this.ebook.titre,
+                        description : this.ebook.description,
+                        corps : this.ebook.corps,
+                        url : "http://localhost:8080/ebook/"+`${this.$route.params.id}`
+                    }  
+                }
+                this.http.post('//localhost:8010/modifEbook', ebook)
+                .then(()=>{this.$router.push('/eboutique')})
             }
         }
     }
 </script>
 
 <style scoped>
-
+.ebook-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px 30px 0px;
+}
+.ebook {
+    width: 90%;
+}
 </style>

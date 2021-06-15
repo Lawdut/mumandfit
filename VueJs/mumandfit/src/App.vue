@@ -134,6 +134,9 @@ a, router-link{
 #headerRespApp{
   display: none;
 }
+.snipcart-modal__container{
+  box-shadow: 1px 1px 10px 3px #2c3e50 !important;
+}
 
 .grecaptcha-badge {
         visibility: hidden;
@@ -163,11 +166,14 @@ a, router-link{
     grid-column: 1/21;
     grid-row: 1/3;  
    box-shadow: 1px 1px 10px 3px #2c3e50;
-   z-index:500;
+   z-index:10;
    /*border : solid 3px black*/
   }
   ::placeholder{
     font-size: 9px;
+  }
+  .snipcart-modal__container{
+
   }
 }
 </style>

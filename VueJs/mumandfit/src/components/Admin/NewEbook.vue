@@ -15,7 +15,14 @@
 
         <h2>Etape 4</h2>
         <p>Donner un titre à l'e-book</p>
-        <input type = "text" class = "inputForm" v-model = ebook.titre>
+        <div id = "titre">
+            <editor v-model = ebook.titre 
+            api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+            :init="myInitTitre"
+            :disabled="status"
+            initial-value="<h1>Clic ici pour écrire le titre</h1>"
+            />
+        </div>
 
         <h2>Etape 5</h2>
         <p>Donner une description en cliquant ci-dessous</p>
@@ -65,6 +72,31 @@ import Editor from '@tinymce/tinymce-vue';
                 },
                 token : this.$store.state.token,
                 status : null,
+                myInitTitre : {
+                    selector : '#titre',
+                    height: 500,
+                    
+                    menubar: 'file edit view insert format tools table help',
+                    plugins: [
+                    'print preview paste importcss searchreplace autolink',
+                    ' directionality code visualblocks visualchars fullscreen image',
+                    'link media template codesample table charmap hr pagebreak nonbreaking',
+                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    'textpattern noneditable help charmap quickbars emoticons '
+                    ],
+                    toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | imagetools',
+                    toolbar_sticky: true,
+                    inline: true,
+                    encoding: 'UTF-8',
+                    entity_encoding : 'raw',
+                    image_advtab: true,
+                    image_uploadtab: true,
+                    images_upload_url : '//localhost:8010/upload',
+                    
+               },
                 myInitDescription : {
                     selector : '#description',
                     height: 500,
@@ -137,7 +169,7 @@ import Editor from '@tinymce/tinymce-vue';
                     corps : this.ebook.corps
                 }}
                 console.log('hello')
-                this.http.post('//localhost:8010/saveEbook', ebook)
+                this.http.post('//localhost:8010/createEbook', ebook)
                 .then(response=>{console.log(response.data)})
                 .then(()=>{this.$router.push('/')})
                 }else{

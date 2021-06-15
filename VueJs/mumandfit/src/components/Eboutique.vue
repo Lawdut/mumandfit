@@ -3,8 +3,8 @@
         <div class = "list-ebooks">
             <div class = "ebooks">
                 <div class = "card-ebook" v-for="ebook in ebooks" v-bind:key="ebook.id">
-                    <div class = "imageEbook"><p><img src="../assets/sport.jpg"></p></div>
-                    <div class = "titreEbook" v-html="ebook.titre">{{ebook.titre}}</div>
+                    <div class = "imageEbook"><p><img src="../assets/ebook.png"></p></div>
+                    <div class = "titreEbook" v-html="ebook.titre"><h1>{{ebook.titre}}</h1></div>
                     <div class = "descriptionEbook" v-html="ebook.description">{{ebook.description}}</div>
                     <div class = "button-ebook first1" @click ="selectEbook(ebook)"><span >Lire la suite</span></div>
                 </div>
@@ -120,7 +120,7 @@
     margin-block-start: 0px !important;
     margin-block-end: 0px !important;
 }
-.chapeau{
+.descriptionEbook{
     grid-column: 1 / 1;
     grid-row: 4/6;
     display: flex;
@@ -129,8 +129,9 @@
     overflow: hidden;
     margin-bottom: 10px;
 }
-.chapeau >>> p {
+.descriptionEbook >>> p {
     text-align: center !important;
+    margin : 0 3px
 }
 .button-ebook{
     grid-column: 1 / 1;

@@ -9,6 +9,7 @@
                 <div class = "texteLiens"><router-link to = "/contact">Contact</router-link></div>
                 <div class = "searchBox"><input class="searchInput" @focus="onFocus" id='searchInputId' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results)">Go</button></div>
                 <div class = "texteLiens"><router-link to = "/blog">Mentions légales</router-link></div>
+                <div class = "cart"><img src = '../assets/logoResSociaux/panier.png' height="40px" class="snipcart-checkout"><span class="snipcart-items-count"></span></div>
                 <div class = "logoUser" v-if="this.$store.state.token">
                     <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
                 </div>
@@ -23,7 +24,7 @@
     data : function() {
             return {
                 token : this.$store.state.token,
-                results : ''
+                results : '',
              }
         },
 
@@ -158,6 +159,15 @@ h1 {
     background-color: #434343;
     color :#ec7463;
     border : 1px solid #434343
+}
+.snipcart-items-count{
+    position: absolute;
+    background-color: #434343;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    text-align: center;
 }
 /*@media (min-width: 768px) and (max-width: 979px) {
   #aside {

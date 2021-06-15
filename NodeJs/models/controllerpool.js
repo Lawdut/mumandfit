@@ -251,7 +251,7 @@ exports.deleteAllInDBB = async function(table1, table2, article, callback){
 }
 exports.createEbook = function (table, ebook, callback){
     console.log(ebook.ebook.guid)
-    var sql = "INSERT INTO " + table + "(id, guid, titre, prix, description) VALUE (NULL, '"+ebook.ebook.guid+"','"+ebook.ebook.titre+"','"+ebook.ebook.prix+"','"+ebook.ebook.description+"');";
+    var sql = "INSERT INTO " + table + "(id, guid, titre, prix, description, corps) VALUE (NULL, '"+ebook.ebook.guid+"','"+ebook.ebook.titre+"','"+ebook.ebook.prix+"','"+ebook.ebook.description+"','"+ebook.ebook.corps+"');";
     conn.query(sql, function(err){
         if(err){
             console.log(err)
@@ -275,5 +275,23 @@ exports.getOneEbook = function (table, id, callback){
             console.log(err)
         }
         callback(rows);
+    })
+}
+exports.saveModifEbook = function (table, ebook, callback){
+    var sql = "UPDATE "+table+" SET `prix` = "+ "'" + ebook.prix + "'" + "," + "`titre` = "+ "'" + ebook.titre + "'" + "," + "`description` = "+ "'" + ebook.description + "'" + "," + "`corps` = "+ "'" + ebook.corps+ "'" + " WHERE id = " + ebook.id;
+    conn.query(sql, function(err){
+        if(err){
+            console.log(err)
+        }
+        callback();
+    })
+}
+exports.deleteEbookInBDD = function (table, ebook, callback){
+    var sql = "DELETE FROM "+table+" WHERE id = "+ebook.id
+    conn.query(sql, function(err){
+        if(err){
+            console.log(err)
+        }
+        callback();
     })
 }
