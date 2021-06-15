@@ -110,8 +110,8 @@ a, router-link{
 
 
           /*-----Bouton-----*/
-.Button1 {
-  color: #fff !important;
+/*.Button1 {
+  color: #494949 !important;
 	text-transform: uppercase;
 	text-decoration: none;
 	background: #ec7463;
@@ -121,6 +121,7 @@ a, router-link{
 	border: none;
 	transition: all 0.4s ease 0s;
   cursor: pointer;
+  box-shadow: 1px 1px 10px 3px #2c3e50;
 }
 
 .Button1:hover {
@@ -130,7 +131,28 @@ a, router-link{
 	-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
 	box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
 	transition: all 0.4s ease 0s;
+  color : #ec7463 !important;
+}*/
+
+.Button1 {
+  color: #434343 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ec7463;
+  padding:8px 36px;
+  border: 2px solid #434343 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+  box-shadow: 1px 1px 10px 3px #2c3e50;
+  border-radius: 20px;
 }
+.Button1:hover {
+  color: #ec7463 !important;
+  background: #434343;
+  border-color: #ec7463 !important;
+  transition: all 0.4s ease 0s;
+}
+
 #headerRespApp{
   display: none;
 }
@@ -171,9 +193,6 @@ a, router-link{
   }
   ::placeholder{
     font-size: 9px;
-  }
-  .snipcart-modal__container{
-
   }
 }
 </style>
