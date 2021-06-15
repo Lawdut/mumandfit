@@ -9,7 +9,7 @@
                 <div class = "texteLiens"><router-link to = "/contact">Contact</router-link></div>
                 <div class = "searchBox"><input class="searchInput" @focus="onFocus" id='searchInputId' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results)">Go</button></div>
                 <div class = "texteLiens"><router-link to = "/blog">Mentions légales</router-link></div>
-                <div class = "cart"><img src = '../assets/logoResSociaux/panier.png' height="40px" class="snipcart-checkout"><span class="snipcart-items-count"></span></div>
+                <div class = "cart" v-if="!this.$store.state.token"><img src = '../assets/logoResSociaux/panier.png' height="40px" class="snipcart-checkout" ></div>
                 <div class = "logoUser" v-if="this.$store.state.token">
                     <router-link to= "/admin"><img src = '../assets/logoResSociaux/user.svg' height="40px"></router-link>
                 </div>
@@ -23,7 +23,6 @@
         name : 'Aside',
     data : function() {
             return {
-                token : this.$store.state.token,
                 results : '',
              }
         },

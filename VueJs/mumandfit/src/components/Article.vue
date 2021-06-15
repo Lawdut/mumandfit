@@ -224,8 +224,13 @@ import jQuery from "jquery";
     justify-content: center;
     align-items: center;
     margin: 30px 0px 30px 0px;
+    row-gap : 20px;
 }
 .article {
     width: 90%;
+}
+#buttonArticle{
+    display: flex;
+    column-gap: 20px;
 }
 </style>

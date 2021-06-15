@@ -173,12 +173,21 @@ app.post('/modifPres',authenticateToken, function (req, res){
 
           /* ----- MOTEUR DE RECHERCHE ----- */
 app.post('/searchArticle', function(req, res){
-  console.log(req.body);
+  //console.log(req.body);
   let requestCleaned = cleanSearch(req.body);
 
-  bdd.getResultsOfSearch('articles', requestCleaned, function(filterArticles){
+  bdd.getResultsOfSearchArticles('articles', requestCleaned, function(filterArticles){
     console.log(filterArticles);
     res.send({filterArticles})
+  })
+})
+
+app.post('/searchEbook', function(req, res){
+  let requestCleaned = cleanSearch(req.body);
+
+  bdd.getResultsOfSearchEbooks('ebook', requestCleaned, function(filterEbooks){
+    console.log(filterEbooks);
+    res.send({filterEbooks})
   })
 })
 
@@ -398,26 +407,7 @@ app.post('/upload', (req, res)=>{
     });
   }
 });
-          /* ----- UPLOAD IMAGE SLIDER ----- */
-app.post('/uploadSlider', (req, res)=>{
-  console.log(req.files)
-  console.log(req.body)
-  const folderName = path.join(__dirname, '/VueJs/mumandfit/public/imagesSlider');
-  const sampleFile = req.files.image;
-  const typeFile = req.files.image.mimetype.split('/');
-  const fileName = 'image'+req.body.id +"."+'jpg';
-  console.log(fileName);
 
-  sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName), function (err) {
-    const temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName);
-    mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName));         // => 'text/plain'
-    if (err) {
-      return res.status(500).send(err);
-    }
-    res.json({ res: 'image changée'});
-    })
-  
-});
           /* ----- ANNULATION DE L'UPLOAD PHOTO ----- */
 
 app.post('/createCanceled', (req, res) =>{
@@ -613,6 +603,30 @@ let index = art.indexOf(img)
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+                                                                        // ----- SLIDER ----- //
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* ----- UPLOAD IMAGE SLIDER ----- */
+app.post('/uploadSlider', (req, res)=>{
+  console.log(req.files)
+  console.log(req.body)
+  const sampleFile = req.files.image;
+  const fileName = 'image'+req.body.id +"."+'jpg';
+  const folderPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\imagesSlider\\')
+  fs.unlinkSync(folderPath+fileName)
+
+  sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName), function (err) {
+    mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName));         // => 'text/plain'
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.send('image changée');
+    })
+  
+});
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+                                                                        // ----- FORMULAIRE DE CONTACT ----- //
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
           /*-----FORMULAIRE DE CONTACT ET ENVOI MAIL-----*/

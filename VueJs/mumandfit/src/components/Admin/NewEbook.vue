@@ -159,7 +159,7 @@ import Editor from '@tinymce/tinymce-vue';
         methods : {
             saveEbook(){
 
-                if(this.ebook.guid != '' && this.ebook.titre != '' && this.ebook.titre != '' && this.ebook.description != '' && this.ebook.corps){
+                if(this.ebook.guid != '' && this.ebook.prix != '' && this.ebook.titre != '' && this.ebook.description != '' && this.ebook.corps){
                     let ebook = {
                         ebook : {
                     guid : this.ebook.guid,

@@ -1,20 +1,23 @@
 <template>
     <div class = 'imageSlider'>
-        <h1>Hello</h1>
+        <div class = "titreSlider"><h1>Images du slider</h1></div>
         <div id = "image1">
             <h2>Image 1</h2>
             <img src = "../../../public/imagesSlider/image1.jpg">
-            <input type = "file" name = 'image1' @change="processFile1($event)" accept="image/jpg, image/jpeg">
+            <label for ="file1" class = "Button1">Choisir une nouvelle image</label>
+            <input id = "file1" type = "file" name = 'image1' @change="processFile($event, 1)"  accept="image/jpg, image/jpeg">
         </div>
         <div id = "image2">
             <h2>Image 2</h2>
             <img src = "../../../public/imagesSlider/image2.jpg">
-            <input type = "file" name = 'image2' @change="processFile2($event)">
+            <label for ="file2" class = "Button1">Choisir une nouvelle image</label>
+            <input id = "file2" type = "file" name = 'image2' @change="processFile($event, 2)" accept="image/jpg, image/jpeg">
         </div>
         <div id = "image3">
             <h2>Image 3</h2>
             <img src = "../../../public/imagesSlider/image3.jpg">
-            <input type = "file" name = 'image3' @change="processFile3($event)">
+            <label for ="file3" class = "Button1">Choisir une nouvelle image</label>
+            <input id ="file3" type = "file" name = 'image3' @change="processFile($event, 3)" accept="image/jpg, image/jpeg">
         </div>
     </div>
 </template>
@@ -24,54 +27,91 @@
         name : "ChangeImageSlider",
         data: function() {
             return {
-                image1change : [],
-                image2change : [],
-                image3change : [],
+                imageChange : [],
+                
             }
-            
         },
         methods: {
-            processFile1(event) {
-                this.image1change = event.target.files[0];
-                let id = 1;
-
+            processFile(event, id) {
+                this.imageChange = event.target.files[0];
                 let formData = new FormData();
 
-                formData.append('image', this.image1change)
+                formData.append('image', this.imageChange)
                 formData.append('id', id)
 
                 this.http.post('//localhost:8010/uploadSlider', formData)
                 .then(res=>{console.log(res)})
 
             },
-            processFile2(event) {
+            /*processFile2(event) {
                 this.image2change = event.target.files[0];
                 let id = 2;
-                let formData = new FormData();
+                let formData2 = new FormData();
 
-                formData.append('image', this.image2change)
-                formData.append('id', id)
+                formData2.append('image', this.image2change)
+                formData2.append('id', id)
 
-                this.http.post('//localhost:8010/uploadSlider', formData)
+                this.http.post('//localhost:8010/uploadSlider', formData2)
                 .then(res=>{console.log(res)})
             },
             processFile3(event) {
                 this.image3change = event.target.files[0];
                 let id = 3;
-                let formData = new FormData();
+                let formData3 = new FormData();
 
-                formData.append('image', this.image3change)
-                formData.append('id', id)
+                formData3.append('image', this.image3change)
+                formData3.append('id', id)
 
-                this.http.post('//localhost:8010/uploadSlider', formData)
+                this.http.post('//localhost:8010/uploadSlider', formData3)
                 .then(res=>{console.log(res)})
-            }
+            }*/
 }
     }
 </script>
 
 <style scoped>
 .imageSlider{
-
+    display : grid;
+    grid-template-rows: repeat(8, 1fr);
+}
+.titreSlider{
+    grid-row: 1/2;
+}
+#image1{
+    grid-row: 2/4;
+    border-bottom : 2px solid black;
+    border-top : 2px solid black;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+    padding-bottom: 20px;
+}
+#image2{
+    grid-row : 4/6;
+    border-bottom : 2px solid black;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+    padding-bottom: 20px;
+}
+#image3{
+    grid-row : 6/8;
+    border-bottom : 2px solid black;
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
+    padding-bottom: 20px;
+}
+img{
+    width: 400px
+}
+input{
+    display: none;
 }
 </style>

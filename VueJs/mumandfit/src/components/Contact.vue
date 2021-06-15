@@ -6,6 +6,7 @@
         
         <div class ="formContact">
             <h3 class = "formTitre">Laissez-nous vos coordonnées</h3>
+            <div class="error" v-show="error !=''">{{error}}</div>
             <div id ="firstName"><input type ="text" id = "inputFormFirstName" name="firstName" @focus="borderFirstNameChange" v-bind:style="`--borderFirstName : ${computedBorderFirstName}`" v-model="firstName" placeholder="Prénom" required></div>
             <div id = "lastName"><input type ="text" id = "inputFormLastName"  name="lastName" @focus="borderLastNameChange" v-bind:style="`--borderLastName : ${computedBorderLastName}`" v-model="lastName" placeholder="Nom" required></div>
             <div id = "email"><input type ="mail" id = "inputFormEmail" name="email" @focus="borderEmailChange" v-bind:style="`--borderEmail : ${computedBorderEmail}`" v-model="mail" placeholder="exemple@exemple.com" required></div>
@@ -49,7 +50,8 @@
                 borderFirstName : '',
                 borderLastName : '',   
                 borderEmail : '',
-                borderPhone : ''              
+                borderPhone : '',
+                error : '',              
             }
         },
         computed: {
@@ -64,6 +66,9 @@
             },
             computedBorderPhone: function () {
             return this.borderPhone;
+            },
+            computedError : function() {
+                return this.error
             }
         },
         methods : {
@@ -82,7 +87,10 @@
                             message : self.message,
                             token : token,
                         }
-                        if(self.firstName != '' && self.lastName != '' && self.mail != '' && self.phone != '' ){
+                        const regexTelM = new RegExp(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/)
+                        const regexTelOM = new RegExp(/^(?:(?:\+|00|0)((262|692)|(263|693)|508|(5|6)90|(5|6)94|(5|6|7)96|681|687|689))(?:[\s.-]*\d{2}){3,4}$/)
+                        const mailAdress = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)
+                        if(self.firstName != '' && self.lastName != '' && self.mail != '' && self.phone != '' && self.mail.match(mailAdress) && (self.phone.match(regexTelM) || self.phone.match(regexTelOM))){
                             self.http.post("//localhost:8010/formContact", userMessage)                        
                             .then(response => console.log(response.data))
                             .then(()=> {self.$router.push('/')})
@@ -90,10 +98,14 @@
                             self.borderFirstName = "2px solid red"
                         }if(self.lastName == ''){
                             self.borderLastName = "2px solid red"
-                        }if(self.mail == ''){
+                        }if(self.mail == '' || !self.mail.match(mailAdress)){
                             self.borderEmail = "2px solid red"
-                        }if(self.phone == ''){
+                            self.error = "Veuillez vérifier le format de l'adresse mail"
+                        }if(self.phone == '' || (!self.phone.match(regexTelM) || self.phone.match(regexTelOM))){
                             self.borderPhone = "2px solid red"
+                            self.error = "Veuillez vérifier le format du numéro de téléphone"
+                        }if(!self.mail.match(mailAdress) && (!self.phone.match(regexTelM) || self.phone.match(regexTelOM))){
+                            self.error = "Veuillez vérifier le format du numéro de téléphone et de l'adresse mail"
                         }
                     })
                 })
@@ -120,8 +132,7 @@
 <style scoped>
     .contact{
         display: grid;
-        grid-template-rows: repeat(10, 1fr);
-        
+        grid-template-rows: repeat(10, 1fr); 
     }
     .titreContact{
         grid-row: 1/2;
@@ -132,7 +143,7 @@
         border-bottom : solid black 1px;
         display: grid;
         grid-template-columns: repeat(2, 1fr) ;
-        grid-template-rows: repeat(5, 1fr);
+        grid-template-rows: repeat(6, 1fr);
         column-gap: 30px;
         padding-bottom: 10px;
     }
@@ -176,9 +187,17 @@
         justify-content: center;
         align-items: center;
     }
-    #submitForm{
+    .error{
+        color: red;
         grid-column: 1/3;
         grid-row: 5/6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #submitForm{
+        grid-column: 1/3;
+        grid-row: 6/7;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -247,22 +266,34 @@
     }
     textarea{
         border : 1px solid #ccc;
+        margin-top : 25px;
+        border-radius: 5px;
     }
 
     @media (max-width : 1200px){
-        .inputForm {
+        .formContact > input {
             width: 75%;
         };
     }
     @media (max-width: 650px){
-        .inputForm{
-            width: 100%;
-        }
-        #textArea{
+        #inputFormFirstName{
             width: 90%;
         }
-        .inputForm{
-            padding: 12px 10px;
+        #inputFormLastName{
+            width: 90%;
+        }
+        #inputFormEmail{
+            width: 90%;
+        }
+        #inputFormPhone{
+            width: 90%;
+        }
+        .error{
+            font-size: 12px;
+        }
+        #textArea{
+            margin-top : 10px;
+            width: 90%;
         }
     }
 </style>

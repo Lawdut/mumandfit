@@ -25,16 +25,17 @@
         </div>
         
     </div>
+    <div id = "modifPrix" v-if="token">Modifier le prix : <input type = "number" class = "inputForm" v-model = ebook.prix> €</div>
     <div id = "buttonEbook">
-        <input type = 'submit'  value="Enregistrer" class = "Button1 save" v-if="token" @click="saveEbookModif">
+        <input type = 'submit'  value="Enregistrer les modifications" class = "Button1 save" v-if="token" @click="saveEbookModif">
         <input type = 'submit'  value = "Supprimer" class = "Button1 delete" v-if="token" @click="deleteEbook">
-        <button class = "snipcart-add-item Button1" 
+        <button class = "snipcart-add-item Button1" v-if="!token"
             :data-item-id= this.ebook.id
             :data-item-price= this.ebook.prix
             :data-item-url= this.ebook.url
             :data-item-file-guid = this.ebook.guid
             :data-item-name = this.titreSansBalise
-        >Ajouter au panier</button>
+        >Ajouter au panier : {{ebook.prix}} €</button>
         <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
     </div>
 </div>
@@ -203,8 +204,13 @@ import Editor from '@tinymce/tinymce-vue';
     justify-content: center;
     align-items: center;
     margin: 30px 0px 30px 0px;
+    row-gap : 20px;
 }
 .ebook {
     width: 90%;
+}
+#buttonEbook{
+    display: flex;
+    column-gap: 20px;
 }
 </style>

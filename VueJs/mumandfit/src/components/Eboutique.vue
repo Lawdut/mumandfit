@@ -3,7 +3,7 @@
         <div class = "list-ebooks">
             <div class = "ebooks">
                 <div class = "card-ebook" v-for="ebook in ebooks" v-bind:key="ebook.id">
-                    <div class = "imageEbook"><p><img src="../assets/ebook.png"></p></div>
+                    <div class = "imageEbook"><p><a>{{ebook.prix}} €</a></p></div>
                     <div class = "titreEbook" v-html="ebook.titre"><h1>{{ebook.titre}}</h1></div>
                     <div class = "descriptionEbook" v-html="ebook.description">{{ebook.description}}</div>
                     <div class = "button-ebook first1" @click ="selectEbook(ebook)"><span >Lire la suite</span></div>
@@ -89,22 +89,39 @@
 .imageEbook{
     grid-column: 1 / 1;
     grid-row: 1/3;
+    background-image: url("../assets/ebook.png");
+    background-size: cover;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+
 }
 .imageEbook >>> p {
-    width: 100% ;
+    color :#434343;
+    margin : 0;
+    font-size: 15px;
+    background-color: #ec7463;
+    height: 50px;
+    width: 100px;
+    border-radius: 0% 70% 0% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    /*width: 100% ;
     height: 100% ;
     display:  flex;
     justify-content: center;
     align-items: flex-start;
     padding: 0;
-    margin: 0;
+    margin: 0;*/
 }
 
-.imageEbook >>> img {
+/*.imageEbook >>> img {
     width: 300px;
 	height: 100%;
     object-fit: cover;
-}
+}*/
 
 .titreEbook{
     grid-column: 1 / 1;
@@ -205,6 +222,9 @@
 .pagination >>> a:hover {
     box-shadow: 0 0 40px 40px #434343 inset;
     color : #ec7463;
+}
+#prix{
+    color:#ec7463;
 }
 
 @media (max-width: 1000px) {
