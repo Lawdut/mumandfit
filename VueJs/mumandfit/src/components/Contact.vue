@@ -67,9 +67,9 @@
             computedBorderPhone: function () {
             return this.borderPhone;
             },
-            computedError : function() {
+            /*computedError : function() {
                 return this.error
-            }
+            }*/
         },
         methods : {
             sendMessage : function(){
@@ -89,7 +89,7 @@
                         }
                         const regexTelM = new RegExp(/^(?:(?:\+|00)33|0)\s*[1-9](?:[\s.-]*\d{2}){4}$/)
                         const regexTelOM = new RegExp(/^(?:(?:\+|00|0)((262|692)|(263|693)|508|(5|6)90|(5|6)94|(5|6|7)96|681|687|689))(?:[\s.-]*\d{2}){3,4}$/)
-                        const mailAdress = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/)
+                        const mailAdress = new RegExp(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)
                         if(self.firstName != '' && self.lastName != '' && self.mail != '' && self.phone != '' && self.mail.match(mailAdress) && (self.phone.match(regexTelM) || self.phone.match(regexTelOM))){
                             self.http.post("//localhost:8010/formContact", userMessage)                        
                             .then(response => console.log(response.data))
