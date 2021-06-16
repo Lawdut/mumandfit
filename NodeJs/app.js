@@ -612,7 +612,7 @@ let index = art.indexOf(img)
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /* ----- UPLOAD IMAGE SLIDER ----- */
-app.post('/uploadSlider', async function(req, res){
+app.post('/uploadSlider', function(req, res){
   
   const sampleFile = req.files.image;
   const fileName = 'image'+req.body.id +"."+ "jpg";
@@ -620,7 +620,7 @@ app.post('/uploadSlider', async function(req, res){
 
   
   fs.unlinkSync(folderPath+fileName)
-      
+
   moveImage(sampleFile, fileName, function(mess){
     res.send(mess)
   })
