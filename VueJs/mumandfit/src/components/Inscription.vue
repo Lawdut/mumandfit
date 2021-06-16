@@ -4,33 +4,30 @@
             <h1> INSCRIPTION </h1>
         </div>
 
-        
-            <div id = "titre-prenom"><label for="first_name"><h2>Prénom</h2></label></div>
+        <div v-if="!message">
+            <div id = "titre-prenom"><h2>Prénom</h2></div>
             <input type="text" name="prenom" class = "input prenom-inscri" v-model ="prenom">
         
         
-            <div id = "titre-nom"><label for="last_name"><h2>Nom</h2></label></div>
+            <div id = "titre-nom"><h2>Nom</h2></div>
             <input type="text" name="last_name" class = "input nom-inscri" v-model ="nom">
+                      
         
-        
-            <div id = "titre-telephone"><label for="phone_number"><h2>Numéro de téléphone</h2></label></div>
-            <input type="tel" name="telephone" class = "input phone-inscri" placeholder="0102030405" v-model ="telephone" v-on:Focus="this.value='';" pattern="^(?:0|\(?\+33\)?\s?|0033\s?)[1-79](?:[\.\-\s]?\d\d){4}$" >
-                
-        
-            <div id = "titre-email-inscri"><label for="mail"><h2>Email</h2></label></div>
+            <div id = "titre-email-inscri"><h2>Email</h2></div>
             <input type="email" name="mail" placeholder="courriel@exemple.com" v-on:Focus="this.value='';" class="input email-inscri" v-model ="email">
 
-            <div class = "titre-password-inscri"><label for="password"><h2>Mot de passe</h2></label></div>
+            <div class = "titre-password-inscri"><h2>Mot de passe</h2></div>
             <input type="password" name="password" id="password1"  class="input passwd-inscri" v-model ="password">
         
         
-            <div class = "titre-passwd2-inscri"><label for = "password2"> <h2>Confirmation du mot de passe</h2></label></div>
+            <div class = "titre-passwd2-inscri"><h2>Confirmation du mot de passe</h2></div>
             <input type="password" name="password2" id="password2"  class="input password2-inscri">
-
-            <div class = "pass-verif-inscri"></div>
         
-            <input type = "submit" id= "submit-inscri" @click="inscriptions(); sessions()" name = 'submit' value = "Inscription">
+            <input type = "submit" id= "submit-inscri" @click="inscription" name = 'submit' value = "Inscription">
 
+        </div>
+
+        <div class = "verif-inscri">{{message}}</div>
     </div>
 </template>
 
@@ -43,6 +40,7 @@
                 telephone : "",
                 email : "",
                 password : "",
+                message : "",
             }
         },
         methods : {
@@ -55,14 +53,15 @@
                     email : this.email,
                     mdp : this.password
                 })
-                .then(response => console.log(response.data))
-            },
-
-            sessions(){
-                var self = this; //obliger de faire self car variable this : 'undefined'
-                self.$session.start();
-                self.$session.set('nom', this.nom);
-                console.log(self.$session.getAll());
+                .then(response => { //console.log(response.data)
+                    if(response.data.res === false){
+                        this.message = "L'utilisateur existe déjà"
+                    }else if (response.data.res === true){
+                        this.message = "L'utilisateur a été enregistré"
+                        
+                    }
+                    })
+                .then(()=> {setTimeout(()=>{this.$router.push('/admin')}, 3000)})
         },  
             /*checkpass(){
                 let pass1 = this.password

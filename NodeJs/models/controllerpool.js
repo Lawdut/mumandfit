@@ -20,16 +20,28 @@ conn.connect(function(error){
 
 exports.inscription =  function (table, user, callback) {
     const hash = bcrypt.hashSync(user.mdp, salt);
-    var sql = "INSERT INTO " + table + " (id, `prenom`, `nom`, `telephone`, `email`, `mdp`) VALUES (NULL, '"+user.prenom+"','"+user.nom+"','"+user.telephone+"','"+user.email+"','"+hash+"');";
-    //console.log(sql);
+    
+    var sql = "INSERT INTO " + table + " (id, `prenom`, `nom`, `email`, `mdp`) VALUES (NULL, '"+user.prenom+"','"+user.nom+"','"+user.email+"','"+hash+"');";
+    
     conn.query(sql, function(error) {
         if (error) {
             console.log(error)
             
         }   
         callback();
-    
-})};
+    })
+};
+
+exports.verifCustomerExist = function(table, user, callback){
+    var sql = "SELECT * FROM "+table+ " WHERE email = " + "'" + user.email +"'";
+    conn.query(sql, function(error, rows){
+        if (error){
+            console.log(error)
+        }else{
+            callback(rows[0]); 
+        }
+    })
+}
 
 exports.connexion = function(table, user, callback) {
     //console.log(user);

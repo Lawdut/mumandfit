@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 //import $ from 'jquery'
 import Home from '../views/Home.vue'
 import Connexion from '../components/Connexion.vue'
-//import Inscription from '../components/Inscription.vue'
+import Inscription from '../components/Inscription.vue'
 import Blog from '../components/Blog.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
@@ -17,6 +17,7 @@ import NewEbook from '../components/Admin/NewEbook.vue'
 import Eboutique from '../components/Eboutique.vue'
 import Ebook from '../components/Ebook.vue'
 import Modale from '../components/Modale.vue'
+import ListAdmin from '../components/Admin/ListAdmin.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -40,6 +41,19 @@ const routes = [
     component : Modale
   },
   {
+    path : "/listAdmin",
+    name : "ListAdmin",
+    component : ListAdmin,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/admin' && loggedIn){
+        return next();
+      }else if (!loggedIn){
+        next({path : '/accueil'})
+      }
+    }
+  },
+  {
     path:"/aside",
     name : "Aside",
     component : Aside
@@ -49,15 +63,31 @@ const routes = [
     name : "ChangeImageSlider",
     component : ChangeImageSlider,
   },
-  /*{
+  {
     path: "/inscription",
     name : "Inscription",
-    component: Inscription
-  },*/
+    component: Inscription,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/admin' && loggedIn){
+        return next();
+      }else if (!loggedIn){
+        next({path : '/accueil'})
+      }
+    }
+  },
   {
     path:"/newEbook",
     name:"newEbook",
-    component : NewEbook
+    component : NewEbook,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/admin' && loggedIn){
+        return next();
+      }else if (!loggedIn){
+        next({path : '/accueil'})
+      }
+    }
   },
   {
     path:"/eboutique",
@@ -97,15 +127,6 @@ const routes = [
     path : "/admin",
     name : "AdminHome",
     component : AdminHome,
-    /*beforeEnter : (to, from, next) =>{
-      const loggedIn = localStorage.getItem('jwt-mumandfit');
-        if (to.path === '/admin' && loggedIn) {
-          return next();
-        }else if (to.path === '/admin' && !loggedIn){
-          next({ path: '/' });
-        }
-      
-    }*/
   },
   
 
@@ -118,8 +139,8 @@ const routes = [
       const loggedIn = localStorage.getItem('jwt-mumandfit');
       if(from.path === '/admin' && loggedIn){
         return next();
-      }else if (from.path === '/admin' && !loggedIn){
-        next({path : '/connexion'})
+      }else if (!loggedIn){
+        next({path : '/accueil'})
       }
     }
   },

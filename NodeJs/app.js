@@ -98,16 +98,22 @@ function clean(request){
   return requestToClean;
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                                        // ----- CONNECTION - INSCRIPTION ----- //
+                                                                        // ----- CONNEXION - INSCRIPTION ----- //
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 app.post('/inscription', function (req, res) {
     
-    //console.log(req.body);
-    bdd.inscription('user', req.body, function(err) {
-        if (err) {
-            res.status(500).send({ message: err });
-          }
-        res.json({res : "Enregistré"})
+    bdd.verifCustomerExist('user', req.body, function(userExist){
+      console.log()
+      if (userExist) {
+        res.send({ res: false });
+      }else{
+        bdd.inscription('user', req.body, function(err) {
+          if (err) {
+              res.status(500).send({ message: err });
+            }
+          res.send({res : true})
+        })
+      }
     })
 });
 
