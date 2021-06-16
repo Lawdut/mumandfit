@@ -205,20 +205,19 @@ app.post('/searchEbook', function(req, res){
 
 app.post('/createArticle',authenticateToken, function(req, res) {
     
-  
-  //console.log(unArticleCreateClean);
-  //console.log(imageTab);
+  let unArticleCreateClean = cleanArticle(req.body);
+  let imageTabToBDDcreate = cleanFolderImagesCreate(unArticleCreateClean);
+
   try{
-    let unArticleCreateClean = cleanArticle(req.body);
-    let imageTabToBDDcreate = cleanFolderImagesCreate(unArticleCreateClean);
+    
     imageTab = [];
     bdd.createArticle('articles', 'image', unArticleCreateClean, imageTabToBDDcreate, function(err){
       if (err) {
         res.status(500).send({ message: err });
       }
-      res.send({res : 'Créé'});
+      
     })
-    
+    res.send('Créé');
   }catch(err){
     res.status(500);
     res.send('Erreur de création de l\'article');
@@ -329,7 +328,7 @@ app.post('/getOneEbook', function(req, res){
   })
 })
 
-app.post('/modifEbook', function(req, res){
+app.post('/modifEbook',authenticateToken, function(req, res){
 
   req.body.ebook.titre = clean(req.body.ebook.titre)
   req.body.ebook.description = clean(req.body.ebook.description)
@@ -613,7 +612,7 @@ let index = art.indexOf(img)
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /* ----- UPLOAD IMAGE SLIDER ----- */
-app.post('/uploadSlider', (req, res)=>{
+app.post('/uploadSlider',authenticateToken, (req, res)=>{
   console.log(req.files)
   console.log(req.body)
   const sampleFile = req.files.image;

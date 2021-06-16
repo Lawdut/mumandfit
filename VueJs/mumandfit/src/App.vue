@@ -171,5 +171,17 @@ a, router-link{
   ::placeholder{
     font-size: 9px;
   }
+  .mce-object-iframe>iframe{
+    
+    width: 90vw;
+}
+  #banniereModif>.mce-content-body>p>img{
+    max-width: 90vw;
+  }
+  .mce-content-body>p>img{
+    max-width: 90vw;
+    width: auto;
+    height: auto;
+  }
 }
 </style>

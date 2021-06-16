@@ -33,9 +33,10 @@
                     initial-value="Placer le corps du post ici"
                 />
             </div>
-            
-                <input type = 'submit' @click="createArticle" value="Enregistrer" class = "Button1">
-                <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
+                <div id = "buttonCreateArticle">
+                    <input type = 'submit' @click="createArticle" value="Enregistrer" class = "Button1">
+                    <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
+                </div>
         </div>
     </div>
 </template>
@@ -234,5 +235,11 @@ import jQuery from "jquery";
 </script>
 
 <style scoped>
-
+#buttonCreateArticle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 20px;
+}
 </style>

@@ -13,9 +13,10 @@
                     :init="myInitPresentation"
       />
       <div id = "buttonModifPres" v-if="token">
-            <input type = 'submit' @click="saveModifPres" value="Modifier" class = "Button1 save" v-if="token">
+            <input type = 'submit' @click="toggleModale" value="Modifier" class = "Button1 save" v-if="token">
       </div>
     </div>
+    <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
   </div>
 </template>
 
@@ -23,6 +24,7 @@
 import { VueperSlides, VueperSlide } from 'vueperslides'
 import 'vueperslides/dist/vueperslides.css'
 import Editor from '@tinymce/tinymce-vue';
+import Modale from '../components/Modale.vue';
 
 export default {
   name: 'Home',
@@ -45,7 +47,8 @@ export default {
       
       presentation : this.presentation,
      
-      
+      revele :false,
+      modifier : true,
       token : this.$store.state.token,
       status : null,
       myInitPresentation : {
@@ -92,12 +95,16 @@ export default {
         this.http.post('//localhost:8010/modifPres', {pres})
         .then(response=>console.log(response.data))
       }
-    }
+    },
+    toggleModale : function(){
+                this.revele = !this.revele
+    },
   },
   components: {
     VueperSlides,
     VueperSlide,
     'editor' : Editor,
+    Modale
   }
 }
 </script>
@@ -117,6 +124,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  z-index : 5;
+  display: block;
 }
 #pres{
   display: flex;

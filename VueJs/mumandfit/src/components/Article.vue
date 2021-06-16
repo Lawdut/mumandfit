@@ -254,4 +254,5 @@ import Modale from './Modale.vue';
     display: flex;
     column-gap: 20px;
 }
+
 </style>
