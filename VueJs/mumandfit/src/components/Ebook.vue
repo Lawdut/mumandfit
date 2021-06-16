@@ -27,8 +27,8 @@
     </div>
     <div id = "modifPrix" v-if="token">Modifier le prix : <input type = "number" class = "inputForm" v-model = ebook.prix> €</div>
     <div id = "buttonEbook">
-        <input type = 'submit'  value="Enregistrer les modifications" class = "Button1 save" v-if="token" @click="saveEbookModif">
-        <input type = 'submit'  value = "Supprimer" class = "Button1 delete" v-if="token" @click="deleteEbook">
+        <input type = 'submit'  value="Enregistrer les modifications" class = "Button1 save" v-if="token" @click="toggleModale('save')">
+        <input type = 'submit'  value = "Supprimer" class = "Button1 delete" v-if="token" @click="toggleModale('delete')">
         <button class = "snipcart-add-item Button1" v-if="!token"
             :data-item-id= this.ebook.id
             :data-item-price= this.ebook.prix
@@ -38,15 +38,21 @@
         >Ajouter au panier : {{ebook.prix}} €</button>
         <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
     </div>
+
+    <Modale :deleted="deleted" :revele="revele" :toggleModale="toggleModale" :guid="ebook.guid" :supprimer="supprimer" :modifier="modifier" :save="save" v-if="revele"></Modale>
+
 </div>
 </template>
 
 <script>
 import Editor from '@tinymce/tinymce-vue';
+import Modale from './Modale.vue';
+
     export default {
         name : 'ebook',
         components : {
             'editor' : Editor,
+            Modale,
         },
         data (){
             return{
@@ -60,8 +66,11 @@ import Editor from '@tinymce/tinymce-vue';
                     url : "http://localhost:8080/ebook/"+`${this.$route.params.id}` ,
                 },
                 titreSansBalise : "",
+                revele :false,
                 token : this.$store.state.token,
                 status : null,
+                enregistrer : false,
+                modifier : false,
                 myInitTitreEbook : {
                     selector : '#titreModifEbook',
                     height: 500,
@@ -160,10 +169,21 @@ import Editor from '@tinymce/tinymce-vue';
                 }
         },
         methods : {
+            toggleModale : function(event){
+                this.revele = !this.revele
+                if(event === "save"){
+                    this.supprimer = false;
+                    this.modifier = true;
+                }
+                if(event === "delete"){
+                    this.supprimer = true;
+                    this.modifier = false;
+                }
+            },
             navigation : function () {
                 this.$router.go(-1)
             },
-            deleteEbook : function() {
+            deleted : function() {
                 let ebook = {
                     ebook : {
                         id : this.ebook.id,
@@ -178,7 +198,7 @@ import Editor from '@tinymce/tinymce-vue';
                 this.http.post('//localhost:8010/deleteEbook', ebook)
                 .then(()=>{this.$router.push('/eboutique')})
             },
-            saveEbookModif : function(){
+            save : function(){
                 let ebook = {
                     ebook : {
                         id : this.ebook.id,

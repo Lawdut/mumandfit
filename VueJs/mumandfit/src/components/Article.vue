@@ -34,16 +34,21 @@
             
         </div>
         <div id = "buttonArticle">
-            <input type = 'submit' @click="saveArticle" value="Enregistrer" class = "Button1 save" v-if="token">
-            <input type = 'submit' @click="deleteArticle" value = "Supprimer" class = "Button1 delete" v-if="token">
+            <input type = 'submit' @click="toggleModale('save')" value="Enregistrer les modifications" class = "Button1 save" v-if="token">
+            <input type = 'submit' @click="toggleModale('delete')" value = "Supprimer" class = "Button1 delete" v-if="token">
             <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
         </div>
+
+        <Modale :deleted="deleted" :revele="revele" :toggleModale="toggleModale" :supprimer="supprimer" :modifier="modifier" :save="save" v-if="revele"></Modale>
+
     </div>
 </template>
 
 <script>
 import Editor from '@tinymce/tinymce-vue';
 import jQuery from "jquery";
+import Modale from './Modale.vue';
+
     const $ = jQuery;
     window.$ = $;
 
@@ -51,6 +56,7 @@ import jQuery from "jquery";
         name : 'Article',
         components : {
             'editor' : Editor,
+            Modale
         },
         data : function (){
             return {
@@ -62,10 +68,13 @@ import jQuery from "jquery";
                    contenu : this.$store.state.unArticle.contenu,
                    
                },
+               revele :false,
                uploadImageStatus : false,
                token : this.$store.state.token,
                status : null,
                image : null,
+               supprimer : false,
+               modifier : false,
                myInitBanniere : {
                     selector : '#banniereModif',
                     height: 500,
@@ -177,7 +186,19 @@ import jQuery from "jquery";
         },
 
         methods : {
-            saveArticle : function () {
+            toggleModale : function(event){
+                this.revele = !this.revele
+                if(event === "save"){
+                    this.supprimer = false;
+                    this.modifier = true;
+                }
+                if(event === "delete"){
+                    this.supprimer = true;
+                    this.modifier = false;
+                }
+                
+            },
+            save : function () {
                 this.uploadImageStatus = true;
                 this.$store.commit('modifArticleStore', this.unArticle);
                 
@@ -194,7 +215,7 @@ import jQuery from "jquery";
                 .then(response => console.log(response.data))
                 .then(()=> {this.$router.push('/blog')})
             },
-            deleteArticle : function() {
+            deleted : function() {
                 
                 let unArticle = {
                     unArticle : {
