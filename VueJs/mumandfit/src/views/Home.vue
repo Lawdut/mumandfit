@@ -9,7 +9,7 @@
     <div id = 'pres'>
       <editor v-model = presentation output-format = "html"
       api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                    :disabled="status"
+                    :disabled="true"
                     :init="myInitPresentation"
       />
       <div id = "buttonModifPres" v-if="token">
@@ -50,7 +50,7 @@ export default {
       revele :false,
       modifier : true,
       token : this.$store.state.token,
-      status : null,
+      status : true,
       myInitPresentation : {
                    
                     selector : '#pres',
@@ -88,12 +88,13 @@ export default {
                 }
   },
   methods : {
-    saveModifPres() {
+    save() {
       if(this.presentation != ''){
         let pres = this.presentation;
         
         this.http.post('//localhost:8010/modifPres', {pres})
-        .then(response=>console.log(response.data))
+        .then(response=>{console.log(response)})
+        .then(()=>this.revele = false)
       }
     },
     toggleModale : function(){

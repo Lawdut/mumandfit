@@ -40,7 +40,7 @@
                 formData.append('id', id)
 
                 this.http.post('//localhost:8010/uploadSlider', formData)
-                .then(res=>{console.log(res)})
+                .then(response=>{console.log(response)})
 
             },
             /*processFile2(event) {

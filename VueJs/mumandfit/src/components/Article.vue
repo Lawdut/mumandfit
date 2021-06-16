@@ -71,7 +71,7 @@ import Modale from './Modale.vue';
                revele :false,
                uploadImageStatus : false,
                token : this.$store.state.token,
-               status : null,
+               status : true,
                image : null,
                supprimer : false,
                modifier : false,

@@ -62,6 +62,14 @@ const routes = [
     path:"/changeSlider",
     name : "ChangeImageSlider",
     component : ChangeImageSlider,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/admin' && loggedIn){
+        return next();
+      }else if (!loggedIn){
+        next({path : '/accueil'})
+      }
+    }
   },
   {
     path: "/inscription",

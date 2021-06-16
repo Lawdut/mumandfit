@@ -23,6 +23,7 @@ const axios = require("axios");
 const { format } = require("mysql");
 const { Console } = require("console");
 const { ppid } = require("process");
+const { type } = require("os");
 /*const ash = require('express-async-handler')*/
 
           /* ----- VARIABLE GLOBALE ----- */
@@ -164,13 +165,13 @@ app.post('/getPres', function(req, res){
 })
 app.post('/modifPres',authenticateToken, function (req, res){
   let modifPres = clean(req.body.pres);
-  console.log (modifPres)
+  
   bdd.modifPresentation('textPresentation', modifPres, function(err){
     if(err){
       res.json({response : 'modification annulée'})
     }
-    res.json({response : 'modification validée'})
   })
+  res.json({response : 'modification validée'})
 })
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -400,13 +401,12 @@ app.post('/upload', (req, res)=>{
     const fileName = 'kkfmaf_'+Date.now() +'.'+ typeFile[1];
 
     imageTab.push(fileName);
-    console.log(imageTab);
 
     sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName), function (err) {
       const temp = path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName);
-      mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName));         // => 'text/plain'
+      mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/images/', fileName));
       if (err) {
-        return res.status(500).send(err);
+        res.status(500).send(err);
       }
       res.send({ 'location': '../images/'+fileName });
     });
@@ -612,23 +612,31 @@ let index = art.indexOf(img)
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /* ----- UPLOAD IMAGE SLIDER ----- */
-app.post('/uploadSlider',authenticateToken, (req, res)=>{
-  console.log(req.files)
-  console.log(req.body)
-  const sampleFile = req.files.image;
-  const fileName = 'image'+req.body.id +"."+'jpg';
-  const folderPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\imagesSlider\\')
-  fs.unlinkSync(folderPath+fileName)
-
-  sampleFile.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName), function (err) {
-    mime.getType(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName));         // => 'text/plain'
-    if (err) {
-      return res.status(500).send(err);
-    }
-    res.send('image changée');
-    })
+app.post('/uploadSlider', async function(req, res){
   
+  const sampleFile = req.files.image;
+  const fileName = 'image'+req.body.id +"."+ "jpg";
+  const folderPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\imagesSlider\\')
+
+  
+  fs.unlinkSync(folderPath+fileName)
+      
+  moveImage(sampleFile, fileName, function(mess){
+    res.send(mess)
+  })
 });
+
+
+function moveImage(image, fileName, callback){
+  console.log(image)
+  image.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName), function (err) {
+    if (err) {
+      callback(err);
+    }
+    let mess = 'image changée'
+    callback(mess)
+  }) 
+}
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
                                                                         // ----- FORMULAIRE DE CONTACT ----- //

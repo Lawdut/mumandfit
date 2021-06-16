@@ -68,7 +68,7 @@ import Modale from './Modale.vue';
                 titreSansBalise : "",
                 revele :false,
                 token : this.$store.state.token,
-                status : null,
+                status : true,
                 enregistrer : false,
                 modifier : false,
                 myInitTitreEbook : {
