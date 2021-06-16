@@ -140,7 +140,7 @@ a, router-link{
   text-decoration: none;
   background: #ec7463;
   padding:8px 36px;
-  border: 2px solid #434343 !important;
+  border: 1px solid #434343 !important;
   display: inline-block;
   transition: all 0.4s ease 0s;
   box-shadow: 1px 1px 10px 3px #2c3e50;

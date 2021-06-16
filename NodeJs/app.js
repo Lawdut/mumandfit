@@ -658,7 +658,7 @@ app.post('/formContact', (req, res)=>{
         if(err){
           console.log('email non envoyé', err);
         }else{
-          console.log('email envoyé')
+          res.send('email envoyé')
         }
       })
       res.send('message envoyé !')

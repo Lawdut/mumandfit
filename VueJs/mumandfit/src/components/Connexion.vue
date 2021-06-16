@@ -2,9 +2,9 @@
     <div>
         <div id ="connexion">
             <h1>Connexion</h1>
-            <input type = "email" class ="input" id = "email" placeholder="exemple@exemple.com" v-model="email">
-            <input type = "password" class ="input" id = "password" placeholder="Mot de passe" v-model="password">
-            <input type = "submit" class ="input" id= "submit1" @click="connexion();" value = "Connexion" name = 'submit'>
+            <div id = "email"><input type = "email" class ="inputForm"  placeholder="exemple@exemple.com" v-model="email"></div>
+            <div id = "password"><input type = "password" class ="inputForm"  placeholder="Mot de passe" v-model="password"></div>
+            <div id= "submitConnex"><input type = "submit" class ="Button1"  @click="connexion();" value = "Connexion" name = 'submit'></div>
         </div>
         <!--<div id = "inscription">
             <h1> Nouveau Client ?</h1>
@@ -73,5 +73,23 @@
 </script>
 
 <style scoped>
-
+#connexion{
+    display: grid;
+    grid-template-rows: repeat(3 , 1fr);
+}
+#email{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inputForm{
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        --border : 1px solid #ccc;
+        border: var(--border);
+        display: inline-block;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
 </style>

@@ -7,6 +7,7 @@
         <div class ="formContact">
             <h3 class = "formTitre">Laissez-nous vos coordonnées</h3>
             <div class="error" v-show="error !=''">{{error}}</div>
+            <div class="validate" v-show="validate !=''">{{validate}}</div>
             <div id ="firstName"><input type ="text" id = "inputFormFirstName" name="firstName" @focus="borderFirstNameChange" v-bind:style="`--borderFirstName : ${computedBorderFirstName}`" v-model="firstName" placeholder="Prénom" required></div>
             <div id = "lastName"><input type ="text" id = "inputFormLastName"  name="lastName" @focus="borderLastNameChange" v-bind:style="`--borderLastName : ${computedBorderLastName}`" v-model="lastName" placeholder="Nom" required></div>
             <div id = "email"><input type ="mail" id = "inputFormEmail" name="email" @focus="borderEmailChange" v-bind:style="`--borderEmail : ${computedBorderEmail}`" v-model="mail" placeholder="exemple@exemple.com" required></div>
@@ -51,7 +52,8 @@
                 borderLastName : '',   
                 borderEmail : '',
                 borderPhone : '',
-                error : '',              
+                error : '', 
+                validate : ''             
             }
         },
         computed: {
@@ -91,13 +93,16 @@
                         const regexTelOM = new RegExp(/^(?:(?:\+|00|0)((262|692)|(263|693)|508|(5|6)90|(5|6)94|(5|6|7)96|681|687|689))(?:[\s.-]*\d{2}){3,4}$/)
                         const mailAdress = new RegExp(/^([\w-.]+)@((?:[\w]+\.)+)([a-zA-Z]{2,4})/i)
                         if(self.firstName != '' && self.lastName != '' && self.mail != '' && self.phone != '' && self.mail.match(mailAdress) && (self.phone.match(regexTelM) || self.phone.match(regexTelOM))){
-                            self.http.post("//localhost:8010/formContact", userMessage)                        
-                            .then(response => console.log(response.data))
-                            .then(()=> {self.$router.push('/')})
+                            self.http.post("//localhost:8010/formContact", userMessage)
+                            .then(()=> { self.error = '' })                        
+                            .then(() => { self.validate='Votre message a bien été envoyé. Vous allez être redirigé vers l\'accueil'})
+                            .then(()=> {setTimeout(()=>{self.$router.push('/')}, 4000)})
                         }if(self.firstName == ''){
                             self.borderFirstName = "2px solid red"
+                            self.error = "Le champs prénom est vide"
                         }if(self.lastName == ''){
                             self.borderLastName = "2px solid red"
+                            self.error = "Le champs nom est vide"
                         }if(self.mail == '' || !self.mail.match(mailAdress)){
                             self.borderEmail = "2px solid red"
                             self.error = "Veuillez vérifier le format de l'adresse mail"
@@ -194,6 +199,16 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        font-weight: bold;
+    }
+    .validate{
+        color: green;
+        grid-column: 1/3;
+        grid-row: 5/6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
     }
     #submitForm{
         grid-column: 1/3;

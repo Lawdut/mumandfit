@@ -191,4 +191,10 @@ import Editor from '@tinymce/tinymce-vue';
         border-radius: 4px;
         box-sizing: border-box;
     }
+#buttonEbook{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 20px;
+}
 </style>
