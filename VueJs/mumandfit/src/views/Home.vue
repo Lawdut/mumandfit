@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
     <div id = "imagePres">
       <vueper-slides fade autoplay :touchable="true" :pause-on-hover="pauseOnHover" :slide-ratio="337 / 599">
         <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image" />
@@ -9,14 +10,13 @@
     <div id = 'pres'>
       <editor v-model = presentation output-format = "html"
       api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                    :disabled="true"
+                    :disabled="status"
                     :init="myInitPresentation"
       />
       <div id = "buttonModifPres" v-if="token">
             <input type = 'submit' @click="toggleModale" value="Modifier" class = "Button1 save" v-if="token">
       </div>
     </div>
-    <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
   </div>
 </template>
 
@@ -50,7 +50,7 @@ export default {
       revele :false,
       modifier : true,
       token : this.$store.state.token,
-      status : true,
+      status : false,
       myInitPresentation : {
                    
                     selector : '#pres',
@@ -144,7 +144,7 @@ export default {
   align-items: center;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1400px) {
   #imagePres{
     width: 100%;
     padding-left: 0;

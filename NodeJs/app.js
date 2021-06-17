@@ -612,7 +612,7 @@ let index = art.indexOf(img)
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 /* ----- UPLOAD IMAGE SLIDER ----- */
-app.post('/uploadSlider', function(req, res){
+app.post('/uploadSlider', authenticateToken, function(req, res){
   
   const sampleFile = req.files.image;
   const fileName = 'image'+req.body.id +"."+ "jpg";

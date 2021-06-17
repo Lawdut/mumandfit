@@ -57,7 +57,7 @@
     grid-template-rows: repeat(7, 1fr);
 }
 .list-ebooks{
-    grid-row: 1/7;
+    grid-row: 1/8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,10 +73,11 @@
     row-gap: 30px;
 }
 .card-footer{
-    grid-row: 7/8;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 .card-ebook{
     box-shadow: 1px 1px 10px 3px #2c3e50;
@@ -108,20 +109,9 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
-    /*width: 100% ;
-    height: 100% ;
-    display:  flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 0;
-    margin: 0;*/
+    
 }
 
-/*.imageEbook >>> img {
-    width: 300px;
-	height: 100%;
-    object-fit: cover;
-}*/
 
 .titreEbook{
     grid-column: 1 / 1;
@@ -227,12 +217,4 @@
     color:#ec7463;
 }
 
-@media (max-width: 1000px) {
-    .card-footer{
-        padding-top: 50px;
-        height: 10%;
-    }
-    
-    
-}
 </style>

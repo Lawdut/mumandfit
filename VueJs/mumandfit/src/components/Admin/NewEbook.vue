@@ -79,22 +79,22 @@ import Editor from '@tinymce/tinymce-vue';
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    ' directionality code visualblocks visualchars fullscreen image',
+                    ' directionality code visualblocks visualchars fullscreen ',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    'anchor toc insertdatetime advlist lists wordcount ',
                     'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | imagetools',
+                    bullist numlist outdent indent | removeformat | ',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
-                    images_upload_url : '//localhost:8010/upload',
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',        
+
                     
                },
                 myInitDescription : {
@@ -104,22 +104,23 @@ import Editor from '@tinymce/tinymce-vue';
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    ' directionality code visualblocks visualchars fullscreen image',
+                    ' directionality code visualblocks visualchars fullscreen ',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    'anchor toc insertdatetime advlist lists wordcount',
                     'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | imagetools',
+                    bullist numlist outdent indent | removeformat |',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
-                    images_upload_url : '//localhost:8010/upload',
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',
+      
+
                     
                },
                myInitCorps : {
@@ -129,22 +130,22 @@ import Editor from '@tinymce/tinymce-vue';
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    ' directionality code visualblocks visualchars fullscreen image',
+                    ' directionality code visualblocks visualchars fullscreen',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    'anchor toc insertdatetime advlist lists wordcount',
                     'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat | imagetools',
+                    bullist numlist outdent indent | removeformat |',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
-                    images_upload_url : '//localhost:8010/upload',
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',
+
                     
                },
             }

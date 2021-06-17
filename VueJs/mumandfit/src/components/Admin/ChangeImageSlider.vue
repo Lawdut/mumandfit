@@ -17,8 +17,9 @@
             <h2>Image 3</h2>
             <img src = "../../../public/imagesSlider/image3.jpg">
             <label for ="file3" class = "Button1">Choisir une nouvelle image</label>
-            <input id ="file3" type = "file" name = 'image3' @change="processFile($event, 3)" accept="image/jpg, image/jpeg">
+            <div><input id ="file3" type = "file" name = 'image3' @change="processFile($event, 3)" accept="image/jpg, image/jpeg"></div>
         </div>
+        <div id = "buttonSlider"><input @click="navigation" type ="submit" value = "Retour" class = "Button1 return"></div>
     </div>
 </template>
 
@@ -27,8 +28,7 @@
         name : "ChangeImageSlider",
         data: function() {
             return {
-                imageChange : [],
-                
+                imageChange : [],   
             }
         },
         methods: {
@@ -43,6 +43,9 @@
                 .then(response=>{console.log(response)})
 
             },
+            navigation : function () {
+                this.$router.go(-1)
+            }
             /*processFile2(event) {
                 this.image2change = event.target.files[0];
                 let id = 2;
@@ -74,6 +77,7 @@
     display : grid;
     grid-template-rows: repeat(8, 1fr);
 }
+
 .titreSlider{
     grid-row: 1/2;
 }
@@ -109,9 +113,12 @@
     padding-bottom: 20px;
 }
 img{
-    width: 400px
+    width: 300px
 }
-input{
+#file1, #file2, #file3{
     display: none;
+}
+#buttonSlider{
+    margin-top: 40px;
 }
 </style>

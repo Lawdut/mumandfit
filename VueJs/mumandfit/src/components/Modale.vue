@@ -33,7 +33,7 @@
 
 <style scoped>
 .modale{
-    position: fixed;
+    position: absolute;
     top:0;
     bottom:0;
     left: 0;
@@ -45,16 +45,17 @@
 }
 .overlay{
     background: rgba(0,0,0,0.5);
-    position: fixed;
+    position: absolute;
     top:0;
     bottom:0;
     left: 0;
     right: 0;
+    z-index: 50;
 }
 
 .modaleCard{
     background: white;
-    z-index: 100000000000000;
+    z-index: 100;
     box-shadow: 1px 1px 10px 3px #2c3e50;
     border-radius: 20px;
     padding: 50px;

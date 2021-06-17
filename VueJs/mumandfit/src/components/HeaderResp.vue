@@ -15,8 +15,8 @@
 
             <div class='liensResp' v-if="isActive" v-bind:class="{overlay: isActive}">
                     <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/blog">Actualité</router-link></div>
-                    <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/contact">Contact</router-link></div>
                     <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/eboutique">E-Boutiques</router-link></div>
+                    <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/contact">Contact</router-link></div>
                     <div class = "searchBoxResp"><input class="searchInputResp" @focus="onFocus" id='searchInputIdResp' type ="text" placeholder="Rechercher" v-model="results" name="results"><button class ="searchButton" @click="searchArticle(results) ; isActive = false">Go</button></div>
                     <div class = "texteLiensResp" @click="isActive = false"><router-link to = "/blog">Mentions légales</router-link></div>
                     <div class = "cart" @click="isActive = false" v-if="!this.$store.state.token"><img src = '../assets/logoResSociaux/panier.png' height="40px" class="snipcart-checkout"></div>

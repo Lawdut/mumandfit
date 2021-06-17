@@ -85,21 +85,6 @@ import jQuery from "jquery";
                     image_advtab: true,
                     image_uploadtab: true,
                     images_upload_url : '//localhost:8010/upload',
-                    file_picker_callback : function (callback, value, meta) {
-                        if (meta.filetype == 'image') {
-                        $('#upload').trigger('click');
-                        $('#upload').on('change', function () {
-                            var file = this.files[ 0 ];
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                            callback(e.target.result, {
-                                alt: ''
-                            });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    }
-                    }
                },
                myInitTitre : {
                    
@@ -108,20 +93,20 @@ import jQuery from "jquery";
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    ' directionality code visualblocks visualchars fullscreen image',
+                    ' directionality code visualblocks visualchars fullscreen',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    'anchor toc insertdatetime advlist lists wordcount',
                     'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat |  | imagetools',
+                    bullist numlist outdent indent | removeformat |',
                     encoding: 'UTF-8',
                     inline: true,
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',
 
                },
 
@@ -133,18 +118,19 @@ import jQuery from "jquery";
                     'print preview paste importcss searchreplace autolink',
                     'directionality code visualblocks visualchars fullscreen image',
                     'link media template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount imagetools',
+                    'anchor toc insertdatetime advlist lists wordcount ',
                     'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat |  | imagetools',
+                    bullist numlist outdent indent | removeformat |',
                     encoding: 'UTF-8',
                     inline: true,
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',
+
                },
                myInitContenu : {
                     selector : '#contenuCreate',
@@ -175,21 +161,7 @@ import jQuery from "jquery";
                     //tinydrive_token_provider : "//localhost:8010/jwt",
 
                     images_upload_url : '//localhost:8010/upload',
-                    file_picker_callback : function (callback, value, meta) {
-                        if (meta.filetype == 'image') {
-                        $('#upload').trigger('click');
-                        $('#upload').on('change', function () {
-                            var file = this.files[ 0 ];
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                            callback(e.target.result, {
-                                alt: ''
-                            });
-                            };
-                            reader.readAsDataURL(file);
-                        });
-                    }
-                    }
+
                 }
             }
         },

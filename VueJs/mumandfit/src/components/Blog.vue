@@ -68,7 +68,7 @@
     grid-template-rows: repeat(7, 1fr);
 }
 .list-articles{
-    grid-row: 1/7;
+    grid-row: 1/8;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -84,7 +84,8 @@
     row-gap: 30px;
 }
 .card-footer{
-    grid-row: 7/8;
+    margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -217,13 +218,5 @@
     color : #ec7463;
 }
 
-@media (max-width: 1000px) {
-    .card-footer{
-        padding-top: 50px;
-        height: 10%;
-    }
-    
-    
-}
 
 </style>
