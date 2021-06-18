@@ -9,7 +9,7 @@
 
                 />
             </div>
-            <div id = "genreModif" v-if="unArticle.genre != null || token">
+            <div id = "genreModif" v-if="unArticle.genre != '' || token">
                 <div id = "genreModifPos">
                     <editor v-model = unArticle.genre output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
