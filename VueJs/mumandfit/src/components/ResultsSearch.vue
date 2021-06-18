@@ -82,7 +82,6 @@
     justify-content: center;
 }
 .articles{
-
     display : flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -92,7 +91,8 @@
     row-gap: 30px;
 }
 .card-footer{
-    grid-row: 7/8;
+    margin-top: 50px;
+    margin-bottom: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -112,8 +112,8 @@
     text-transform: uppercase;
     border: 1px solid #204554;
     background-color: hsla(23,51%,92%,.4);
-    padding: 12px;
-    top : 155px;
+    padding: 10px;
+    top : 158px;
     left: 5px;
 }
 .genre>>>p{
@@ -145,14 +145,17 @@
     grid-row: 3/4;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     font-size: 12px !important;
-    margin: 7px 0 0 0 ;
-    padding: 0px;
+    margin: 0 ;
+    padding: 0 5px 0 5px;
+    background-color: #434343;
 }
 .titre >>> h1 {
     margin-block-start: 0px !important;
     margin-block-end: 0px !important;
+    color: #ec7463;
+    font-size: 20px;
 }
 .chapeau{
     grid-column: 1 / 1;
@@ -161,10 +164,28 @@
     justify-content: center;
     align-items: flex-start;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin : 5px 5px;
+
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
 }
 .chapeau >>> p {
     text-align: center !important;
+    margin :0;
+    height: 100%;
+    font-size: 15px;
+}
+.button-article{
+    grid-column: 1 / 1;
+    grid-row: 6/7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #ec7463;
+
 }
 .button-article{
     grid-column: 1 / 1;

@@ -106,8 +106,8 @@
     text-transform: uppercase;
     border: 1px solid #204554;
     background-color: hsla(23,51%,92%,.4);
-    padding: 12px;
-    top : 155px;
+    padding: 10px;
+    top : 158px;
     left: 5px;
 }
 .genre>>>p{
