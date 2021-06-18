@@ -5,6 +5,7 @@
         <div class = "list-articles" v-if="articleTabFiltered.length > 0">
             <div class = "articles">
                 <div class = "card-article" v-for="unArticle in articlesFiltered" v-bind:key ="unArticle.id">
+                    <div class ="genre" v-html="unArticle.genre" v-if="unArticle.genre != ('null' && '')">{{unArticle.genre}}</div>
                     <div class ="banniere" v-html="unArticle.banniere">{{unArticle.banniere}}</div>
                     <div class = "titre" v-html="unArticle.titre">{{unArticle.titre}}</div>
                     <div class = "chapeau" v-html="unArticle.chapeau">{{unArticle.chapeau}}</div>
@@ -103,6 +104,21 @@
     display: grid;
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(6, 1fr);
+    position: relative;
+}
+.genre{
+    position: absolute;
+    color : black;
+    text-transform: uppercase;
+    border: 1px solid #204554;
+    background-color: hsla(23,51%,92%,.4);
+    padding: 12px;
+    top : 155px;
+    left: 5px;
+}
+.genre>>>p{
+    margin: 0;
+    font-size: 12px;
 }
 .banniere{
     grid-column: 1 / 1;

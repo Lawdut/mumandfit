@@ -180,9 +180,7 @@ app.post('/modifPres',authenticateToken, function (req, res){
 
           /* ----- MOTEUR DE RECHERCHE ----- */
 app.post('/searchArticle', function(req, res){
-  //console.log(req.body);
   let requestCleaned = cleanSearch(req.body);
-
   bdd.getResultsOfSearchArticles('articles', requestCleaned, function(filterArticles){
     console.log(filterArticles);
     res.send({filterArticles})

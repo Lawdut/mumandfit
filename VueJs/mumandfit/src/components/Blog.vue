@@ -3,6 +3,7 @@
         <div class = "list-articles">
             <div class = "articles">
                 <div class = "card-article" v-for="unArticle in articles" v-bind:key ="unArticle.id">
+                    <div class ="genre" v-html="unArticle.genre" v-if="unArticle.genre != ('null' && '')">{{unArticle.genre}}</div>
                     <div class ="banniere" v-html="unArticle.banniere">{{unArticle.banniere}}</div>
                     <div class = "titre" v-html="unArticle.titre">{{unArticle.titre}}</div>
                     <div class = "chapeau" v-html="unArticle.chapeau">{{unArticle.chapeau}}</div>
@@ -97,6 +98,21 @@
     display: grid;
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(6, 1fr);
+    position: relative;
+}
+.genre{
+    position: absolute;
+    color : black;
+    text-transform: uppercase;
+    border: 1px solid #204554;
+    background-color: hsla(23,51%,92%,.4);
+    padding: 12px;
+    top : 155px;
+    left: 5px;
+}
+.genre>>>p{
+    margin: 0;
+    font-size: 12px;
 }
 .banniere{
     grid-column: 1 / 1;
@@ -123,14 +139,17 @@
     grid-row: 3/4;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     font-size: 12px !important;
-    margin: 7px 0 0 0 ;
-    padding: 0px;
+    margin: 0 ;
+    padding: 0 5px 0 5px;
+    background-color: #434343;
 }
 .titre >>> h1 {
     margin-block-start: 0px !important;
     margin-block-end: 0px !important;
+    color: #ec7463;
+    font-size: 20px;
 }
 .chapeau{
     grid-column: 1 / 1;
@@ -139,10 +158,18 @@
     justify-content: center;
     align-items: flex-start;
     overflow: hidden;
-    margin-bottom: 10px;
+    margin : 5px 5px;
+
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
 }
 .chapeau >>> p {
     text-align: center !important;
+    margin :0;
+    height: 100%;
+    font-size: 15px;
 }
 .button-article{
     grid-column: 1 / 1;

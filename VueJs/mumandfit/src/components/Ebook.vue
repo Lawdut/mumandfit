@@ -38,9 +38,9 @@
         >Ajouter au panier : {{ebook.prix}} €</button>
         <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
     </div>
-
-    <Modale :deleted="deleted" :revele="revele" :toggleModale="toggleModale" :guid="ebook.guid" :supprimer="supprimer" :modifier="modifier" :save="save" v-if="revele"></Modale>
-
+    <transition name="fade">
+        <Modale :deleted="deleted" :revele="revele" :toggleModale="toggleModale" :guid="ebook.guid" :supprimer="supprimer" :modifier="modifier" :save="save" v-if="revele"></Modale>
+    </transition>
 </div>
 </template>
 

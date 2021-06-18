@@ -9,6 +9,16 @@
 
                 />
             </div>
+            <div id = "genreModif" v-if="unArticle.genre != null || token">
+                <div id = "genreModifPos">
+                    <editor v-model = unArticle.genre output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitGenre"
+                    initial-value="Placer un genre ici (<i>facultatif</i>) ?"
+                    />
+                </div>
+            </div>
             <div id = "titreModif">
                 <editor v-model = unArticle.titre output-format="html"
                 api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
@@ -38,8 +48,9 @@
             <input type = 'submit' @click="toggleModale('delete')" value = "Supprimer" class = "Button1 delete" v-if="token">
             <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
         </div>
-
-        <Modale :deleted="deleted" :revele="revele" :toggleModale="toggleModale" :supprimer="supprimer" :modifier="modifier" :save="save" v-if="revele"></Modale>
+        <transition name="fade">
+            <Modale :deleted="deleted" :revele="revele" :toggleModale="toggleModale" :supprimer="supprimer" :modifier="modifier" :save="save" v-if="revele"></Modale>
+        </transition>
 
     </div>
 </template>
@@ -62,6 +73,7 @@ import Modale from './Modale.vue';
             return {
                unArticle : {
                    id : this.$store.state.unArticle.id,
+                   genre : this.$store.state.unArticle.genre,
                    banniere : this.$store.state.unArticle.banniere,
                    titre : this.$store.state.unArticle.titre,
                    chapeau : this.$store.state.unArticle.chapeau,
@@ -98,6 +110,30 @@ import Modale from './Modale.vue';
                     image_uploadtab: true,
                     images_upload_url : '//localhost:8010/upload',
                     
+               },
+               myInitGenre : {
+                   
+                    selector : '#genreModif',
+                    height: 500,
+                    menubar: 'file edit view insert format tools table help',
+                    plugins: [
+                    'print preview paste importcss searchreplace autolink',
+                    ' directionality code visualblocks visualchars fullscreen',
+                    'link media template codesample table charmap hr pagebreak nonbreaking',
+                    'anchor toc insertdatetime advlist lists wordcount ',
+                    'textpattern noneditable help charmap quickbars emoticons '
+                    ],
+                    toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat',
+                    toolbar_sticky: true,
+                    inline: true,
+                    encoding: 'UTF-8',
+                    entity_encoding : 'raw',
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',
+
                },
                myInitTitre : {
                    
@@ -209,6 +245,7 @@ import Modale from './Modale.vue';
                 let unArticle = {
                     unArticle : {
                         id : this.$store.state.unArticle.id,
+                        genre : this.$store.state.unArticle.genre,
                         banniere : this.$store.state.unArticle.banniere,
                         titre : this.$store.state.unArticle.titre,
                         chapeau : this.$store.state.unArticle.chapeau,
@@ -224,6 +261,7 @@ import Modale from './Modale.vue';
                 let unArticle = {
                     unArticle : {
                         id : this.$store.state.unArticle.id,
+                        genre : this.$store.state.unArticle.genre,
                         banniere : this.$store.state.unArticle.banniere,
                         titre : this.$store.state.unArticle.titre,
                         chapeau : this.$store.state.unArticle.chapeau,
@@ -250,6 +288,25 @@ import Modale from './Modale.vue';
     align-items: center;
     margin: 30px 0px 30px 0px;
     row-gap : 20px;
+}
+
+#genreModif{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#genreModifPos{
+     color : black;
+    text-transform: uppercase;
+    border: 1px solid #204554;
+    background-color: hsla(23,51%,92%,.4);
+    padding: 12px;
+    top : 87%;
+    left : 2%;
+}
+#genreModif>>>p{
+    margin: 0;
+    font-size: 12px;
 }
 .article {
     width: 90%;

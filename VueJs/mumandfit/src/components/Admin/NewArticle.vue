@@ -1,6 +1,14 @@
 <template>
     <div>
          <div class = "article">
+             <div id = "genreCreate">
+                <editor  v-model = unArticle.genre output-format="html"
+                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                    :disabled="status"
+                    :init="myInitGenre"
+                    initial-value="Placer un genre (<i>facultatif</i>)"
+                    />
+            </div>
             <div id = "banniereCreate">
                 <editor  v-model = unArticle.banniere output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
@@ -56,6 +64,7 @@ import jQuery from "jquery";
         data : function (){
             return {
                unArticle : {
+                   genre:'',
                    banniere : '',
                    titre : '',
                    chapeau : '',
@@ -64,6 +73,28 @@ import jQuery from "jquery";
                uploadImageStatus : null,
                token : this.$store.state.token,
                status : null,
+               myInitGenre : {
+                    selector : '#genreCreate',
+                    height: 300,
+                    menubar: 'file edit insert tools table help',
+                    plugins: [
+                    'paste importcss',
+                    'fullscreen image',
+                    'imagetools',
+                    'help quickbars '
+                    ],
+                    toolbar:
+                    'undo redo | \
+                    alignleft aligncenter alignright alignjustify | \
+                    outdent indent | imagetools | quickimage',
+                    quickbars_insert_toolbar: 'quickimage',
+                    encoding: 'UTF-8',
+                    inline: true,
+                    entity_encoding : 'raw',
+                    image_advtab: true,
+                    image_uploadtab: true,
+                    images_upload_url : '//localhost:8010/upload',
+               },
                myInitBanniere : {
                     selector : '#banniereCreate',
                     height: 300,
@@ -188,6 +219,7 @@ import jQuery from "jquery";
                     let unArticle = 
                     { unArticle : {
                         id : "",
+                        genre : this.unArticle.genre,
                         banniere : this.unArticle.banniere,
                         titre : this.unArticle.titre,
                         chapeau : this.unArticle.chapeau,

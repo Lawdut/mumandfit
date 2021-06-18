@@ -86,6 +86,7 @@
     display: grid;
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(6, 1fr);
+    background-color: #cecece;
 }
 .imageEbook{
     grid-column: 1 / 1;
@@ -118,35 +119,47 @@
     grid-row: 3/4;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     font-size: 12px !important;
-    margin: 7px 0 0 0 ;
-    padding: 0px;
+    margin: 0 ;
+    padding: 0 5px 0 5px;
+    background-color: #aaa;
 }
 .titreEbook >>> h1 {
     margin-block-start: 0px !important;
     margin-block-end: 0px !important;
+    font-size: 20px;
 }
 .descriptionEbook{
     grid-column: 1 / 1;
     grid-row: 4/6;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     overflow: hidden;
-    margin-bottom: 10px;
+    background-color: #cecece;
+    margin : 5px 5px;
+    
+
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+
 }
 .descriptionEbook >>> p {
     text-align: center !important;
-    margin : 0 3px
+    margin :0;
+    height: 100%;
+    font-size: 15px;
 }
+
 .button-ebook{
     grid-column: 1 / 1;
     grid-row: 6/7;
     display: flex;
     justify-content: center;
     align-items: center;
-
     background-color: #ec7463;
 
 }

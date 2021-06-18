@@ -8,7 +8,9 @@
     </div>
     <div class = "main">
       <div class = "box">
+      <transition name="page" mode="out-in">
         <router-view />
+      </transition>
       </div>
     </div>
   </div>
@@ -62,10 +64,7 @@ a, router-link{
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: black;
-  cursor : default;
-
   
-
   display: grid;
   grid-template-columns: repeat(20, 1fr);
   grid-template-rows: repeat(12, 1fr);
@@ -103,11 +102,23 @@ a, router-link{
 .box {
   height : 100%;
   width: 100%;
-
   overflow-y: auto;
 }
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.8s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 
-
+.page-enter-active, .page-leave-active {
+  transition: opacity 0.9s;
+  /*transition: all 1s ease 0.5s;*/
+}
+.page-enter, .page-leave-to {
+  opacity: 0;
+  
+}
 
           /*-----Bouton-----*/
 
@@ -128,6 +139,7 @@ a, router-link{
   background: #434343;
   border-color: #ec7463 !important;
   transition: all 0.4s ease 0s;
+  cursor: pointer;
 }
 
 #headerRespApp{

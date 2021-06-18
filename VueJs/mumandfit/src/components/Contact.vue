@@ -18,20 +18,21 @@
         
         <div class = "geoLoc">
             <h3>Où nous trouver ?</h3>
-            <iframe  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2728.510486659392!2d6.208440751355216!3d46.85332554759804!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478da6f5acf0b82b%3A0xe64db311e5375f7e!2sChemin%20Entre%20Deux%20Ponts%2C%2025560%20Bouverans!5e0!3m2!1sfr!2sfr!4v1623230288955!5m2!1sfr!2sfr" 
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12978.937866421007!2d6.2023382693625315!3d46.85381574438817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478da6f50292b087%3A0x4880adda86201e42!2s10%20Chemin%20Entre%20Deux%20Ponts%2C%2025560%20Bouverans!5e0!3m2!1sfr!2sfr!4v1624002847701!5m2!1sfr!2sfr" 
                 width="100%" height="75%" 
                 style="border:0;" allowfullscreen="" 
                 loading="lazy">
             </iframe>
-            <p>Korinne Lancette - chemin entre 2 Ponts 25560 Bouverans - 06.31.75.20.17 - mumuandfit@gmail.com</p>
+            <p>Korinne Lancette - 10 chemin entre 2 Ponts 25560 Bouverans - 06.31.75.20.17 - mumuandfit@gmail.com</p>
             
         </div>
 
         <div class = "reseauxSociaux">
             <h3>Réseaux sociaux</h3>
             <div class= "logoRes">
-            <div id = "facebook"><a href="https://www.facebook.com/korinne.lancette"><img src ="../assets/logoResSociaux/facebook.svg" width="40px"></a></div>
-            <div id = "instagram"><a href="https://www.instagram.com/kokofit25/?hl=fr"><img src ="../assets/logoResSociaux/instagram.svg" width="40px"></a></div>
+            <div class= "logoReseau" id = "facebook"><a href="https://www.facebook.com/korinne.lancette"><img src ="../assets/logoResSociaux/facebook.svg" width="40px"></a></div>
+            <div class= "logoReseau" id = "instagram"><a href="https://www.instagram.com/kokofit25/?hl=fr"><img src ="../assets/logoResSociaux/instagram.svg" width="40px"></a></div>
+            <div class= "logoReseau" id = "youtube"><a href="https://www.instagram.com/kokofit25/?hl=fr"><img src ="../assets/logoResSociaux/youtube.svg" width="40px"></a></div>
             </div>
         </div>
     </div>
@@ -136,8 +137,12 @@
 
 <style scoped>
     .contact{
+        justify-content: center;
         display: grid;
         grid-template-rows: repeat(10, 1fr); 
+    }
+    .logoReseau{
+        cursor: pointer;
     }
     .titreContact{
         grid-row: 1/2;
@@ -218,7 +223,7 @@
         align-items: center;
     }
     #textArea{
-        width: 50%;
+        width: 100%;
         height: 100%;
     }
     .geoLoc{
@@ -230,7 +235,7 @@
         align-items: center;
     }
     #inputFormFirstName{
-        width: 50%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         --borderFirstName : 1px solid #ccc;
@@ -240,7 +245,7 @@
         box-sizing: border-box;
     }
     #inputFormLastName{
-        width: 50%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         --borderLastName : 1px solid #ccc;
@@ -250,7 +255,7 @@
         box-sizing: border-box;
     }
     #inputFormEmail{
-        width: 50%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         --borderEmail : 1px solid #ccc;
@@ -260,7 +265,7 @@
         box-sizing: border-box;
     }
     #inputFormPhone{
-        width: 50%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         --borderPhone : 1px solid #ccc;

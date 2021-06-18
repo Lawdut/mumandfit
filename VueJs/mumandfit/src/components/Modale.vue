@@ -1,8 +1,8 @@
 <template>
     <div class="modale">
-
+         
         <div class="overlay" v-if="toggleModale" @click="toggleModale"></div>
-
+        
         <div class ="modaleCard" v-if="toggleModale">
             <div class = "titreModale" v-if="supprimer === true"><p>Voulez-vous confirmer la <strong>suppression</strong> ?</p></div>
             <div class = "titreModale" v-else-if="modifier === true"><p>Voulez-vous confirmer la <strong>modification</strong> ?</p></div>
@@ -16,6 +16,7 @@
                 <input type = 'submit' @click="toggleModale" value="Annuler" class = "Button1 save" v-if="token">
             </div>
         </div>
+        
     </div>
 </template>
 

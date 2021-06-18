@@ -18,6 +18,7 @@ import Eboutique from '../components/Eboutique.vue'
 import Ebook from '../components/Ebook.vue'
 import Modale from '../components/Modale.vue'
 import ListAdmin from '../components/Admin/ListAdmin.vue'
+import About from '../components/About.vue'
 
 Vue.use(VueRouter)
 //Vue.use($)
@@ -167,10 +168,7 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component : About,
   },
 
   

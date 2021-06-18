@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
+
+      <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
+
     <div id = "imagePres">
       <vueper-slides fade autoplay :touchable="true" :pause-on-hover="pauseOnHover" :slide-ratio="337 / 599">
         <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image" />
@@ -17,6 +19,9 @@
             <input type = 'submit' @click="toggleModale" value="Modifier" class = "Button1 save" v-if="token">
       </div>
     </div>
+    
+    
+    
   </div>
 </template>
 
