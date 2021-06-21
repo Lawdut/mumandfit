@@ -112,7 +112,7 @@ a, router-link{
 }
 
 .page-enter-active, .page-leave-active {
-  transition: opacity 0.9s;
+  transition: opacity 0.5s;
   /*transition: all 1s ease 0.5s;*/
 }
 .page-enter, .page-leave-to {

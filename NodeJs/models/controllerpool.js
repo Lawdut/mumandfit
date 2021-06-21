@@ -78,7 +78,7 @@ exports.modifPresentation = function(table, modifPres, callback){
     })
 }
 exports.getAllArticles = function (table, callback){
-    var sql = "SELECT * FROM " + table;
+    var sql = "SELECT *, DATE_FORMAT(date_creation, '%d/%m/%Y à %H:%i:%s') as date_creat, DATE_FORMAT(date_maj, '%d/%m/%Y à %H:%i:%s') as date_modif  FROM " + table;
         conn.query(sql, function(error, rows) {
             if (error) {
                 console.log(error);
@@ -87,7 +87,7 @@ exports.getAllArticles = function (table, callback){
 })}
 
 exports.getResultsOfSearchArticles = function(table, requestCleaned, callback){
-    var sql = "SELECT * FROM "+table+" WHERE titre LIKE '" + "%" + requestCleaned.search + "%" +"' OR genre LIKE '" + "%" + requestCleaned.search + "%" +"' OR chapeau LIKE '" + "%" + requestCleaned.search + "%" +"' OR contenu LIKE '" + "%" + requestCleaned.search + "%"+"' ORDER BY id;";
+    var sql = "SELECT * FROM "+table+" WHERE titre LIKE '" + "%" + requestCleaned.search + "%" +"' OR genre LIKE '" + "%" + requestCleaned.search + "%" +"' OR chapeau LIKE '" + "%" + requestCleaned.search + "%" +"' OR contenu LIKE '" + "%" + requestCleaned.search + "%"+"' ORDER BY date_creation;";
     conn.query(sql, function(error, rows){
         if(error) {
             console.log(error)
@@ -119,7 +119,7 @@ exports.getNumberOfArticles = function (table, callback){
 exports.createArticle = function (table, table2, article, images, callback){
 
     var idArticle = "SELECT MAX(`id`) as id FROM " + table;
-    var sql = "INSERT INTO " + table + "(id, genre, banniere, titre, chapeau, contenu) VALUE (NULL, '"+article.unArticle.genre+"','"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"');";
+    var sql = "INSERT INTO " + table + "(id, genre, banniere, titre, chapeau, contenu, date_creation) VALUE (NULL, '"+article.unArticle.genre+"','"+article.unArticle.banniere+"','"+article.unArticle.titre+"','"+article.unArticle.chapeau+"','"+article.unArticle.contenu+"', NOW() );";
     
 
     conn.beginTransaction(function(error){
@@ -184,7 +184,7 @@ exports.createArticle = function (table, table2, article, images, callback){
 
 exports.updateArticles = async function (table1, table2, article, images, callback){
     //console.log(article);
-    var sql = "UPDATE " + table1 + " SET `genre` = " + "'" + article.unArticle.genre +"'" + "," + "`banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'"  + " WHERE id = " + article.unArticle.id ;
+    var sql = "UPDATE " + table1 + " SET `genre` = " + "'" + article.unArticle.genre +"'" + "," + "`banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'" + "," + " `date_maj` = NOW() WHERE id = " + article.unArticle.id ;
     //var imageBdd = [];
     conn.query(sql, function(error) {
         if (error) {

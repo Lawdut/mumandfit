@@ -8,7 +8,12 @@
                     :init="myInitBanniere"
 
                 />
+                <div class="date">
+                <div class = "dateCreat">Créé le {{unArticle.date_creation}}</div>
+                <div v-if="this.$store.state.unArticle.date_modif != null" class = "dateModif">Mis à jour le {{unArticle.date_maj}}</div>
             </div>
+            </div>
+            
             <div id = "genreModif" v-if="unArticle.genre != '' || token">
                 <div id = "genreModifPos">
                     <editor v-model = unArticle.genre output-format="html"
@@ -19,6 +24,7 @@
                     />
                 </div>
             </div>
+            
             <div id = "titreModif">
                 <editor v-model = unArticle.titre output-format="html"
                 api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
@@ -78,6 +84,8 @@ import Modale from './Modale.vue';
                    titre : this.$store.state.unArticle.titre,
                    chapeau : this.$store.state.unArticle.chapeau,
                    contenu : this.$store.state.unArticle.contenu,
+                   date_creation : this.$store.state.unArticle.date_creat,
+                   date_maj : this.$store.state.unArticle.date_modif,
                    
                },
                revele :false,
@@ -314,6 +322,11 @@ import Modale from './Modale.vue';
 #buttonArticle{
     display: flex;
     column-gap: 20px;
+}
+.date{
+    margin-bottom: 20px;
+    font-size: 10px;
+    font-weight: bold;
 }
 
 </style>
