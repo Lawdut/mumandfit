@@ -8,10 +8,6 @@
                     :init="myInitBanniere"
 
                 />
-                <div class="date">
-                <div class = "dateCreat">Créé le {{unArticle.date_creation}}</div>
-                <div v-if="this.$store.state.unArticle.date_modif != null" class = "dateModif">Mis à jour le {{unArticle.date_maj}}</div>
-            </div>
             </div>
             
             <div id = "genreModif" v-if="unArticle.genre != '' || token">
@@ -47,7 +43,10 @@
                     :init="myInitContenu"
                 />
             </div>
-            
+        <div class="date">
+                    <div class = "dateCreat">Créé le {{unArticle.date_creation}}</div>
+                    <div v-if="this.$store.state.unArticle.date_modif != null" class = "dateModif">Mis à jour le {{unArticle.date_maj}}</div>
+                </div>
         </div>
         <div id = "buttonArticle">
             <input type = 'submit' @click="toggleModale('save')" value="Enregistrer les modifications" class = "Button1 save" v-if="token">
@@ -327,6 +326,10 @@ import Modale from './Modale.vue';
     margin-bottom: 20px;
     font-size: 10px;
     font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 </style>
