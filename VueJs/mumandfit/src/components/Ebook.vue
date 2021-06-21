@@ -234,4 +234,12 @@ import Modale from './Modale.vue';
     display: flex;
     column-gap: 20px;
 }
+@media (max-width : 680px){
+    #buttonEbook{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
+
+    }
+}
 </style>

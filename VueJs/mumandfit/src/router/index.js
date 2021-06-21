@@ -50,7 +50,7 @@ const routes = [
       if(from.path === '/admin' && loggedIn){
         return next();
       }else if (!loggedIn){
-        next({path : '/accueil'})
+        next({path : '/'})
       }
     }
   },
@@ -68,7 +68,7 @@ const routes = [
       if(from.path === '/admin' && loggedIn){
         return next();
       }else if (!loggedIn){
-        next({path : '/accueil'})
+        next({path : '/'})
       }
     }
   },
@@ -81,7 +81,7 @@ const routes = [
       if(from.path === '/admin' && loggedIn){
         return next();
       }else if (!loggedIn){
-        next({path : '/accueil'})
+        next({path : '/'})
       }
     }
   },
@@ -94,7 +94,7 @@ const routes = [
       if(from.path === '/admin' && loggedIn){
         return next();
       }else if (!loggedIn){
-        next({path : '/accueil'})
+        next({path : '/'})
       }
     }
   },
@@ -136,6 +136,14 @@ const routes = [
     path : "/admin",
     name : "AdminHome",
     component : AdminHome,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(loggedIn){
+        return next();
+      }else if (!loggedIn){
+        return next({path : '/'})
+      }
+    }
   },
   
 
@@ -149,7 +157,7 @@ const routes = [
       if(from.path === '/admin' && loggedIn){
         return next();
       }else if (!loggedIn){
-        next({path : '/accueil'})
+        next({path : '/'})
       }
     }
   },

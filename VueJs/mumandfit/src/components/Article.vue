@@ -331,5 +331,12 @@ import Modale from './Modale.vue';
     justify-content: center;
     align-items: flex-end;
 }
+@media (max-width : 680px){
+    #buttonArticle{
+        display: flex;
+        flex-direction: column;
+        row-gap: 20px;
 
+    }
+}
 </style>

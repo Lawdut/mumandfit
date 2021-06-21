@@ -7,7 +7,7 @@
             <div class = "titreModale" v-if="supprimer === true"><p>Voulez-vous confirmer la <strong>suppression</strong> ?</p></div>
             <div class = "titreModale" v-else-if="modifier === true"><p>Voulez-vous confirmer la <strong>modification</strong> ?</p></div>
             <div class = "ebookGuid" v-if="guid && supprimer === true">
-                <p>Copier ce GUID pour supprimer l'ebook de snipcart <strong>UNIQUEMENT</strong> si personne ne l'a déja acheté </p>
+                <p>Copier ce GUID pour supprimer l'ebook de snipcart <strong>UNIQUEMENT</strong> si personne ne l'a déja acheté. </p>
                 <p>{{guid}}</p>
             </div>
             <div id = "buttonModale">
@@ -65,6 +65,9 @@
 }
 .titreModale{
     grid-row: 1/2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .ebookGuid{
     grid-row: 2/3;

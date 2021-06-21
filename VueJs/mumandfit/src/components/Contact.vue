@@ -23,7 +23,7 @@
                 style="border:0;" allowfullscreen="" 
                 loading="lazy">
             </iframe>
-            <p>Korinne Lancette - 10 chemin entre 2 Ponts 25560 Bouverans - 06.31.75.20.17 - mumuandfit@gmail.com</p>
+            <p>Korinne Lancette - 10 chemin entre 2 Ponts 25560 Bouverans - 06.31.75.20.17 - mumandfit@gmail.com</p>
             
         </div>
 
