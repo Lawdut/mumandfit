@@ -87,7 +87,7 @@ exports.getAllArticles = function (table, callback){
 })}
 
 exports.getResultsOfSearchArticles = function(table, requestCleaned, callback){
-    var sql = "SELECT * FROM "+table+" WHERE titre LIKE '" + "%" + requestCleaned.search + "%" +"' OR genre LIKE '" + "%" + requestCleaned.search + "%" +"' OR chapeau LIKE '" + "%" + requestCleaned.search + "%" +"' OR contenu LIKE '" + "%" + requestCleaned.search + "%"+"' ORDER BY date_creation;";
+    var sql = "SELECT *, DATE_FORMAT(date_creation, '%d/%m/%Y à %H:%i:%s') as date_creat, DATE_FORMAT(date_maj, '%d/%m/%Y à %H:%i:%s') as date_modif FROM "+table+" WHERE titre LIKE '" + "%" + requestCleaned.search + "%" +"' OR genre LIKE '" + "%" + requestCleaned.search + "%" +"' OR chapeau LIKE '" + "%" + requestCleaned.search + "%" +"' OR contenu LIKE '" + "%" + requestCleaned.search + "%"+"' ORDER BY date_creation;";
     conn.query(sql, function(error, rows){
         if(error) {
             console.log(error)

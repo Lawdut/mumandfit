@@ -40,7 +40,7 @@
         beforeMount : function () {
             let search = this.$store.state.search;
             this.http.post('http://localhost:8010/searchArticle', {search})
-            .then(response=>{this.articleTabFiltered = response.data.filterArticles.reverse()})
+            .then(response=>{this.articleTabFiltered = response.data.filterArticles})
         },
 
         mounted : function() {
