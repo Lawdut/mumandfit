@@ -45,7 +45,17 @@
             </div>
         <div class="date">
                     <div class = "dateCreat">Créé le {{unArticle.date_creation}}</div>
-                    <div v-if="this.$store.state.unArticle.date_modif != null" class = "dateModif">Mis à jour le {{unArticle.date_maj}}</div>
+                        <div v-if="this.$store.state.unArticle.statusMaj != 'non' || token " class = "dateModif">
+                        <p v-if="this.$store.state.unArticle.date_modif != null">Mis à jour le {{unArticle.date_maj}}</p>
+                        <div id = "majValid" v-if="token && this.$store.state.unArticle.date_modif != null">
+                            <p>Souhaitez-vous faire apparaître la date de mise à jour ?</p>
+                            <input type ="radio" id="yes" name="status_maj" value="oui" @change="changeStatus(1)" v-model="this.unArticle.statusMaj">
+                            <label for="yes">Oui</label>
+                            <input type ="radio" id="no" name="status_maj" value="non" @change="changeStatus(0)" v-model="this.unArticle.statusMaj">
+                            <label for="no">Non</label>
+                        </div>
+
+                    </div>
                 </div>
         </div>
         <div id = "buttonArticle">
@@ -85,8 +95,10 @@ import Modale from './Modale.vue';
                    contenu : this.$store.state.unArticle.contenu,
                    date_creation : this.$store.state.unArticle.date_creat,
                    date_maj : this.$store.state.unArticle.date_modif,
+                   statusMaj : this.$store.state.unArticle.statusMaj,
                    
                },
+               //selectedValue : this.$store.state.unArticle.statusMaj,
                revele :false,
                uploadImageStatus : false,
                token : this.$store.state.token,
@@ -245,6 +257,14 @@ import Modale from './Modale.vue';
                 }
                 
             },
+            changeStatus(status){
+                if(status === 1){
+                    this.unArticle.statusMaj = 'oui'
+                }else if(status === 0){
+                    this.unArticle.statusMaj = 'non'
+                }
+    
+            },
             save : function () {
                 this.uploadImageStatus = true;
                 this.$store.commit('modifArticleStore', this.unArticle);
@@ -257,6 +277,7 @@ import Modale from './Modale.vue';
                         titre : this.$store.state.unArticle.titre,
                         chapeau : this.$store.state.unArticle.chapeau,
                         contenu : this.$store.state.unArticle.contenu,
+                        statusMaj : this.$store.state.unArticle.statusMaj,
                     }
                 }
                 this.http.post('//localhost:8010/modifArticle' , unArticle)
@@ -330,6 +351,17 @@ import Modale from './Modale.vue';
     flex-direction: column;
     justify-content: center;
     align-items: flex-end;
+}
+.dateModif{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+#majValid{
+    background-color:hsla(7, 78%, 66%, 0.25);
+    border: 1px solid #204554;
+    padding: 5px;
 }
 @media (max-width : 680px){
     #buttonArticle{

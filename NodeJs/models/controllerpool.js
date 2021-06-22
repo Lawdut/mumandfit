@@ -184,7 +184,7 @@ exports.createArticle = function (table, table2, article, images, callback){
 
 exports.updateArticles = async function (table1, table2, article, images, callback){
     //console.log(article);
-    var sql = "UPDATE " + table1 + " SET `genre` = " + "'" + article.unArticle.genre +"'" + "," + "`banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'" + "," + " `date_maj` = NOW() WHERE id = " + article.unArticle.id ;
+    var sql = "UPDATE " + table1 + " SET `genre` = " + "'" + article.unArticle.genre +"'" + "," + "`banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'" + "," + `statusMaj = ` + "'" + article.unArticle.statusMaj + "'"+ "," + " `date_maj` = NOW() WHERE id = " + article.unArticle.id ;
     //var imageBdd = [];
     conn.query(sql, function(error) {
         if (error) {
