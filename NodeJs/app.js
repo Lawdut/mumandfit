@@ -36,7 +36,7 @@ const sessionStore = new mysqlStore(options);*/
 const sharp = require("sharp");
 */
 
-app.use(cors());
+app.use(cors({origin: 'http://localhost:8080'}));
 app.use(express.json({}));
 app.use(express.urlencoded({extended : true}));
 app.use(fileUpload({}));
