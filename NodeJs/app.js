@@ -77,7 +77,7 @@ function authenticateToken(req, res, next) {
     
     for(let i in unArticleToClean['unArticle']){
       if (typeof unArticleToClean['unArticle'][i] === 'string'){
-      unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace(/'/g,"&apos;").replace(/#/g,"&num;").replace(/♯/g,"&sharp;");
+      unArticleToClean['unArticle'][i] = unArticleToClean['unArticle'][i].replace(/'/g,"&apos;");
       console.log(unArticleToClean['unArticle'][i]);
       } 
     }
@@ -423,11 +423,10 @@ app.post('/createCanceled', (req, res) =>{
 })
 
 function cleanFolderImagesCreate(article) {
-console.log(article.unArticle.id);
-art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
+
+let art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
 let img = 'kkfmaf_';
 
-//console.log(article);
 let imageInArticle = [];
 let imageTab2= [];
 
