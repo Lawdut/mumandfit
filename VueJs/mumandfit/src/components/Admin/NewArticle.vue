@@ -79,21 +79,20 @@ import jQuery from "jquery";
                     menubar: 'file edit insert tools table help',
                     plugins: [
                     'paste importcss',
-                    'fullscreen image',
-                    'imagetools',
+                    'fullscreen',
                     'help quickbars '
                     ],
                     toolbar:
                     'undo redo | \
                     alignleft aligncenter alignright alignjustify | \
-                    outdent indent | imagetools | quickimage',
-                    quickbars_insert_toolbar: 'quickimage',
+                    outdent indent',
+                    
                     encoding: 'UTF-8',
                     inline: true,
                     entity_encoding : 'raw',
-                    image_advtab: true,
-                    image_uploadtab: true,
                     images_upload_url : '//localhost:8010/upload',
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',
                },
                myInitBanniere : {
                     selector : '#banniereCreate',

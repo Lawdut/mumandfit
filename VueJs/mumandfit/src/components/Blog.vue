@@ -54,7 +54,7 @@
             },
             onChangePage(articles) {
             this.articles = articles;
-            document.body.scrollTop = document.documentElement.scrollTop = 0;
+
             }
         }
 

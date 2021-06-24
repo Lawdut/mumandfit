@@ -124,9 +124,11 @@
             },
             borderEmailChange : function() {
                 this.borderEmail = "1px solid #ccc"
+                this.error=""
             },
             borderPhoneChange : function() {
                 this.borderPhone = "1px solid #ccc"
+                this.error=""
             },
             verifyPattern : function() {
                 console.log('hello')
@@ -298,6 +300,7 @@
     @media (max-width: 650px){
         #inputFormFirstName{
             width: 90%;
+            
         }
         #inputFormLastName{
             width: 90%;
