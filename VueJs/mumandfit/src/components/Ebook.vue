@@ -57,14 +57,13 @@ import Modale from './Modale.vue';
         data (){
             return{
                 ebook : {
-                    id : this.$route.params.id,
+                    id : `${this.$route.params.id}`,
                     guid : '',
                     prix : '',
                     titre : '',
                     description : '',
                     corps : '',
                     url : "http://localhost:8080/ebook/"+`${this.$route.params.id}` ,
-                    //url : "https://1a251600fcb5.ngrok.io/ebook/"+`${this.$route.params.id}` ,
                 },
                 titreSansBalise : "",
                 revele :false,
