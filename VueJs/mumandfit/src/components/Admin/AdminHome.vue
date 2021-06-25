@@ -16,6 +16,7 @@
                 <div class="gestionAcces">
                     <h3 id="gestion">Gestion des accès</h3>
                     <div class = "liensAdmin"><router-link to="/inscription"><button class = "Button1">Inscrire un nouvel admin</button></router-link></div>
+                    <div class = "liensAdmin"><router-link to="/modifPass"><button class = "Button1">Changer votre mot de passe</button></router-link></div>
                 </div>
                 
                 
@@ -29,6 +30,7 @@
         methods : {
             deconnexion(){
                 localStorage.removeItem("jwt-mumandfit")
+                this.$session.destroy()
                 this.$router.push('/')
                 document.location.reload();
             }

@@ -5,7 +5,7 @@
             <div id = "email"><input type = "email" class ="inputForm"  placeholder="exemple@exemple.com" v-model="email" @focus="borderChange" v-bind:style="`--border : ${computedBorder}`"></div>
             <div id = "password"><input type = "password" class ="inputFormPass"  placeholder="Mot de passe" v-model="password"></div>
             <div class="error" v-show="error !=''">{{error}}</div>
-            <div id= "submitConnex"><input type = "submit" class ="Button1"  @click="connexion();" value = "Connexion" name = 'submit'></div>
+            <div id= "submitConnex"><input type = "submit" class ="Button1"  @click="connexion(); session()" value = "Connexion" name = 'submit'></div>
         </div>
     </div>
 </template>
@@ -53,6 +53,11 @@
                 })
                 
                 })
+            },
+            session () {
+                this.$session.start();
+                this.$session.set('email', this.email)
+                console.log(this.$session.getAll())
             },
             borderChange : function() {
                 this.border = "1px solid #ccc"

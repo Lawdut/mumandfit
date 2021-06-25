@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Connexion from '../components/Connexion.vue'
 import Inscription from '../components/Inscription.vue'
+import ChangePass from '../components/Admin/modifPassword.vue'
 import Blog from '../components/Blog.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
@@ -20,6 +21,7 @@ import Modale from '../components/Modale.vue'
 import ListAdmin from '../components/Admin/ListAdmin.vue'
 import About from '../components/About.vue'
 
+
 Vue.use(VueRouter)
 //Vue.use($)
 
@@ -35,6 +37,19 @@ const routes = [
     path: "/connexion",
     name : "Connexion",
     component: Connexion
+  },
+  {
+    path:"/modifPass",
+    name: "ChangePassword",
+    component : ChangePass,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/admin' && loggedIn){
+        return next();
+      }else if (!loggedIn){
+        next({path : '/'})
+      }
+    }
   },
   {
     path : "/modale",

@@ -62,10 +62,21 @@ exports.connexion = function(table, user, callback) {
             console.log(error);
         }
         callback(rows);
-    })
-    
-    
+    })  
 }
+
+exports.modifPass = function (table, user, callback) {
+    const hash = bcrypt.hashSync(user.mdp, salt);
+    var sql = "UPDATE "+ table + " SET `mdp` = "+ "'" + hash + "'" + " WHERE email = '" + user.email + "'";
+
+    conn.query(sql, function(error){
+        if(error){
+            console.log(error)
+        }
+        callback();
+    })
+}
+
 exports.getPresentation = function (table, callback){
     var sql = "SELECT `textPres` FROM " + table + " WHERE id = " + 1;
     conn.query(sql, function(error, rows){
