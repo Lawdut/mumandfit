@@ -4,7 +4,6 @@
             <div id = "titreAdmin">
                 <h2>Administration du site</h2>
             </div>
-
             <div id = "navAdmin">
                 <div class="gestionContenu">
                     <h3 id="contenu">Gestion de contenu</h3>

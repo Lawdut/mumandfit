@@ -1,7 +1,8 @@
 <template>
     <div class = "modifPassword">
         <h1>Nouveau mot de passe</h1>
-        <div id="password1"><input type="password" class ="inputFormPass" v-model="mdp"></div>
+        <div id = "emailChange">Votre email : {{this.email}}</div>
+        <div id="password1"><input type="password" class ="inputFormPass" v-model="mdp" autocomplete="new-password"></div>
 
         <div class="buttonChange">
             <div id= "submitPassChange"><input type = "submit" class ="Button1"  @click="changePass" value = "Changer le mot de passe" name = 'submit'></div>
