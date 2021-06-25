@@ -176,8 +176,8 @@ a, router-link{
     display: block;
     grid-column: 1/21;
     grid-row: 1/3;  
-   box-shadow: 1px 1px 10px 3px #2c3e50;
-   z-index:10;
+    box-shadow: 1px 1px 10px 3px #2c3e50;
+    z-index:10;
   }
   ::placeholder{
     font-size: 9px;

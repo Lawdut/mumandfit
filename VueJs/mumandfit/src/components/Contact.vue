@@ -17,7 +17,7 @@
         </div>
         
         <div class = "geoLoc">
-            <h3>Où nous trouver ?</h3>
+            <h3 class = "geoLocTitre">Où nous trouver ?</h3>
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12978.937866421007!2d6.2023382693625315!3d46.85381574438817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478da6f50292b087%3A0x4880adda86201e42!2s10%20Chemin%20Entre%20Deux%20Ponts%2C%2025560%20Bouverans!5e0!3m2!1sfr!2sfr!4v1624002847701!5m2!1sfr!2sfr" 
                 width="100%" height="75%" 
                 style="border:0;" allowfullscreen="" 
@@ -148,7 +148,14 @@
     }
     .titreContact{
         grid-row: 1/2;
-        border-bottom : solid black 1px;
+        background-color: #ec7463;
+        box-shadow: 1px 1px 10px 3px #2c3e50;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0 0 10px 10px;
+        font-size: 15px;
+        
     }
     .formContact{
         grid-row: 2/6;
@@ -162,6 +169,9 @@
     .formTitre{
         grid-column: 1/3;
         grid-row: 1/2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     #firstName{
         grid-column: 1/2;
@@ -278,7 +288,6 @@
     }
     .reseauxSociaux{
         grid-row: 10/11;
-    
     }
     .logoRes{
      display: flex;
@@ -292,12 +301,22 @@
         border-radius: 5px;
     }
 
-    @media (max-width : 1200px){
+    @media (max-width : 1400px){
         .formContact > input {
             width: 75%;
-        };
+        }
+        .titreContact{
+        box-shadow: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0;
+        font-size: 15px;
+        background-color: white;
+        border-bottom : solid black 1px;
+        }
     }
-    @media (max-width: 650px){
+    @media (max-width: 850px){
         #inputFormFirstName{
             width: 90%;
             
