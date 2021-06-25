@@ -11,7 +11,6 @@ const fileUpload = require('express-fileupload');
 const nodemailer = require('nodemailer');
 dotenv.config();
 const bcrypt = require("bcrypt");
-const cookieParser = require("cookie-parser");
 const salt = bcrypt.genSaltSync(10);
 const path = require("path");
 const config = require("./models/config.js");
@@ -24,23 +23,27 @@ const { format } = require("mysql");
 const { Console } = require("console");
 const { ppid } = require("process");
 const { type } = require("os");
-/*const ash = require('express-async-handler')*/
 
           /* ----- VARIABLE GLOBALE ----- */
 const dirPath = path.join(__dirname, '..\\VueJs\\mumandfit\\public\\images\\')
 var imageTab = [];
 
-/*const mysqlStore = require('express-mysql-session')(session);
-const sessionStore = new mysqlStore(options);*/
-/*const multer = require("multer");
-const sharp = require("sharp");
-*/
 
 app.use(cors({origin: 'http://localhost:8080'}));
 app.use(express.json({}));
 app.use(express.urlencoded({extended : true}));
 app.use(fileUpload({}));
 app.use(helmet());
+
+
+/*app.engine('html', require('ejs').renderFile);
+app.get('/', function (req, res) {
+  res.render(__dirname + '/dist/index.html')
+})*/
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+                                                                        // ----- JSON Web Token ----- //
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
                     // ----- JWT ----- //
 function generateAccessToken(user) {
     return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: "24h" });
@@ -683,3 +686,6 @@ app.post('/formContact', (req, res)=>{
 
 
 app.listen(8010)
+/*app.listen(process.env.PORT, process.env.IP, function(){
+  console.log('Démarrage !!!')
+})*/

@@ -1,0 +1,380 @@
+[25/Jun/2021:08:32:54 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:32:54 +0200] [upstream] Upstream started PID: 483420
+[25/Jun/2021:08:32:54 +0200] [upstream] [483420] STDOUT: Démarrage !!!
+[25/Jun/2021:08:32:54 +0200] [upstream] [483420] STDOUT: Connected!:)
+[25/Jun/2021:08:39:36 +0200] [upstream] [483420] SIGTERM sent to upstream
+[25/Jun/2021:08:39:36 +0200] [upstream] [483420] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:39:38 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:39:38 +0200] [upstream] Upstream started PID: 517285
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDOUT: Démarrage !!!
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDOUT: Connected!:)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR: Error: Cannot find module 'html'
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR: Require stack:
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/view.js
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/application.js
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/express.js
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/index.js
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:81:14)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at /home/mumandfit/www/NodeJs/app.js:40:7
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:39:39 +0200] [upstream] [517285] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:08:40:00 +0200] [upstream] [517285] SIGTERM sent to upstream
+[25/Jun/2021:08:40:00 +0200] [upstream] [517285] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:40:03 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:40:03 +0200] [upstream] Upstream started PID: 518764
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDOUT: Démarrage !!!
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDOUT: Connected!:)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR: Error: No default engine was specified and no extension was provided.
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:61:11)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at /home/mumandfit/www/NodeJs/app.js:40:7
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:08:40:03 +0200] [upstream] [518764] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:08:41:02 +0200] [upstream] [518764] SIGTERM sent to upstream
+[25/Jun/2021:08:41:02 +0200] [upstream] [518764] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:41:04 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:41:04 +0200] [upstream] Upstream started PID: 525396
+[25/Jun/2021:08:41:04 +0200] [upstream] [525396] STDOUT: Démarrage !!!
+[25/Jun/2021:08:41:04 +0200] [upstream] [525396] STDOUT: Connected!:)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR: Error: No default engine was specified and no extension was provided.
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:61:11)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at /home/mumandfit/www/NodeJs/app.js:40:7
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:08:41:05 +0200] [upstream] [525396] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:08:43:26 +0200] [upstream] [525396] SIGTERM sent to upstream
+[25/Jun/2021:08:43:26 +0200] [upstream] [525396] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:43:29 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:43:29 +0200] [upstream] Upstream started PID: 539376
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDOUT: Démarrage !!!
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDOUT: Connected!:)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR: Error: No default engine was specified and no extension was provided.
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:61:11)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at /home/mumandfit/www/NodeJs/app.js:40:7
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:08:43:29 +0200] [upstream] [539376] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:08:44:14 +0200] [upstream] [539376] SIGTERM sent to upstream
+[25/Jun/2021:08:44:14 +0200] [upstream] [539376] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:44:16 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:44:16 +0200] [upstream] Upstream started PID: 545132
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDOUT: Démarrage !!!
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDOUT: Connected!:)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR: Error: No default engine was specified and no extension was provided.
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:61:11)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at /home/mumandfit/www/NodeJs/app.js:40:7
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:08:44:16 +0200] [upstream] [545132] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:08:51:26 +0200] [upstream] [545132] SIGTERM sent to upstream
+[25/Jun/2021:08:51:26 +0200] [upstream] [545132] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:51:28 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:51:28 +0200] [upstream] Upstream started PID: 587513
+[25/Jun/2021:08:51:28 +0200] [upstream] [587513] STDOUT: Démarrage !!!
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDOUT: Connected!:)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR: Error: No default engine was specified and no extension was provided.
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:61:11)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at /home/mumandfit/www/NodeJs/app.js:40:7
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:08:51:29 +0200] [upstream] [587513] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:08:51:48 +0200] [upstream] [587513] SIGTERM sent to upstream
+[25/Jun/2021:08:51:48 +0200] [upstream] [587513] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:51:51 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:51:51 +0200] [upstream] Upstream started PID: 590274
+[25/Jun/2021:08:51:51 +0200] [upstream] [590274] STDOUT: Démarrage !!!
+[25/Jun/2021:08:51:51 +0200] [upstream] [590274] STDOUT: Connected!:)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR: Error: Cannot find module 'html'
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR: Require stack:
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/view.js
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/application.js
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/express.js
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/index.js
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:81:14)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at /home/mumandfit/www/NodeJs/app.js:40:7
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:08:51:52 +0200] [upstream] [590274] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:08:55:01 +0200] [upstream] [590274] SIGTERM sent to upstream
+[25/Jun/2021:08:55:01 +0200] [upstream] [590274] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:08:55:03 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:55:03 +0200] [upstream] Upstream started PID: 609911
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR: internal/modules/cjs/loader.js:888
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:   throw err;
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:   ^
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR: 
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR: Error: Cannot find module 'jade'
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR: Require stack:
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Object.<anonymous> (/home/mumandfit/www/NodeJs/app.js:38:20)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Module._compile (internal/modules/cjs/loader.js:1068:30)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Module.load (internal/modules/cjs/loader.js:933:32)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:774:14)
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12) {
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:   code: 'MODULE_NOT_FOUND',
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR:   requireStack: [ '/home/mumandfit/www/NodeJs/app.js' ]
+[25/Jun/2021:08:55:04 +0200] [upstream] [609911] STDERR: }
+[25/Jun/2021:08:55:04 +0200] [upstream] Upstream starting failed: node app (return code: 1 | reason: -)
+[25/Jun/2021:08:55:04 +0200] [upstream] Upstream node app previously failed to start, will not start again until 08:55:05
+[25/Jun/2021:08:56:22 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:08:56:22 +0200] [upstream] Upstream started PID: 619149
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR: internal/modules/cjs/loader.js:888
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:   throw err;
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:   ^
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR: 
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR: Error: Cannot find module 'ejs'
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR: Require stack:
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Object.<anonymous> (/home/mumandfit/www/NodeJs/app.js:38:20)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Module._compile (internal/modules/cjs/loader.js:1068:30)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Module.load (internal/modules/cjs/loader.js:933:32)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:774:14)
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12) {
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:   code: 'MODULE_NOT_FOUND',
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR:   requireStack: [ '/home/mumandfit/www/NodeJs/app.js' ]
+[25/Jun/2021:08:56:23 +0200] [upstream] [619149] STDERR: }
+[25/Jun/2021:08:56:23 +0200] [upstream] Upstream starting failed: node app (return code: 1 | reason: -)
+[25/Jun/2021:08:56:23 +0200] [upstream] Upstream node app previously failed to start, will not start again until 08:56:24
+[25/Jun/2021:09:00:56 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:00:56 +0200] [upstream] Upstream started PID: 646102
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR: internal/modules/cjs/loader.js:888
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:   throw err;
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:   ^
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR: 
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR: Error: Cannot find module 'ejs'
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR: Require stack:
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Object.<anonymous> (/home/mumandfit/www/NodeJs/app.js:38:20)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Module._compile (internal/modules/cjs/loader.js:1068:30)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Module.load (internal/modules/cjs/loader.js:933:32)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:774:14)
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12) {
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:   code: 'MODULE_NOT_FOUND',
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR:   requireStack: [ '/home/mumandfit/www/NodeJs/app.js' ]
+[25/Jun/2021:09:00:56 +0200] [upstream] [646102] STDERR: }
+[25/Jun/2021:09:00:56 +0200] [upstream] Upstream starting failed: node app (return code: 1 | reason: -)
+[25/Jun/2021:09:00:57 +0200] [upstream] Upstream node app previously failed to start, will not start again until 09:00:57
+[25/Jun/2021:09:01:07 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:01:07 +0200] [upstream] Upstream started PID: 648335
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDOUT: Démarrage !!!
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDOUT: Connected!:)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR: Error: Cannot find module 'html'
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR: Require stack:
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/view.js
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/application.js
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/express.js
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/index.js
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:81:14)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at /home/mumandfit/www/NodeJs/app.js:39:7
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:01:08 +0200] [upstream] [648335] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:09:02:37 +0200] [upstream] [648335] SIGTERM sent to upstream
+[25/Jun/2021:09:02:37 +0200] [upstream] [648335] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:09:02:39 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:02:39 +0200] [upstream] Upstream started PID: 657996
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDOUT: Démarrage !!!
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDOUT: Connected!:)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR: Error: Cannot find module 'html'
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR: Require stack:
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/view.js
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/application.js
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/express.js
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/index.js
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:81:14)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at /home/mumandfit/www/NodeJs/app.js:39:7
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:02:40 +0200] [upstream] [657996] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:09:05:19 +0200] [upstream] [657996] SIGTERM sent to upstream
+[25/Jun/2021:09:05:19 +0200] [upstream] [657996] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:09:05:21 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:05:21 +0200] [upstream] Upstream started PID: 675605
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDOUT: Démarrage !!!
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDOUT: Connected!:)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR: Error: Cannot find module 'html'
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR: Require stack:
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/view.js
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/application.js
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/lib/express.js
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR: - /home/mumandfit/www/NodeJs/node_modules/express/index.js
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at new View (/home/mumandfit/www/NodeJs/node_modules/express/lib/view.js:81:14)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:570:12)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at /home/mumandfit/www/NodeJs/app.js:39:7
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:05:22 +0200] [upstream] [675605] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:09:08:23 +0200] [upstream] [675605] SIGTERM sent to upstream
+[25/Jun/2021:09:08:23 +0200] [upstream] [675605] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:09:08:25 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:08:25 +0200] [upstream] Upstream started PID: 693276
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR: internal/modules/cjs/loader.js:888
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:   throw err;
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:   ^
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR: 
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR: Error: Cannot find module 'ejs'
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR: Require stack:
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR: - /home/mumandfit/www/NodeJs/app.js
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Function.Module._resolveFilename (internal/modules/cjs/loader.js:885:15)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:730:27)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Module.require (internal/modules/cjs/loader.js:957:19)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at require (internal/modules/cjs/helpers.js:88:18)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Object.<anonymous> (/home/mumandfit/www/NodeJs/app.js:39:20)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Module._compile (internal/modules/cjs/loader.js:1068:30)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Module.load (internal/modules/cjs/loader.js:933:32)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:774:14)
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12) {
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:   code: 'MODULE_NOT_FOUND',
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR:   requireStack: [ '/home/mumandfit/www/NodeJs/app.js' ]
+[25/Jun/2021:09:08:25 +0200] [upstream] [693276] STDERR: }
+[25/Jun/2021:09:08:25 +0200] [upstream] Upstream starting failed: node app (return code: 1 | reason: -)
+[25/Jun/2021:09:08:26 +0200] [upstream] Upstream node app previously failed to start, will not start again until 09:08:26
+[25/Jun/2021:09:10:30 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:10:30 +0200] [upstream] Upstream started PID: 704741
+[25/Jun/2021:09:10:30 +0200] [upstream] [704741] STDOUT: Démarrage !!!
+[25/Jun/2021:09:10:30 +0200] [upstream] [704741] STDOUT: Connected!:)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR: Error: Failed to lookup view "/home/mumandfit/www/NodeJs/dist/index.html" in views directory "/home/mumandfit/www/NodeJs/views"
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:580:17)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at /home/mumandfit/www/NodeJs/app.js:41:7
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:09:10:31 +0200] [upstream] [704741] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:275:10)
+[25/Jun/2021:09:11:40 +0200] [upstream] [704741] SIGTERM sent to upstream
+[25/Jun/2021:09:11:40 +0200] [upstream] [704741] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:09:11:42 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:11:42 +0200] [upstream] Upstream started PID: 712810
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDOUT: Démarrage !!!
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDOUT: Connected!:)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR: Error: Failed to lookup view "/home/mumandfit/www/NodeJs../dist/index.html" in views directory "/home/mumandfit/www/NodeJs/views"
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:580:17)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at /home/mumandfit/www/NodeJs/app.js:41:7
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:09:11:43 +0200] [upstream] [712810] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:275:10)
+[25/Jun/2021:09:12:39 +0200] [upstream] [712810] SIGTERM sent to upstream
+[25/Jun/2021:09:12:39 +0200] [upstream] [712810] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:09:12:43 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:12:43 +0200] [upstream] Upstream started PID: 720005
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDOUT: Démarrage !!!
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDOUT: Connected!:)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR: Error: Failed to lookup view "/home/mumandfit/www/NodeJs../dist/index.html" in views directory "/home/mumandfit/www/NodeJs/views"
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at Function.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:580:17)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at ServerResponse.render (/home/mumandfit/www/NodeJs/node_modules/express/lib/response.js:1012:7)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at /home/mumandfit/www/NodeJs/app.js:41:7
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:137:13)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at Route.dispatch (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/route.js:112:3)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at Layer.handle [as handle_request] (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/layer.js:95:5)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at /home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:281:22
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at Function.process_params (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:335:12)
+[25/Jun/2021:09:12:44 +0200] [upstream] [720005] STDERR:     at next (/home/mumandfit/www/NodeJs/node_modules/express/lib/router/index.js:275:10)
+[25/Jun/2021:09:13:03 +0200] [upstream] [720005] SIGTERM sent to upstream
+[25/Jun/2021:09:13:03 +0200] [upstream] [720005] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:09:13:06 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:13:06 +0200] [upstream] Upstream started PID: 721969
+[25/Jun/2021:09:13:06 +0200] [upstream] [721969] STDOUT: Démarrage !!!
+[25/Jun/2021:09:13:06 +0200] [upstream] [721969] STDOUT: Connected!:)
+[25/Jun/2021:09:14:34 +0200] [upstream] [721969] SIGTERM sent to upstream
+[25/Jun/2021:09:14:34 +0200] [upstream] [721969] Upstream stopped (reason: exited spontaneously with return code N/A)
+[25/Jun/2021:09:14:36 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:14:36 +0200] [upstream] Upstream started PID: 728661
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR: /home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:295
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     throw new Error('callback function required');
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     ^
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR: 
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR: Error: callback function required
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at Function.engine (/home/mumandfit/www/NodeJs/node_modules/express/lib/application.js:295:11)
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at Object.<anonymous> (/home/mumandfit/www/NodeJs/app.js:39:5)
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at Module._compile (internal/modules/cjs/loader.js:1068:30)
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1097:10)
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at Module.load (internal/modules/cjs/loader.js:933:32)
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at Function.Module._load (internal/modules/cjs/loader.js:774:14)
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at Function.executeUserEntryPoint [as runMain] (internal/modules/run_main.js:72:12)
+[25/Jun/2021:09:14:36 +0200] [upstream] [728661] STDERR:     at internal/main/run_main_module.js:17:47
+[25/Jun/2021:09:14:36 +0200] [upstream] Upstream starting failed: node app (return code: 1 | reason: -)
+[25/Jun/2021:09:14:37 +0200] [upstream] Upstream node app previously failed to start, will not start again until 09:14:37
+[25/Jun/2021:09:14:53 +0200] [upstream] Upstream starting: node app (env: {'HOME': '/home/mumandfit', 'LANG': 'en_US.UTF-8', 'LC_ALL': 'en_US.UTF-8', 'PATH': '/home/mumandfit/.local/bin:/home/mumandfit/.gem/ruby/2.7.0/bin:/home/mumandfit/.composer/vendor/bin:/home/mumandfit/.npm-packages/bin:/usr/local/bin:/usr/bin:/bin', 'TMPDIR': '/home/mumandfit/admin/tmp', 'NODEJS_VERSION': '14.17.0', 'HOST': 'fd00::3:9e7d', 'PORT': '8100', 'IP': 'fd00::3:9e7d'}, cwd: /home/mumandfit/www/NodeJs)
+[25/Jun/2021:09:14:53 +0200] [upstream] Upstream started PID: 730398
+[25/Jun/2021:09:14:53 +0200] [upstream] [730398] STDOUT: Démarrage !!!
+[25/Jun/2021:09:14:53 +0200] [upstream] [730398] STDOUT: Connected!:)

@@ -64,6 +64,7 @@ import Modale from './Modale.vue';
                     description : '',
                     corps : '',
                     url : "http://localhost:8080/ebook/"+`${this.$route.params.id}` ,
+                    //url : "https://1a251600fcb5.ngrok.io/ebook/"+`${this.$route.params.id}` ,
                 },
                 titreSansBalise : "",
                 revele :false,

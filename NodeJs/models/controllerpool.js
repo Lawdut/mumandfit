@@ -9,6 +9,14 @@ const conn = mysql.createConnection({
     password : '',
     database : 'mumandfit'
 });
+
+/*const conn = mysql.createConnection({
+    host     : 'mysql-mumandfit.alwaysdata.net',
+    user     : 'mumandfit',
+    password : 'KokoFit',
+    database : 'mumandfit_mumandfit'
+})*/
+
 conn.connect(function(error){
     if(!!error){
       console.log(error);
