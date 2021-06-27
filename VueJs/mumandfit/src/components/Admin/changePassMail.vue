@@ -32,11 +32,16 @@ import Modale from '../Modale.vue';
 
         methods : {
             save() {
-                this.http.post('//localhost:8010/updateMdpMail', {
+                if(this.mdpAdresseMail != ''){
+                    this.http.post('//localhost:8010/updateMdpMail', {
                     mdpAdresseMail : this.mdpAdresseMail,
                 })
                 .then(()=>this.revele=false)
                 .then(()=>this.$router.push('/admin'))
+                }else{
+                    console.log('erreur')
+                }
+                
             },
             toggleModale : function(event){
                 this.revele = !this.revele
