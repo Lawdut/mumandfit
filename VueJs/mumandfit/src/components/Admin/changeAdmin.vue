@@ -14,7 +14,7 @@
         <input type= "text" v-model="email" class = "inputForm">
 
         <div class = "titreChangeAdmin" id = "passContact"><h3>Modification du mot de passe de la boîte mail de contact</h3></div>
-        <div class = "liensAdmin buttonChange"><router-link to="/modifPass"><button class = "Button1">Modifier</button></router-link></div>
+        <div class = "liensAdmin buttonChange"><router-link to="/changePassMail"><button class = "Button1">Modifier</button></router-link></div>
 
         <div class = "titreChangeAdmin" id = "phone"><h3>Téléphone</h3></div>
         <input type= "text" v-model="phone" class = "inputForm">
@@ -58,7 +58,7 @@ import Modale from '../Modale.vue';
             }
         },
         beforeMount () {
-            this.http.post('//localhost:8010/getMumAndFit')
+            this.http.post('//localhost:8010/getAllMumAndFit')
             .then (response=>{
                 this.prenom = response.data[0].prenom,
                 this.nom = response.data[0].nom,

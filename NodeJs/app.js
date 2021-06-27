@@ -166,6 +166,15 @@ app.post('/updateAdmin', authenticateToken, function(req, res){
   })
 })
 
+app.post('/updateMdpMail', authenticateToken, function(req, res){
+  bdd.updateMdpMail('user', req.body, function(error){
+    if(error){
+      res.send(error)
+    }
+    res.send('Mot de passe mis à jour')
+  })
+})
+
 app.post('/updateGoogleMap', authenticateToken, function (req, res){
   bdd.updateGoogleMap('user', req.body, function(error){
     if(error){
@@ -677,6 +686,12 @@ app.post('/getMumAndFit', (req, res) => {
     res.send(mumAndFit)
   })
 })
+app.post('/getAllMumAndFit', (req, res) => {
+  bdd.getAllMumAndFit('user', function(mumAndFit){
+    console.log(mumAndFit)
+    res.send(mumAndFit)
+  })
+})
 
 
           /*-----FORMULAIRE DE CONTACT ET ENVOI MAIL-----*/
@@ -685,36 +700,38 @@ app.post('/formContact', (req, res)=>{
   axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=6LeJiycbAAAAAC2O9CmLGEV96ZYSMJcOdyDKtoYL&response=${req.body.token}`)
   .then((resp)=>{
     console.log(resp.data)
-    
-    let transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth:{
-        user : process.env.EMAIL,
-        pass: process.env.PASSWORD,
-      }
-    });
-  
-    let mailOption = {
-      from: "MumAndFit Contact",
-      to: process.env.EMAIL,
-      subject:'Demande de prise de contact de ' + req.body.firstName + ' ' + req.body.lastName,
-      html: 
-      '<h1>Demande de contact de :</h1> <br> <strong>Prénom :</strong> ' + req.body.firstName + '<br> <strong>Nom :</strong> ' +req.body.lastName + '<br> <strong>Email :</strong> ' + req.body.mail + '<br> <strong>Numéro de téléphone :</strong> '+req.body.phone+ '<br> <strong>Message :</strong> <br>'+ req.body.message
-      
-      
-    };
-    if(resp.data.success === true){
-      transporter.sendMail(mailOption, function(err, data){
-        if(err){
-          console.log('email non envoyé', err);
-        }else{
-          res.send('email envoyé')
+    bdd.getAllMumAndFit("user", function(mumAndFit){
+      let transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth:{
+          user : mumAndFit[0].email,
+          pass: mumAndFit[0].mdpAdresseMail,
         }
-      })
-      res.send('message envoyé !')
-    }else{
-      res.send('Erreur recaptcha')
-    }
+      });
+    
+      let mailOption = {
+        from: "MumAndFit Contact",
+        to: mumAndFit[0].email,
+        subject:'Demande de prise de contact de ' + req.body.firstName + ' ' + req.body.lastName,
+        html: 
+        '<h1>Demande de contact de :</h1> <br> <strong>Prénom :</strong> ' + req.body.firstName + '<br> <strong>Nom :</strong> ' +req.body.lastName + '<br> <strong>Email :</strong> ' + req.body.mail + '<br> <strong>Numéro de téléphone :</strong> '+req.body.phone+ '<br> <strong>Message :</strong> <br>'+ req.body.message
+        
+        
+      };
+      if(resp.data.success === true){
+        transporter.sendMail(mailOption, function(err, data){
+          if(err){
+            console.log('email non envoyé', err);
+          }else{
+            res.send('email envoyé')
+          }
+        })
+        res.send('message envoyé !')
+      }else{
+        res.send('Erreur recaptcha')
+      }
+    })
+    
   })
 })
 

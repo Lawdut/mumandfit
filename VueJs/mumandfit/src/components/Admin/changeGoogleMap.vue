@@ -17,8 +17,8 @@
                 <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
             </div>
             <transition name="fade">
-            <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
-        </transition>
+                <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
+            </transition>
         </div>
     </div>
 </template>

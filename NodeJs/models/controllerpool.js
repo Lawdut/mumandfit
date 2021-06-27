@@ -75,6 +75,17 @@ exports.updateAdmin = function (table, admin, callback){
     })
 }
 
+exports.updateMdpMail = function(table, admin, callback){
+    var sql = "UPDATE "+ table + " SET `mdpAdresseMail` = " + "'" + admin.mdpAdresseMail + "'" + " WHERE id = 1"
+
+    conn.query(sql, function(error){
+        if (error){
+            console.log(error);
+        }
+        callback();
+    })
+}
+
 exports.updateGoogleMap = function(table, admin, callback){
     var sql = "UPDATE "+ table + " SET `lienCarte` = " + "'" + admin.lienCarte + "'" + " WHERE id = 1"
 
@@ -99,8 +110,18 @@ exports.modifPass = function (table, user, callback) {
 }
 
 exports.getMumAndFit = function (table, callback) {
-    var sql = "SELECT * FROM "+table;
+    var sql = "SELECT prenom, nom, phone, adresse, email, lienCarte FROM "+table+" WHERE id = 1";
 
+    conn.query(sql, function(error, rows){
+        if(error){
+            console.log(error)
+        }
+        callback(rows);
+    })
+}
+
+exports.getAllMumAndFit = function (table, callback) {
+    var sql = "SELECT * FROM "+table+" WHERE id = 1"
     conn.query(sql, function(error, rows){
         if(error){
             console.log(error)
