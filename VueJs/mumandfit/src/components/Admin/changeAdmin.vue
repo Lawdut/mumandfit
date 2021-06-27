@@ -25,16 +25,24 @@
         <div id = "titreLienCarte"><h3>Modification de la cible de la carte Google Map</h3> </div>
         <div id="lienCarte"><router-link to="/modifPass"><button class = "Button1">Modifier</button></router-link></div>
         
-        <input type = "submit" id="updateAdmin" value="Enregistrer" class = "Button1" @click="changeAdmin">
+        <transition name="fade">
+            <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
+        </transition>
+        
+        <input type = "submit" id="updateAdmin" value="Enregistrer" class = "Button1" @click="toggleModale('save')">
         <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
 
     </div>
 </template>
 
 <script>
+import Modale from '../Modale.vue';
 
     export default {
         name : "changeAdmin",
+        components : {
+            Modale,
+        },
         data() {
             return {
                 prenom : this.prenom,
@@ -43,6 +51,8 @@
                 phone : this.phone,
                 adresse : this.adresse,
                 lienCarte : '',
+                revele :false,
+                modifier : false,
             }
         },
         beforeMount () {
@@ -58,7 +68,7 @@
         },
 
         methods : {
-            changeAdmin() {
+            save() {
                 this.http.post('//localhost:8010/updateAdmin', {
                     prenom : this.prenom,
                     nom : this.nom,
@@ -66,7 +76,14 @@
                     phone : this.phone,
                     adresse : this.adresse
                 })
-            }
+                .then(()=>this.revele=false)
+            },
+            toggleModale : function(event){
+                this.revele = !this.revele
+                if(event === "save"){
+                    this.modifier = true;
+                }
+            },
         }
     }
 </script>
