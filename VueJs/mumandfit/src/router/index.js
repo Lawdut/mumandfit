@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Connexion from '../components/Connexion.vue'
 import Inscription from '../components/Inscription.vue'
 import ChangePass from '../components/Admin/modifPassword.vue'
+import ChangeAdmin from '../components/Admin/changeAdmin.vue'
 import Blog from '../components/Blog.vue'
 import Article from '../components/Article.vue'
 import AdminHome from '../components/Admin/AdminHome.vue'
@@ -18,7 +19,6 @@ import NewEbook from '../components/Admin/NewEbook.vue'
 import Eboutique from '../components/Eboutique.vue'
 import Ebook from '../components/Ebook.vue'
 import Modale from '../components/Modale.vue'
-import ListAdmin from '../components/Admin/ListAdmin.vue'
 import About from '../components/About.vue'
 
 
@@ -39,6 +39,19 @@ const routes = [
     component: Connexion
   },
   {
+    path:"/changeAdmin",
+    name: "ChangeAdmin",
+    component : ChangeAdmin,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/admin' && loggedIn){
+        return next();
+      }else if (!loggedIn){
+        next({path : '/'})
+      }
+    }
+  },
+  {
     path:"/modifPass",
     name: "ChangePassword",
     component : ChangePass,
@@ -55,19 +68,6 @@ const routes = [
     path : "/modale",
     name : "Modale",
     component : Modale
-  },
-  {
-    path : "/listAdmin",
-    name : "ListAdmin",
-    component : ListAdmin,
-    beforeEnter : (to, from, next)=>{
-      const loggedIn = localStorage.getItem('jwt-mumandfit');
-      if(from.path === '/admin' && loggedIn){
-        return next();
-      }else if (!loggedIn){
-        next({path : '/'})
-      }
-    }
   },
   {
     path:"/aside",

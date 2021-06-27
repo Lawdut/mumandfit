@@ -65,6 +65,16 @@ exports.connexion = function(table, user, callback) {
     })  
 }
 
+exports.updateAdmin = function (table, admin, callback){
+    var sql = "UPDATE " + table + " SET `prenom` = " + "'" + admin.prenom + "'" + "," + " `nom` = "+ "'" + admin.nom + "'" + "," + " `email` = " + "'" + admin.email + "'" + "," + "`phone`= " + "'" + admin.phone + "'" + "," + " `adresse` = " + "'" + admin.adresse + "'";
+    conn.query(sql, function(error){
+        if (error){
+            console.log(error);
+        }
+        callback();
+    })
+}
+
 exports.modifPass = function (table, user, callback) {
     const hash = bcrypt.hashSync(user.mdp, salt);
     var sql = "UPDATE "+ table + " SET `mdp` = "+ "'" + hash + "'" + " WHERE email = '" + user.email + "'";

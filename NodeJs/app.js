@@ -102,7 +102,7 @@ function clean(request){
   return requestToClean;
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
-                                                                        // ----- CONNEXION - INSCRIPTION ----- //
+                                                                        // ----- CONNEXION - INSCRIPTION - MODIFICATION ----- //
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 app.post('/inscription', function (req, res) {
     
@@ -153,6 +153,16 @@ app.post('/connexion', function (req, res) {
     }else{
       res.send("Erreur Recaptcha")
     }
+  })
+})
+
+app.post('/updateAdmin', function(req, res){
+  console.log(req.body)
+  bdd.updateAdmin('user', req.body, function(error){
+    if(error){
+      res.send(error)
+    }
+    res.send('Données mises à jour')
   })
 })
 
