@@ -156,7 +156,7 @@ app.post('/connexion', function (req, res) {
   })
 })
 
-app.post('/updateAdmin', function(req, res){
+app.post('/updateAdmin', authenticateToken, function(req, res){
   console.log(req.body)
   bdd.updateAdmin('user', req.body, function(error){
     if(error){
@@ -166,7 +166,16 @@ app.post('/updateAdmin', function(req, res){
   })
 })
 
-app.post('/changePass', function (req, res){
+app.post('/updateGoogleMap', authenticateToken, function (req, res){
+  bdd.updateGoogleMap('user', req.body, function(error){
+    if(error){
+      res.send(error)
+    }
+    res.send('Carte mise à jour')
+  })
+})
+
+app.post('/changePass',authenticateToken, function (req, res){
   bdd.modifPass('user', req.body, function(error){
     if(error){
       res.send(error)

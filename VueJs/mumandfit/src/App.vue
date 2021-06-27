@@ -119,6 +119,16 @@ a, router-link{
   opacity: 0;
   
 }
+.inputForm{
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        --border : 1px solid #ccc;
+        border: var(--border);
+        display: inline-block;
+        border-radius: 4px;
+        box-sizing: border-box;
+}
 
           /*-----Bouton-----*/
 

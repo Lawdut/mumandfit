@@ -66,12 +66,23 @@ exports.connexion = function(table, user, callback) {
 }
 
 exports.updateAdmin = function (table, admin, callback){
-    var sql = "UPDATE " + table + " SET `prenom` = " + "'" + admin.prenom + "'" + "," + " `nom` = "+ "'" + admin.nom + "'" + "," + " `email` = " + "'" + admin.email + "'" + "," + "`phone`= " + "'" + admin.phone + "'" + "," + " `adresse` = " + "'" + admin.adresse + "'";
+    var sql = "UPDATE " + table + " SET `prenom` = " + "'" + admin.prenom + "'" + "," + " `nom` = "+ "'" + admin.nom + "'" + "," + " `email` = " + "'" + admin.email + "'" + "," + "`phone`= " + "'" + admin.phone + "'" + "," + " `adresse` = " + "'" + admin.adresse + "'" + " WHERE id = 1";
     conn.query(sql, function(error){
         if (error){
             console.log(error);
         }
         callback();
+    })
+}
+
+exports.updateGoogleMap = function(table, admin, callback){
+    var sql = "UPDATE "+ table + " SET `lienCarte` = " + "'" + admin.lienCarte + "'" + " WHERE id = 1"
+
+    conn.query(sql, function(error){
+        if(error){
+            console.log(error)
+        }
+        callback()
     })
 }
 

@@ -4,33 +4,36 @@
             <h1> Modification de vos coordonnées </h1>
         </div>
 
-        <div id = "prenom"><h3>Prénom</h3></div>
+        <div class = "titreChangeAdmin" id = "prenom"><h3>Prénom</h3></div>
         <input type= "text" v-model="prenom" class = "inputForm">
 
-        <div id = "nom"><h3>Nom</h3></div>
+        <div class = "titreChangeAdmin" id = "nom"><h3>Nom</h3></div>
         <input type= "text" v-model="nom" class = "inputForm">
 
-        <div id = "email"><h3>Email</h3></div>
+        <div class = "titreChangeAdmin" id = "email"><h3>Email</h3></div>
         <input type= "text" v-model="email" class = "inputForm">
 
-        <div id = "passContact"><h3>Modification du mot de passe de la boîte mail de contact</h3></div>
-        <div class = "liensAdmin"><router-link to="/modifPass"><button class = "Button1">Modifier</button></router-link></div>
+        <div class = "titreChangeAdmin" id = "passContact"><h3>Modification du mot de passe de la boîte mail de contact</h3></div>
+        <div class = "liensAdmin buttonChange"><router-link to="/modifPass"><button class = "Button1">Modifier</button></router-link></div>
 
-        <div id = "phone"><h3>Téléphone</h3></div>
+        <div class = "titreChangeAdmin" id = "phone"><h3>Téléphone</h3></div>
         <input type= "text" v-model="phone" class = "inputForm">
 
-        <div id = "adresse"><h3>Adresse</h3></div>
+        <div class = "titreChangeAdmin" id = "adresse"><h3>Adresse</h3></div>
         <input type= "text" v-model="adresse" class = "inputForm">
 
-        <div id = "titreLienCarte"><h3>Modification de la cible de la carte Google Map</h3> </div>
-        <div id="lienCarte"><router-link to="/modifPass"><button class = "Button1">Modifier</button></router-link></div>
+        <div class = "titreChangeAdmin" id = "titreLienCarte"><h3>Modification de la cible de la carte Google Map</h3> </div>
+        <div id="lienCarte" class="buttonChange"><router-link to="/changeGoogleMap"><button class = "Button1">Modifier</button></router-link></div>
         
         <transition name="fade">
             <Modale :revele="revele" :toggleModale="toggleModale" :modifier="modifier" :save="save" v-if="revele"></Modale>
         </transition>
+
+        <div id="buttonChangeAdmin">
+            <input type = "submit" id="updateAdmin" value="Enregistrer les modifications" class = "Button1" @click="toggleModale('save')">
+            <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
+        </div>
         
-        <input type = "submit" id="updateAdmin" value="Enregistrer" class = "Button1" @click="toggleModale('save')">
-        <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
 
     </div>
 </template>
@@ -50,7 +53,6 @@ import Modale from '../Modale.vue';
                 email : this.email,
                 phone : this.phone,
                 adresse : this.adresse,
-                lienCarte : '',
                 revele :false,
                 modifier : false,
             }
@@ -99,4 +101,24 @@ import Modale from '../Modale.vue';
         border-radius: 4px;
         box-sizing: border-box;
     }
+.titreChangeAdmin{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    
+}
+.buttonChange{
+    margin:20px
+}
+
+.titreChangeAdmin>h3{
+    margin-bottom : 5px;
+}
+#buttonChangeAdmin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 20px;
+    margin-top: 50px;
+}
 </style>

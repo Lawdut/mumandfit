@@ -20,6 +20,7 @@ import Eboutique from '../components/Eboutique.vue'
 import Ebook from '../components/Ebook.vue'
 import Modale from '../components/Modale.vue'
 import About from '../components/About.vue'
+import ChangeGoogleMap from '../components/Admin/changeGoogleMap.vue'
 
 
 Vue.use(VueRouter)
@@ -64,6 +65,20 @@ const routes = [
       }
     }
   },
+  {
+    path:'/changeGoogleMap',
+    name : "ChangeGoogleMap",
+    component : ChangeGoogleMap,
+    beforeEnter : (to, from, next)=>{
+      const loggedIn = localStorage.getItem('jwt-mumandfit');
+      if(from.path === '/changeAdmin' && loggedIn){
+        return next();
+      }else if (!loggedIn){
+        next({path : '/'})
+      }
+    }
+  },
+  
   {
     path : "/modale",
     name : "Modale",
