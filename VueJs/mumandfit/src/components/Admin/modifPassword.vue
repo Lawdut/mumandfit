@@ -17,7 +17,7 @@
         name : 'changePassword',
         data : function() {
             return{
-                email : this.$session.get('email'),
+                email : this.$store.state.user,
                 mdp : ''
             }
         },

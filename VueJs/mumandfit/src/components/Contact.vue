@@ -18,12 +18,12 @@
         
         <div class = "geoLoc">
             <h3 class = "geoLocTitre">Où nous trouver ?</h3>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12978.937866421007!2d6.2023382693625315!3d46.85381574438817!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478da6f50292b087%3A0x4880adda86201e42!2s10%20Chemin%20Entre%20Deux%20Ponts%2C%2025560%20Bouverans!5e0!3m2!1sfr!2sfr!4v1624002847701!5m2!1sfr!2sfr" 
+            <iframe v-bind:src="`${this.mumAndFit.lienCarte}`" 
                 width="100%" height="75%" 
                 style="border:0;" allowfullscreen="" 
                 loading="lazy">
             </iframe>
-            <p>Korinne Lancette - 10 chemin entre 2 Ponts 25560 Bouverans - 06.31.75.20.17 - mumandfit@gmail.com</p>
+            <p>{{this.mumAndFit.prenom}} {{this.mumAndFit.nom}} - {{this.mumAndFit.adresse}} - {{this.mumAndFit.phone}} - {{this.mumAndFit.email}}</p>
             
         </div>
 
@@ -54,8 +54,27 @@
                 borderEmail : '',
                 borderPhone : '',
                 error : '', 
-                validate : ''             
+                validate : '',
+                mumAndFit : {
+                    prenom : '',
+                    nom : '',
+                    adresse : '',
+                    phone : '',
+                    email : '',
+                    lienCarte : '',
+                }             
             }
+        },
+        beforeMount () {
+            this.http.post('//localhost:8010/getMumAndFit')
+            .then (response=>{
+                this.mumAndFit.prenom = response.data[0].prenom,
+                this.mumAndFit.nom = response.data[0].nom,
+                this.mumAndFit.adresse = response.data[0].adresse,
+                this.mumAndFit.phone = response.data[0].phone,
+                this.mumAndFit.email = response.data[0].email,
+                this.mumAndFit.lienCarte = response.data[0].lienCarte
+            })
         },
         computed: {
             computedBorderFirstName: function () {

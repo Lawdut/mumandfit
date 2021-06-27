@@ -29,7 +29,6 @@
         methods : {
             deconnexion(){
                 localStorage.removeItem("jwt-mumandfit")
-                this.$session.destroy()
                 this.$router.push('/')
                 document.location.reload();
             }

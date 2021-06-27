@@ -650,6 +650,15 @@ function moveImage(image, fileName, callback){
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
                                                                         // ----- FORMULAIRE DE CONTACT ----- //
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+          /* ----- RECUPERATION DES COORDONNEES MUMANFIT ----- */
+
+app.post('/getMumAndFit', (req, res) => {
+  bdd.getMumAndFit('user', function(mumAndFit){
+    console.log(mumAndFit)
+    res.send(mumAndFit)
+  })
+})
+
 
           /*-----FORMULAIRE DE CONTACT ET ENVOI MAIL-----*/
 app.post('/formContact', (req, res)=>{
@@ -667,9 +676,9 @@ app.post('/formContact', (req, res)=>{
     });
   
     let mailOption = {
-      from: '"MumAndFit Contact" <mumandfit@gmail.com>',
-      to:'mumandfit@gmail.com',
-      subject:'Demande de prise de contact',
+      from: "MumAndFit Contact",
+      to: process.env.EMAIL,
+      subject:'Demande de prise de contact de ' + req.body.firstName + ' ' + req.body.lastName,
       html: 
       '<h1>Demande de contact de :</h1> <br> <strong>Prénom :</strong> ' + req.body.firstName + '<br> <strong>Nom :</strong> ' +req.body.lastName + '<br> <strong>Email :</strong> ' + req.body.mail + '<br> <strong>Numéro de téléphone :</strong> '+req.body.phone+ '<br> <strong>Message :</strong> <br>'+ req.body.message
       
