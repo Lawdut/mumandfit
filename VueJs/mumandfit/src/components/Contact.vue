@@ -5,7 +5,7 @@
         </div>
         
         <div class ="formContact">
-            <h3 class = "formTitre">Laissez-nous vos coordonnées</h3>
+            <h3 class = "formTitre">Laissez-moi vos coordonnées</h3>
             <div class="error" v-show="error !=''">{{error}}</div>
             <div class="validate" v-show="validate !=''">{{validate}}</div>
             <div id ="firstName"><input type ="text" id = "inputFormFirstName" name="firstName" @focus="borderFirstNameChange" v-bind:style="`--borderFirstName : ${computedBorderFirstName}`" v-model="firstName" placeholder="Prénom" required></div>
@@ -17,7 +17,7 @@
         </div>
         
         <div class = "geoLoc">
-            <h3 class = "geoLocTitre">Où nous trouver ?</h3>
+            <h3 class = "geoLocTitre">Où me trouver ?</h3>
             <iframe v-bind:src="`${this.mumAndFit.lienCarte}`" 
                 width="100%" height="75%" 
                 style="border:0;" allowfullscreen="" 
