@@ -1,11 +1,12 @@
 <template>
     <div id ="changePassMail">
-        <p>Si vous avez changé le mot de passe de votre adresse mail,</p><p>il faut <strong>impérativement</strong> rentrer le nouveau ici.</p><p> Sans cela, vous ne recevrez plus de message de la part de vos potentiels futurs clients.</p>
-        <input type ="text" v-model="mdpAdresseMail" autocomplete="new-password" class = "inputForm">
+        <h1>Mot de passe pour accéder à la boîte mail</h1>
+        <p>Si vous avez changé le mot de passe pour accéder à votre adresse mail,</p><p>il faut <strong>impérativement</strong> rentrer le nouveau ici.</p><p> Sans cela, vous ne recevrez plus de message de la part de vos potentiels futurs clients.</p>
+        <input type ="password" v-model="mdpAdresseMail" autocomplete="new-password" class = "inputForm">
 
         <div id="buttonChangeMdpMail">
                 <input type = 'submit' @click="toggleModale('save')" value="Enregistrer les modifications" class = "Button1 save">
-                <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
+                <router-link to = "/admin" ><input type ="submit" value = "Retour" class = "Button1" ></router-link>
         </div>
 
         <transition name="fade">
@@ -23,17 +24,11 @@ import Modale from '../Modale.vue';
         },
        data(){
            return{
-               mdpAdresseMail : this.mdpAdresseMail,
+               mdpAdresseMail : '',
                revele :false,
                 modifier : false,
            }
        },
-       beforeMount () {
-            this.http.post('//localhost:8010/getAllMumAndFit')
-            .then (response=>{
-                this.mdpAdresseMail = response.data[0].mdpAdresseMail
-            })
-        },
 
         methods : {
             save() {
@@ -49,9 +44,6 @@ import Modale from '../Modale.vue';
                     this.modifier = true;
                 }
             },
-            navigation : function () {
-                this.$router.go(-1)
-            }
         }
     }
 </script>

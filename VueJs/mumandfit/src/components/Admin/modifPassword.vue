@@ -1,6 +1,6 @@
 <template>
     <div class = "modifPassword">
-        <h1>Nouveau mot de passe</h1>
+        <h1>Nouveau mot de passe pour vous connecter</h1>
         <div id = "emailChange">Votre email : {{this.email}}</div>
         <div id="password1"><input type="password" class ="inputFormPass" v-model="mdp" autocomplete="new-password"></div>
 
