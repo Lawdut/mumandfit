@@ -63,19 +63,21 @@ export default {
                     menubar: 'file edit view insert format tools table help',
                     plugins: [
                     'print preview paste importcss searchreplace autolink',
-                    ' directionality code visualblocks visualchars fullscreen ',
-                    'template codesample table charmap hr pagebreak nonbreaking',
-                    'anchor toc insertdatetime advlist lists wordcount',
+                    ' directionality code visualblocks visualchars fullscreen',
+                    'link media template codesample table charmap hr pagebreak nonbreaking',
+                    'anchor toc insertdatetime advlist lists wordcount ',
                     'textpattern noneditable help charmap quickbars emoticons '
                     ],
                     toolbar:
                     'undo redo | formatselect | bold italic backcolor | \
                     alignleft aligncenter alignright alignjustify | \
-                    bullist numlist outdent indent | removeformat ',
+                    bullist numlist outdent indent | removeformat',
                     toolbar_sticky: true,
                     inline: true,
                     encoding: 'UTF-8',
                     entity_encoding : 'raw',
+                    quickbars_selection_toolbar: '',
+                    quickbars_insert_toolbar: '',
 
                },
       }
@@ -130,7 +132,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index : 5;
+  z-index : 1;
   display: block;
 }
 #pres{
@@ -141,6 +143,7 @@ export default {
   width: 65%;
   padding-left: 17.5%;
   padding-bottom: 50px;
+  
 }
 #buttonModifPres{
   display: flex;
@@ -154,7 +157,7 @@ export default {
   background-color: #ec7463;
   border-radius: 0 0 25px 25px;
   padding: 30px ;
-  z-index: 5;
+  z-index: 1;
 }
 
 @media (max-width: 1400px) {
