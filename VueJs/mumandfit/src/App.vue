@@ -124,7 +124,7 @@ a, router-link{
   border-radius: 25px 25px 0 0;
   z-index: 2;
 }
-.vueperslide__content-wrapper{
+.vueperslide__content-wrapper, .vueperslides__parallax-wrapper, .vueperslide--active{
   border-radius: 25px 25px 0 0;
 }
 .inputForm{
@@ -215,5 +215,8 @@ a, router-link{
     width: auto;
     height: auto;
   }
+  .vueperslide__content-wrapper, .vueperslides__parallax-wrapper, .vueperslide--active{
+  border-radius: 0;
+}
 }
 </style>

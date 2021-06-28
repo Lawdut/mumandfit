@@ -156,9 +156,6 @@ export default {
   padding: 30px ;
   z-index: 5;
 }
-.vueperslide--active, .vueperslides__parallax-wrapper{
-  border-radius: 25px 25px 0 0;
-}
 
 @media (max-width: 1400px) {
   #imagePres{
