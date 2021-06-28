@@ -16,6 +16,8 @@ const path = require("path");
 const config = require("./models/config.js");
 const helmet = require('helmet');
 const axios = require("axios");
+const Cryptr = require('cryptr');
+const cryptr = new Cryptr(process.env.TOKEN_SECRET);
 
 
 
@@ -101,6 +103,12 @@ function clean(request){
 
   return requestToClean;
 }
+
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+                                                                        // ----- FONCTION CRYPTO ----- //
+/*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
                                                                         // ----- CONNEXION - INSCRIPTION - MODIFICATION ----- //
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -167,12 +175,18 @@ app.post('/updateAdmin', authenticateToken, function(req, res){
 })
 
 app.post('/updateMdpMail', authenticateToken, function(req, res){
-  bdd.updateMdpMail('user', req.body, function(error){
-    if(error){
-      res.send(error)
-    }
-    res.send('Mot de passe mis à jour')
-  })
+  let crypted = cryptr.encrypt(req.body.mdpAdresseMail)
+  console.log(crypted)
+  try{
+     bdd.updateMdpMail('user',crypted, function(error){
+      if(error){
+        res.send(error)
+      }
+      res.send('Mot de passe mis à jour')
+    })
+  }catch(error){
+    console.log(error)
+  }
 })
 
 app.post('/updateGoogleMap', authenticateToken, function (req, res){
@@ -701,11 +715,12 @@ app.post('/formContact', (req, res)=>{
   .then((resp)=>{
     console.log(resp.data)
     bdd.getAllMumAndFit("user", function(mumAndFit){
+      let password = cryptr.decrypt(mumAndFit[0].mdpAdresseMail)
       let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth:{
           user : mumAndFit[0].email,
-          pass: mumAndFit[0].mdpAdresseMail,
+          pass: password,
         }
       });
     

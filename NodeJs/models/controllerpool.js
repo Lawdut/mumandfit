@@ -75,8 +75,8 @@ exports.updateAdmin = function (table, admin, callback){
     })
 }
 
-exports.updateMdpMail = function(table, admin, callback){
-    var sql = "UPDATE "+ table + " SET `mdpAdresseMail` = " + "'" + admin.mdpAdresseMail + "'" + " WHERE id = 1"
+exports.updateMdpMail = function(table, request, callback){
+    var sql = "UPDATE "+ table + " SET `mdpAdresseMail` = " + "'" + request + "'" + " WHERE id = 1"
 
     conn.query(sql, function(error){
         if (error){
