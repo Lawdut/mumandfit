@@ -138,7 +138,7 @@
     align-items: center;
     overflow: hidden;
     background-color: #cecece;
-    margin : 5px 5px;
+    margin : 6.5px 5px 7px 5px;
     
 
     text-overflow: ellipsis;

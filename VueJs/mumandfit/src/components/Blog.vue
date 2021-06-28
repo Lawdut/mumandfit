@@ -158,12 +158,13 @@
     justify-content: center;
     align-items: flex-start;
     overflow: hidden;
-    margin : 5px 5px;
+    margin : 6.5px 5px 7px 5px;
 
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
+    content : '';
 }
 .chapeau >>> p {
     text-align: center !important;
