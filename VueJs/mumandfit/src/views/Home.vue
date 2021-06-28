@@ -5,7 +5,7 @@
 
     <div id = "imagePres">
       <vueper-slides fade autoplay :touchable="true" :pause-on-hover="pauseOnHover" :slide-ratio="337 / 599">
-        <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image" />
+        <vueper-slide v-for="(slide, i) in slides" :key="i" :image="slide.image" :duration='delay'/>
       </vueper-slides>
 
     </div>
@@ -51,7 +51,7 @@ export default {
       
       
       presentation : this.presentation,
-     
+      delay : 5000,
       revele :false,
       modifier : true,
       token : this.$store.state.token,
@@ -147,6 +147,17 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top : 20px;
+}
+.mce-content-body{
+  box-shadow: 1px 1px 10px 3px #2c3e50;
+  background-color: #ec7463;
+  border-radius: 0 0 25px 25px;
+  padding: 30px ;
+  z-index: 5;
+}
+.vueperslide--active, .vueperslides__parallax-wrapper{
+  border-radius: 25px 25px 0 0;
 }
 
 @media (max-width: 1400px) {
@@ -160,5 +171,12 @@ export default {
     padding-left: 10%;
     padding-bottom: 50px;
   }
+  .mce-content-body{
+    box-shadow: none;
+    background-color: white;
+    border-radius: none;
+    padding: 30px ;
+  
+}
 }
 </style>

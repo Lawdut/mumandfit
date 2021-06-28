@@ -119,6 +119,14 @@ a, router-link{
   opacity: 0;
   
 }
+.vueperslides{
+  box-shadow: 1px 1px 10px 3px #2c3e50 ;
+  border-radius: 25px 25px 0 0;
+  z-index: 2;
+}
+.vueperslide__content-wrapper{
+  border-radius: 25px 25px 0 0;
+}
 .inputForm{
         width: 50%;
         padding: 12px 20px;
@@ -171,6 +179,9 @@ a, router-link{
   #liens{
     margin-left: 45px !important;
   }
+  .vueperslides{
+  box-shadow: none ;
+}
 
 }
 
