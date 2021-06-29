@@ -155,7 +155,7 @@ export default {
 .mce-content-body{
   box-shadow: 1px 1px 10px 3px #2c3e50;
   background-color: #ec7463;
-  border-radius: 0 0 25px 25px;
+  border-radius: 0 0 15% 15%;
   padding: 30px ;
   z-index: 1;
 }

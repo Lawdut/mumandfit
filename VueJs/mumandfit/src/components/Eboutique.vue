@@ -87,6 +87,7 @@
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(6, 1fr);
     background-color: #cecece;
+    border-radius: 10px;
 }
 .imageEbook{
     grid-column: 1 / 1;
@@ -96,7 +97,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-end;
-
+    border-radius: 10px 10px 0 0;
 }
 .imageEbook >>> p {
     color :#434343;
@@ -161,7 +162,7 @@
     justify-content: center;
     align-items: center;
     background-color: #ec7463;
-
+    border-radius: 0 0 10px 10px;
 }
 
 .button-ebook {

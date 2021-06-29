@@ -121,11 +121,10 @@ a, router-link{
 }
 .vueperslides{
   box-shadow: 1px 1px 10px 3px #2c3e50 ;
-  border-radius: 25px 25px 0 0;
   z-index: 2;
 }
-.vueperslide__content-wrapper, .vueperslides__parallax-wrapper, .vueperslide--active{
-  border-radius: 25px 25px 0 0;
+.vueperslide__content-wrapper, .vueperslides__parallax-wrapper, .vueperslide--active, .vueperslides{
+  border-radius: 5% 5% 0 0;
 }
 .inputForm{
         width: 50%;

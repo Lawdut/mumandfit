@@ -99,6 +99,7 @@
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(6, 1fr);
     position: relative;
+    border-radius: 10px;
 }
 .genre{
     position: absolute;
@@ -132,6 +133,7 @@
     width: 300px;
 	height: 100%;
     object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
 
 .titre{
@@ -178,9 +180,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     background-color: #ec7463;
-
+    border-radius: 0 0 10px 10px;
 }
 
 .button-article {
@@ -199,6 +200,7 @@
 .first1 {
   -webkit-transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
   transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+  
 }
 .first1:hover {
   box-shadow: 0 0 40px 40px #434343 inset;
