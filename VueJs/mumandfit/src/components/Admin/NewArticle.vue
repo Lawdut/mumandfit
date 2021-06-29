@@ -1,14 +1,6 @@
 <template>
     <div>
          <div class = "article">
-             <div id = "genreCreate">
-                <editor  v-model = unArticle.genre output-format="html"
-                    api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
-                    :disabled="status"
-                    :init="myInitGenre"
-                    initial-value="Placer un genre (<i>facultatif</i>)"
-                    />
-            </div>
             <div id = "banniereCreate">
                 <editor  v-model = unArticle.banniere output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
@@ -16,13 +8,23 @@
                     :init="myInitBanniere"
                     initial-value="Placer une image de bannière ici"
                     />
+            </div>
+            <div id = "genreCreate">
+                <div id = "genreCreatePos">
+                    <editor  v-model = unArticle.genre output-format="html"
+                        api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
+                        :disabled="status"
+                        :init="myInitGenre"
+                        initial-value="Placer un genre (<i>facultatif</i>)"
+                        />
+                </div>
             </div>        
             <div id = "titreCreate">
                 <editor  v-model = unArticle.titre output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
                     :init="myInitTitre"
-                    initial-value="Placer un titre ici"
+                    initial-value="<h1>Placer un titre ici</h1>"
                 />
             </div>
             <div id = "chapeauCreate">
@@ -30,7 +32,7 @@
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
                     :disabled="status"
                     :init="myInitChapeau"
-                    initial-value="Placer un chapeau ici"
+                    initial-value="<strong>Placer un chapeau ici</strong>"
                 />
             </div>
             <div id = "contenuCreate">
@@ -238,6 +240,26 @@ import jQuery from "jquery";
 </script>
 
 <style scoped>
+
+#genreCreate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#genreCreatePos{
+     color : black;
+    text-transform: uppercase;
+    border: 1px solid #204554;
+    background-color: hsla(23,51%,92%,.4);
+    padding: 12px;
+    top : 87%;
+    left : 2%;
+}
+#genreCreate>>>p{
+    margin: 0;
+    font-size: 12px;
+}
+
 #buttonCreateArticle{
     display: flex;
     justify-content: center;
