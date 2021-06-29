@@ -30,11 +30,11 @@
         <input type = 'submit'  value="Enregistrer les modifications" class = "Button1 save" v-if="token" @click="toggleModale('save')">
         <input type = 'submit'  value = "Supprimer" class = "Button1 delete" v-if="token" @click="toggleModale('delete')">
         <button class = "snipcart-add-item Button1" v-if="!token"
-            :data-item-id= this.ebook.id
-            :data-item-price= this.ebook.prix
-            :data-item-url= this.ebook.url
-            :data-item-file-guid = this.ebook.guid
-            :data-item-name = this.titreSansBalise
+            :data-item-id="this.ebook.id"
+            :data-item-price="this.ebook.prix"
+            :data-item-url="this.ebook.url"
+            :data-item-file-guid ="this.ebook.guid"
+            :data-item-name ="this.titreSansBalise"
         >Ajouter au panier : {{ebook.prix}} €</button>
         <input @click="navigation" type ="submit" value = "Retour" class = "Button1 return">
     </div>
@@ -63,7 +63,8 @@ import Modale from './Modale.vue';
                     titre : '',
                     description : '',
                     corps : '',
-                    url : "http://localhost:8080/ebook/"+`${this.$route.params.id}` ,
+                    //url : "http://localhost:8080/ebook/"+`${this.$route.params.id}` ,
+                    url : "https://mumandfit.alwaysdata.net/"
                 },
                 titreSansBalise : "",
                 revele :false,
