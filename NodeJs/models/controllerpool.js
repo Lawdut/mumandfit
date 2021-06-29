@@ -213,7 +213,6 @@ exports.createArticle = function (table, table2, article, images, callback){
                     })
                 }
             let id = results[0].id;
-            //console.log('controller :'+images);
 
             if(typeof images !== 'undefined' /*images.length > 0*/){
                 for (let i = 0 ; i < images.length ; i++){
@@ -255,7 +254,7 @@ exports.createArticle = function (table, table2, article, images, callback){
 
 
 exports.updateArticles = async function (table1, table2, article, images, callback){
-    //console.log(article);
+    
     var sql = "UPDATE " + table1 + " SET `genre` = " + "'" + article.unArticle.genre +"'" + "," + "`banniere` = " + "'" + article.unArticle.banniere +"'" + "," + `titre = ` + "'" + article.unArticle.titre + "'" + "," + `chapeau = ` + "'" + article.unArticle.chapeau + "'" + "," + `contenu = ` + "'" + article.unArticle.contenu + "'" + "," + `statusMaj = ` + "'" + article.unArticle.statusMaj + "'"+ "," + " `date_maj` = NOW() WHERE id = " + article.unArticle.id ;
     //var imageBdd = [];
     conn.query(sql, function(error) {
@@ -266,17 +265,13 @@ exports.updateArticles = async function (table1, table2, article, images, callba
             var imageDelBdd = "DELETE FROM " + table2 + " WHERE id_article = "+ article.unArticle.id;
             
             conn.query(imageDelBdd, function(error){
-                console.log('hello from delete contoller pool')
                 if(error){
                     return conn.rollback(function(){
                         throw error;
                     })
                 }
-                //console.log(imageBdd.nom_image);*/
-                console.log('controller2 :' +images);
+                
                 for(let i = 0; i < images.length; i++) {
-                    console.log('hello from insert contoller pool')
-                    console.log(images[i])
                     var image = "INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + article.unArticle.id+"');" ;
                     conn.query(image, function(error){
                         if(error){
@@ -287,7 +282,6 @@ exports.updateArticles = async function (table1, table2, article, images, callba
                     })
                 }
             })
-            console.log('modifié')
             callback();
         }
     })

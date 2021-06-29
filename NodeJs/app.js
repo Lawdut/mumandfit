@@ -110,7 +110,7 @@ function clean(request){
 app.post('/inscription', authenticateToken, function (req, res) {
     
     bdd.verifCustomerExist('user', req.body, function(userExist){
-      console.log()
+
       if (userExist) {
         res.send({ res: false });
       }else{
@@ -160,7 +160,7 @@ app.post('/connexion', function (req, res) {
 })
 
 app.post('/updateAdmin', authenticateToken, function(req, res){
-  console.log(req.body)
+
   bdd.updateAdmin('user', req.body, function(error){
     if(error){
       res.send(error)
@@ -171,7 +171,7 @@ app.post('/updateAdmin', authenticateToken, function(req, res){
 
 app.post('/updateMdpMail', authenticateToken, function(req, res){
   let crypted = cryptr.encrypt(req.body.mdpAdresseMail)
-  console.log(crypted)
+  //console.log(crypted)
   try{
      bdd.updateMdpMail('user',crypted, function(error){
       if(error){
@@ -283,7 +283,6 @@ app.post('/getAllArticles', function (req, res) {
           /* ----- MODIFICATION ARTICLES -----*/
 app.post('/modifArticle',authenticateToken, function(req, res){
   let unArticleCleaned = cleanArticle(req.body);
-  console.log (req.body)
   const imageFromBDD = []
   //let imageFromBDD = bdd.getAllImages('image', unArticleCleaned);
   try {
@@ -291,7 +290,7 @@ app.post('/modifArticle',authenticateToken, function(req, res){
       for (let i = 0 ; i < images.length; i++){
         imageFromBDD.push(images[i].nom_image)
       }
-      cleanFolderImagesUpdate(unArticleCleaned, imageFromBDD, function() {
+      cleanFolderImagesUpdate(unArticleCleaned, imageFromBDD, function(error) {
 
         bdd.updateArticles('articles', 'image', unArticleCleaned, imageTab, function(err){
           if (err) {
@@ -339,13 +338,13 @@ app.post('/deleteArticle', authenticateToken, async function(req, res){
           /* ----- REFERENCEMENT D UN NOUVEL EBOOK ----- */
 
 app.post('/createEbook', authenticateToken, function (req, res){
-//console.log(req.body)
+
 
 req.body.ebook.titre = clean(req.body.ebook.titre)
 req.body.ebook.description = clean(req.body.ebook.description)
 req.body.ebook.corps = clean(req.body.ebook.corps)
 
-//console.log(req.body)
+
 
   try {
     bdd.createEbook('ebook', req.body, function(err){
@@ -370,7 +369,6 @@ app.post('/getAllEbooks', function(req, res){
 })
 
 app.post('/getOneEbook', function(req, res){
-  console.log(req.body)
   bdd.getOneEbook('ebook', req.body.id, function(ebook){
     res.send({ebook})
   })
@@ -407,9 +405,9 @@ app.post('/jwt', (req, res) => {
 
     try {
       const privateKey = fs.readFileSync(config.privateKeyFile).toString();
-      //console.log(privateKey);
+      
       const token = jwt.sign(payload,privateKey, { algorithm: 'RS256'});
-      //console.log(token);
+      
       res.send(JSON.stringify({token: token}))
         
     } catch (e) {
@@ -465,7 +463,7 @@ app.post('/upload', (req, res)=>{
 app.post('/createCanceled', (req, res) =>{
   for(let i = 0 ; i < imageTab.length; i++){
     fs.unlinkSync(dirPath+imageTab[i]);
-    console.log(imageTab[i]);
+    //console.log(imageTab[i]);
   }
   imageTab.length=0;
   res.send('Supprimé');
@@ -494,7 +492,6 @@ let index = art.indexOf(img)
 
   //Dans le cas de la création d'un article
   if(imageTab.length > 0 && article.unArticle.id === ''){
-    console.log('hello hi ouille')
     for(let h = 0 ; h < imageTab.length; h++){
       imageTab2[h]= imageTab[h];
     }
@@ -507,10 +504,10 @@ let index = art.indexOf(img)
 
       for(let j = 0 ; j < imageInArticle.length ; j++){
      
-        console.log(imageTab2[i] == imageInArticle[j])
+        
         if(imageTab2[i] == imageInArticle[j]){
           imageTab.push(imageTab2[i]);
-          console.log(imageTab);
+          
           count = 1;  
       }
     }if (count == 0){
@@ -521,12 +518,9 @@ let index = art.indexOf(img)
   }
 }
 function cleanFolderImagesUpdate(article, images, callback){
-console.log(images)
-console.log(article.unArticle.id);
+
 art = article.unArticle.banniere.concat(' ', article.unArticle.contenu)
 let img = 'kkfmaf_';
-
-//console.log(article);
 let imageInArticle = [];
 let imageFromBDD = [];
 let imageTab2= [];
@@ -536,20 +530,18 @@ let index = art.indexOf(img)
 
   for(let i = 0 ; i < images.length; i++){
     imageFromBDD.push(images[i])
-    console.log('remplissage de imagefromBDD via imageTab :' + i)
-    console.log(imageFromBDD)
+    // console.log('remplissage de imagefromBDD via imageTab :' + i)
+    // console.log(imageFromBDD)
   }
 
   while (index != -1){
 
     if(art.substring(index+24, index+25) != '"'){
       imageInArticle.push(art.substring(index, index+25));
-      console.log('remplissage de imageinArticle')
-      console.log(imageInArticle)
+      
     }else{
       imageInArticle.push(art.substring(index, index+24))
-      console.log('remplissage de imageinArticle')
-      console.log(imageInArticle)
+     
     }
     index = art.indexOf(img, index+1)
   }
@@ -558,34 +550,23 @@ let index = art.indexOf(img)
 //Dans le cas de la modification d'un article ET/OU de la suppression d'images déjà existantes antérieurement ET avec ajout de nouvelles images.
   // Il faudra nettoyer le dossier images ET la BDD.
   if (imageTab.length > 0 ){
-    console.log('hello ouailllllle');
     
       for(let j = 0 ; j < imageTab.length; j++){
         imageTab2.push(imageTab[j]);
-        console.log('remplissage de imageTab2 via imageTab :' + j)
-        console.log(imageTab2);
+        
       }
       imageTab = [];
 
       //Nettoyage des images contenues dans la base de données MAIS plus présentes dans l'article
       for(let k = 0 ; k < imageFromBDD.length; k++){
-        console.log('premier for')
           let count = 0;
     
           for(let m = 0 ; m < imageInArticle.length ; m++){
-            console.log('deuxième for')
-            console.log(typeof imageFromBDD)
-            console.log(typeof imageInArticle)
-            console.log('nettoyage bdd')
-            console.log(imageFromBDD[k] == imageInArticle[m])
+            
             if(imageFromBDD[k] == imageInArticle[m]){
-              console.log(imageInArticle[m]);
-              console.log('imageTab rempli dans if 1 : ' +imageTab);
               count = 1;  
-              console.log('premier if')
           }
         }if (count == 0){
-          //console.log('deuxième if' + imageFromBDD[k])
           fs.unlinkSync(dirPath+imageFromBDD[k])
         }
       }
@@ -594,18 +575,13 @@ let index = art.indexOf(img)
         let count2 = 0;
   
         for(let p = 0 ; p < imageInArticle.length ; p++){
-          console.log('nettoyage folder')
-          console.log(imageTab2)
-          console.log(imageInArticle)
-          console.log(imageTab2[n] == imageInArticle[p])
+          
           if(imageTab2[n] == imageInArticle[p]){
-            console.log('imagTab version finale : ' +imageTab)
+            
             count2 = 1;  
         }
       }if (count2 == 0){
-        console.log(n)
-        console.log('suppression de : '+ imageTab.splice(n,1))
-        console.log('hello')
+        
         fs.unlinkSync(dirPath+imageTab2[n])
       }        
       }
@@ -624,28 +600,23 @@ let index = art.indexOf(img)
 
   //Dans le cas de la modification d'un article ET de la suppression d'images déjà existante antérieurement sans ajout de nouvelles images.
   }else if (imageTab.length == 0){
-    console.log('hello ouille')
+    
 
       for(let k = 0 ; k < imageFromBDD.length; k++){
-        console.log(imageFromBDD)
-        console.log('premier for')
+        
         let count = 0;
   
         for(let j = 0 ; j < imageInArticle.length ; j++){
-          console.log('deuxième for')
-          console.log(typeof imageFromBDD)
-          console.log(typeof imageInArticle)
-          console.log(imageFromBDD[k] == imageInArticle[j])
+          
           if(imageFromBDD[k] == imageInArticle[j]){
-            console.log(imageInArticle[j]);
+            
             imageTab.push(imageInArticle[j]);
-            console.log(imageTab)
-            console.log('imageTab rempli dans if 2 : ' +imageTab);
+            
             count = 1;  
-            console.log('premier if')
+            
         }
       }if (count == 0){
-        console.log('deuxième for')
+        
         fs.unlinkSync(dirPath+imageFromBDD[k])
       }
     }
@@ -674,7 +645,7 @@ app.post('/uploadSlider', authenticateToken, function(req, res){
 
 
 function moveImage(image, fileName, callback){
-  console.log(image)
+  
   image.mv(path.join(__dirname, '../', 'VueJs/mumandfit/public/imagesSlider/', fileName), function (err) {
     if (err) {
       callback(err);
@@ -691,13 +662,13 @@ function moveImage(image, fileName, callback){
 
 app.post('/getMumAndFit', (req, res) => {
   bdd.getMumAndFit('user', function(mumAndFit){
-    console.log(mumAndFit)
+    
     res.send(mumAndFit)
   })
 })
 app.post('/getAllMumAndFit', (req, res) => {
   bdd.getAllMumAndFit('user', function(mumAndFit){
-    console.log(mumAndFit)
+    
     res.send(mumAndFit)
   })
 })
@@ -705,7 +676,7 @@ app.post('/getAllMumAndFit', (req, res) => {
 
           /*-----FORMULAIRE DE CONTACT ET ENVOI MAIL-----*/
 app.post('/formContact', (req, res)=>{
-  console.log(req.body.mail);
+  
   axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=6LeJiycbAAAAAC2O9CmLGEV96ZYSMJcOdyDKtoYL&response=${req.body.token}`)
   .then((resp)=>{
     console.log(resp.data)
@@ -731,7 +702,7 @@ app.post('/formContact', (req, res)=>{
       if(resp.data.success === true){
         transporter.sendMail(mailOption, function(err, data){
           if(err){
-            console.log('email non envoyé', err);
+            res.send('email non envoyé', err);
           }else{
             res.send('email envoyé')
           }
