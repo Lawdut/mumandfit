@@ -140,21 +140,21 @@
   position: fixed;
   top: 20%;
   bottom: 0;
-  transition: 0.8s;
+  transition: 0.5s;
   right: 0;
   width: 50%;
  box-shadow: 1px 1px 10px 3px #2c3e50;
 }
 .slide-fade-enter-active {
-    transition: all 0.8s ease;
+    transition: all 0.5s ease-out;
     
 }
 .slide-fade-leave-active {
-    transition: all 0.8s ease;
+    transition: all 0.5s ease-in;
 }
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */ {
-    transform: translateX(200px);
+    transform: translateX(100%);
     
 }
 .liensResp{

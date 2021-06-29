@@ -167,8 +167,11 @@ export default {
     margin-top: 0;
   }
   #pres{
-    width: 80%;
-    padding-left: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-left: 0%;
     padding-bottom: 50px;
   }
   .mce-content-body{
