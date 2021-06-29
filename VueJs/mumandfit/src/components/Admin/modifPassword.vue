@@ -73,4 +73,5 @@ import Modale from '../Modale.vue';
     align-items: center;
     column-gap: 20px;
 }
+
 </style>

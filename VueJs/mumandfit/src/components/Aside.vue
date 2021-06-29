@@ -83,7 +83,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
-    margin-left: 60px;
+    margin-left: 40px;
     padding: 0;
     
 }
