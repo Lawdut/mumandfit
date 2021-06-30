@@ -49,7 +49,7 @@
                         <p v-if="this.$store.state.unArticle.date_modif != null">Mis à jour le {{unArticle.date_maj}}</p>
                         <div id = "majValid" v-if="token && this.$store.state.unArticle.date_modif != null">
                             <p>Souhaitez-vous faire apparaître la date de mise à jour ?</p>
-                            <input type ="radio" id="yes" name="status_maj" value="oui" @change="changeStatus(1)" v-model="this.unArticle.statusMaj">
+                            <input type ="radio" id="yes" name="status_maj" value="ou=$i" @change="changeStatus(1)" v-model="this.unArticle.statusMaj">
                             <label for="yes">Oui</label>
                             <input type ="radio" id="no" name="status_maj" value="non" @change="changeStatus(0)" v-model="this.unArticle.statusMaj">
                             <label for="no">Non</label>
@@ -72,11 +72,8 @@
 
 <script>
 import Editor from '@tinymce/tinymce-vue';
-import jQuery from "jquery";
 import Modale from './Modale.vue';
 
-    const $ = jQuery;
-    window.$ = $;
 
     export default {
         name : 'Article',

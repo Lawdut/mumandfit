@@ -53,10 +53,6 @@
 
 <script>
 import Editor from '@tinymce/tinymce-vue';
-import jQuery from "jquery";
-    const $ = jQuery;
-    window.$ = $;
-
 
     export default {
         name : 'NewArticle',
@@ -185,13 +181,8 @@ import jQuery from "jquery";
                     entity_encoding : 'raw',
                     image_advtab: true,
                     image_uploadtab: true,
-                    //image_prepend_url : '/images/',
-                    //relative_urls : false,
                     automatic_uploads: true,
-                    //file_picker_types: 'image',
-                    //images_upload_base_path:'/images/',
                     //tinydrive_token_provider : "//localhost:8010/jwt",
-
                     images_upload_url : '//localhost:8010/upload',
 
                 }

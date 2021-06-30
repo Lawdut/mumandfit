@@ -27,12 +27,6 @@ export default {
     return {
     };
   },
-  mounted() {
-    const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      this.$store.commit("connected");
-    }
-  },
   methods : {
     
   },

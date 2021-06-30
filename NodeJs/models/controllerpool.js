@@ -53,7 +53,7 @@ exports.verifCustomerExist = function(table, user, callback){
 
 exports.connexion = function(table, user, callback) {
     //console.log(user);
-    var sql = "SELECT * FROM " + table + " WHERE email = " + "'" +user.mail +"'";
+    var sql = "SELECT * FROM " + table + " WHERE email = " +  conn.escape(user.mail) ;
     //console.log(sql);
     
     conn.query(sql, function(error, rows) {
@@ -214,7 +214,7 @@ exports.createArticle = function (table, table2, article, images, callback){
                 }
             let id = results[0].id;
 
-            if(typeof images !== 'undefined' /*images.length > 0*/){
+            if(typeof images !== 'undefined'){
                 for (let i = 0 ; i < images.length ; i++){
                     conn.query("INSERT INTO "+ table2 + "(id, nom_image, id_article) VALUE (NULL, '" + images[i] + "','" + id +"');", function(error){
                         if(error){
