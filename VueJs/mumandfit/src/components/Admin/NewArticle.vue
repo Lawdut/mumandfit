@@ -207,7 +207,10 @@ import Editor from '@tinymce/tinymce-vue';
 
                 this.uploadImageStatus = true;
 
-                if(this.unArticle.banniere != '' && this.unArticle.titre != '' && this.unArticle.chapeau != '' && this.unArticle.contenu != ''){
+                if(this.unArticle.banniere != '' 
+                    && this.unArticle.titre != '' 
+                    && this.unArticle.chapeau != '' 
+                    && this.unArticle.contenu != ''){
                     let unArticle = 
                     { unArticle : {
                         id : "",
