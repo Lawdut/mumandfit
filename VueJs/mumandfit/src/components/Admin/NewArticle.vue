@@ -1,6 +1,6 @@
 <template>
-    <div>
-         <div class = "article">
+    <div class = "article-box">
+        <div class = "article">
             <div id = "banniereCreate">
                 <editor  v-model = unArticle.banniere output-format="html"
                     api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
@@ -235,6 +235,16 @@ import Editor from '@tinymce/tinymce-vue';
 
 <style scoped>
 
+.article-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px 30px 0px;
+    row-gap : 20px;
+    max-width: 60%; 
+}
+
 #genreCreate{
     display: flex;
     justify-content: center;
@@ -260,5 +270,11 @@ import Editor from '@tinymce/tinymce-vue';
     align-items: center;
     flex-direction: row;
     column-gap: 20px;
+}
+.article {
+    width: 90%;
+}
+.main{
+    width: 60%;
 }
 </style>

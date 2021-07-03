@@ -316,7 +316,7 @@ import Modale from './Modale.vue';
     max-width: 60%; 
 }
 .main{
-    width: 60% !important;
+    width: 60%;
 }
 
 #genreModif{

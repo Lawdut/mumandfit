@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class ="ebook-box">
         <h1>Référencer un nouvel e-book sur le site</h1>
 
         <h2>Etape 1</h2>
@@ -182,6 +182,15 @@ import Editor from '@tinymce/tinymce-vue';
 </script>
 
 <style scoped>
+.ebook-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0px 30px 0px;
+    row-gap : 20px;
+    max-width: 60%; 
+}
 .inputForm{
         width: 50%;
         padding: 12px 20px;
