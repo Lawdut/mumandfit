@@ -85,6 +85,9 @@ a{
     border-radius: 25px;
     width: 100%;
 }
+.deconnexion{
+    margin : 20px;
+}
 @media (max-width : 1400px){
     #titreAdmin{
         background-color: white;

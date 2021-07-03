@@ -61,4 +61,16 @@ import Modale from '../Modale.vue';
     column-gap: 20px;
     margin: 30px;
 }
+@media (max-width: 850px){
+     #buttonChangeMdpMail{
+    display: flex;
+    flex-direction: column;    
+    justify-content: center;
+    align-items: center;
+    row-gap: 20px;
+    }
+    #changePassMail{
+        margin : 20px;
+    }
+}
 </style>
