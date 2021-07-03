@@ -11,7 +11,7 @@
             </div>
         </div>
         <div  class="card-footer">
-                    <jw-pagination :items="ebookTab" @changePage="onChangePage" :pageSize ="8" :labels="customLabels"></jw-pagination>
+                    <jw-pagination :items="ebookTab" @changePage="onChangePage" :pageSize ="6" :labels="customLabels"></jw-pagination>
         </div>
     </div>
 </template>
@@ -62,6 +62,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    flex-basis: 33.333333%;
 }
 .ebooks{
     display : flex;

@@ -74,7 +74,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
-    flex-basis: 33.333333%
+    flex-basis: 33.333333%;
 }
 .articles{
     display : flex;
