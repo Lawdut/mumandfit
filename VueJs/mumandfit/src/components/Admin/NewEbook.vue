@@ -15,12 +15,12 @@
 
         <h2>Etape 4</h2>
         <p>Donner un titre à l'e-book</p>
-        <div id = "titre">
+        <div id = "titreCreateEbook">
             <editor v-model = ebook.titre 
             api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
             :init="myInitTitre"
             :disabled="status"
-            initial-value="<h1>Clic ici pour écrire le titre</h1>"
+            initial-value="<h1>*Clic ici pour écrire le titre</h1>"
             />
         </div>
 
@@ -31,7 +31,7 @@
             api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
             :init="myInitDescription"
             :disabled="status"
-            initial-value="<strong>Clic ici pour écrire la description</strong>"
+            initial-value="<strong>*Clic ici pour écrire la description</strong>"
             />
         </div>
 
@@ -42,7 +42,7 @@
             api-key="2jgh6mgdua98sogh7mnlao1m9ilkavvncdhz2sa9frmmbet6"
             :init="myInitCorps"
             :disabled="status"
-            initial-value="<strong>Clic ici pour écrire le corps du texte</strong>"
+            initial-value="*Clic ici pour écrire le corps du texte"
             />
         </div>
 
@@ -73,7 +73,7 @@ import Editor from '@tinymce/tinymce-vue';
                 token : this.$store.state.token,
                 status : null,
                 myInitTitre : {
-                    selector : '#titre',
+                    selector : '#titreCreateEbook',
                     height: 500,
                     
                     menubar: 'file edit view insert format tools table help',

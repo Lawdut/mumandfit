@@ -13,7 +13,7 @@
         <div class = "titreChangeAdmin" id = "email"><h3>Email</h3></div>
         <input type= "text" v-model="email" class = "inputForm">
 
-        <div class = "titreChangeAdmin" id = "passContact"><h3>Modification du mot de passe de la boîte mail de contact</h3></div>
+        <div class = "titreChangeAdmin" id = "passContact"><h3>Modification du mot de passe de la boîte mail</h3></div>
         <div class = "liensAdmin buttonChange"><router-link to="/changePassMail"><button class = "Button1">Modifier</button></router-link></div>
 
         <div class = "titreChangeAdmin" id = "phone"><h3>Téléphone</h3></div>
@@ -22,7 +22,7 @@
         <div class = "titreChangeAdmin" id = "adresse"><h3>Adresse</h3></div>
         <input type= "text" v-model="adresse" class = "inputForm">
 
-        <div class = "titreChangeAdmin" id = "titreLienCarte"><h3>Modification de la cible de la carte Google Map</h3> </div>
+        <div class = "titreChangeAdmin" id = "titreLienCarte"><h3>Modification de la carte Google Map</h3> </div>
         <div id="lienCarte" class="buttonChange"><router-link to="/changeGoogleMap"><button class = "Button1">Modifier</button></router-link></div>
         
         <transition name="fade">
@@ -91,6 +91,13 @@ import Modale from '../Modale.vue';
 </script>
 
 <style scoped>
+
+#changeAdmin{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .inputForm{
         width: 50%;
         padding: 12px 20px;
@@ -105,7 +112,7 @@ import Modale from '../Modale.vue';
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    
+    max-width: 60%;
 }
 .buttonChange{
     margin:20px
@@ -113,6 +120,7 @@ import Modale from '../Modale.vue';
 
 .titreChangeAdmin>h3{
     margin-bottom : 5px;
+    
 }
 #buttonChangeAdmin{
     display: flex;
@@ -120,5 +128,12 @@ import Modale from '../Modale.vue';
     align-items: center;
     column-gap: 20px;
     margin-top: 50px;
+}
+@media (max-width: 1400px) {
+    #buttonChangeAdmin{
+        flex-direction: column;
+        row-gap: 20px;
+        margin : 80px;
+    }
 }
 </style>

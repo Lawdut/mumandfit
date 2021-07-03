@@ -313,6 +313,10 @@ import Modale from './Modale.vue';
     align-items: center;
     margin: 30px 0px 30px 0px;
     row-gap : 20px;
+    max-width: 60%; 
+}
+.main{
+    width: 60% !important;
 }
 
 #genreModif{
@@ -366,6 +370,12 @@ import Modale from './Modale.vue';
         flex-direction: column;
         row-gap: 20px;
 
+    }
+    
+}
+@media (max-width: 1400px) {
+    .article-box {
+        max-width: 100%;
     }
 }
 </style>

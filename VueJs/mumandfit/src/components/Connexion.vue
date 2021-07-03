@@ -65,8 +65,11 @@
 
 <style scoped>
 #connexion{
-    display: grid;
-    grid-template-rows: repeat(3 , 1fr);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 30px;
 }
 #email{
     display: flex;
@@ -74,7 +77,7 @@
     align-items: center;
 }
 .inputForm{
-        width: 50%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         --border : 1px solid #ccc;
@@ -84,7 +87,7 @@
         box-sizing: border-box;
     }
 .inputFormPass{
-        width: 50%;
+        width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         border : 1px solid #ccc;

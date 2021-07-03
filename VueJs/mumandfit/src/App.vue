@@ -87,9 +87,6 @@ a, router-link{
   grid-column : 6 / 21;
   grid-row : 1/13;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: white;
 }
 
@@ -97,6 +94,10 @@ a, router-link{
   height : 100%;
   width: 100%;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  
+  align-items: center;
 }
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.8s;
@@ -130,6 +131,11 @@ a, router-link{
         border-radius: 4px;
         box-sizing: border-box;
 }
+.mce-content-body>p>img{
+    max-width: 100%;
+    width: auto;
+    height: auto;
+  }
 
           /*-----Bouton-----*/
 
@@ -197,19 +203,14 @@ a, router-link{
     font-size: 9px;
   }
   .mce-object-iframe>iframe{
-    
     width: 90vw;
 }
-  #banniereModif>.mce-content-body>p>img{
-    max-width: 90vw;
+  .mce-content-body>img{
+    width: 90vw;
   }
-  .mce-content-body>p>img{
-    max-width: 90vw;
-    width: auto;
-    height: auto;
-  }
+ 
   .vueperslide__content-wrapper, .vueperslides__parallax-wrapper, .vueperslide--active{
   border-radius: 0;
-}
+  }
 }
 </style>

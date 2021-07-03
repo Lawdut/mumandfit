@@ -227,6 +227,17 @@ import Modale from './Modale.vue';
     align-items: center;
     margin: 30px 0px 30px 0px;
     row-gap : 20px;
+    max-width: 60%; 
+}
+.main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.box{
+    display: flex;
+    align-items: center;
 }
 .ebook {
     width: 90%;
@@ -235,6 +246,16 @@ import Modale from './Modale.vue';
     display: flex;
     column-gap: 20px;
 }
+.main{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 1400px) {
+    .ebook-box{
+        max-width: 100%;
+    }
+}
 @media (max-width : 680px){
     #buttonEbook{
         display: flex;
@@ -242,5 +263,6 @@ import Modale from './Modale.vue';
         row-gap: 20px;
 
     }
+    
 }
 </style>
