@@ -42,6 +42,7 @@
     grid-template-rows: repeat (6, 1fr);
     justify-content: center;
     height: 100%;
+    row-gap: 30px;
 }
 
 #titreAdmin{
