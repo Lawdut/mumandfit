@@ -12,7 +12,7 @@
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="8" :labels="customLabels" :maxPages ="3"></jw-pagination>
+            <jw-pagination :items="articleTab" @changePage="onChangePage" :pageSize ="6" :labels="customLabels" :maxPages ="3"></jw-pagination>
         </div>
     </div>
 </template>
@@ -74,6 +74,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 50px;
+    flex-basis: 33.333333%
 }
 .articles{
     display : flex;
@@ -83,6 +84,7 @@
     align-items: center;
     column-gap: 30px;
     row-gap: 30px;
+    
 }
 .card-footer{
     margin-top: 50px;
