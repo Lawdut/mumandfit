@@ -120,6 +120,7 @@ a, router-link{
 }
 .vueperslide__content-wrapper, .vueperslides__parallax-wrapper, .vueperslide--active, .vueperslides{
   border-radius: 5% 5% 0 0;
+  box-shadow: 1px 1px 10px 3px #2c3e50 ;
 }
 .inputForm{
         width: 50%;
