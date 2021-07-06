@@ -14,7 +14,7 @@
             </div>
         </div>
         <div  class="card-footer">
-            <jw-pagination :items="articleTabFiltered" @changePage="onChangePage" :pageSize ="8" :labels="customLabels"></jw-pagination>
+            <jw-pagination :items="articleTabFiltered" @changePage="onChangePage" :pageSize ="6" :labels="customLabels"></jw-pagination>
         </div>
 
     </div>
@@ -80,6 +80,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-basis: 33.333333%;
 }
 .articles{
     display : flex;
@@ -105,6 +106,7 @@
     grid-template-columns: repeat(1,1fr);
     grid-template-rows: repeat(6, 1fr);
     position: relative;
+    border-radius: 10px;
 }
 .genre{
     position: absolute;
@@ -138,6 +140,7 @@
     width: 300px;
 	height: 100%;
     object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
 
 .titre{
@@ -162,14 +165,15 @@
     grid-row: 4/6;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     overflow: hidden;
-    margin : 5px 5px;
+    margin : 6.5px 5px 7px 5px;
 
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 10;
     -webkit-box-orient: vertical;
+    content : '';
 }
 .chapeau >>> p {
     text-align: center !important;
@@ -183,8 +187,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
     background-color: #ec7463;
+    border-radius: 0 0 10px 10px;
 
 }
 .button-article{
